@@ -41,7 +41,6 @@ function onSpellClicked(elem){
 		$('#result').hide();
 
 	} else {
-		let spell = loadSpellData($(elem).data('class-name'), $(elem).data('spell-name'));
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
 		refreshTooltip();
@@ -52,18 +51,21 @@ function refreshTooltip(){
 	let className = $('.wow-spell.active').data('class-name');
 	let spellName = $('.wow-spell.active').data('spell-name');
 	if(className && spellName){
-		let spell = loadSpellData(className, spellName);
-		let characterLevel = $('#level').val();
-		if(!characterLevel || characterLevel < 0) characterLevel = 0;
-		if(characterLevel > 60) characterLevel = 60;
-
-		let healingPower = $('#healing').val();
-		if(!healingPower || healingPower < 0) healingPower = 0;
-		if(healingPower > 5000) healingPower = 5000;
-
-		$('#tooltip').html(buildTooltipHtmlForSpell(spell, calculateMostEfficientRank(characterLevel, healingPower, spell)));
-		$('#result').show();
+		loadSpellData(className, spellName, updateTooltip);
 	}
+}
+
+function updateTooltip(spellData){
+	let characterLevel = $('#level').val();
+	if(!characterLevel || characterLevel < 0) characterLevel = 0;
+	if(characterLevel > 60) characterLevel = 60;
+
+	let healingPower = $('#healing').val();
+	if(!healingPower || healingPower < 0) healingPower = 0;
+	if(healingPower > 5000) healingPower = 5000;
+
+	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(characterLevel, healingPower, spellData)));
+	$('#result').show();
 }
 
 function spellSelection(className){
@@ -87,9 +89,9 @@ function buildSpellHtmlForClass(className, container){
 	});
 }
 
-function loadSpellData(className, spellName){
+function loadSpellData(className, spellName, callback){
 	let spellPath = `assets/spelldata/${className}/${spellName}.json`;
-	return loadFile(spellPath);
+	return loadJSON(spellPath, callback);
 }
 
 function buildTooltipHtmlForSpell(spell, rank){
@@ -133,15 +135,15 @@ function buildDescription(spell, rank) {
 	return description;
 }
 
-function loadFile(path) {
+function loadJSON(path, callback) {
 	return (function () {
 	    var json = null;
 	    $.ajax({
-	        'async': false,
+	        'async': !!callback,
 	        'global': false,
 	        'url': path,
 	        'dataType': "json",
-	        'success': function (data) {
+	        'success': !!callback ? callback : function (data) {
 	            json = data;
 	        }
 	    });
