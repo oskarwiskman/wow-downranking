@@ -1,0 +1,72 @@
+body {
+	background-color: #1d1d1d;
+	margin: 20px;
+	color: #ccc;
+	font-family: Verdana,sans-serif;
+}
+
+.navbar > h4 {
+}
+
+.navbar > .icon-medium {
+	border-radius: 20px;
+	display: inline-block;
+	border: 1px solid #555;
+	width: 36px;
+	height: 36px;
+	opacity: 0.3;
+}
+
+.navbar > .icon-medium.active {
+	opacity: 1;
+}
+
+.hidden {
+	display: none;
+}
+
+.spell-tooltip {
+	box-shadow: 1px 1px #555;
+    background-color: #111;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+	font-size: 16px;
+    width: 300px;
+    padding: 7px;
+    opacity: 0.9;
+    color: white;
+    line-height: 20px;
+}
+
+.spell-tooltip .header {
+	font-size: 18px;
+}
+
+.spell-tooltip .header .name {
+	color: #7facf4;
+}
+
+.spell-tooltip .header .rank{
+	color: #9d9d9d;
+	float: right;
+}
+
+.spell-tooltip .requirements {
+}
+
+.spell-tooltip .requirements .cost{
+
+}
+
+.spell-tooltip .requirements .range{
+	float: right;
+}
+
+.spell-tooltip .cast-time {
+
+}
+
+.spell-tooltip p.description {
+	color: #ffd100;
+	margin: 8px 0px 0px 0px;
+}

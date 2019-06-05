@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>World of Warcraft - Downranking recommendations</title>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/styling/main.css">
+		<script src="assets/js/calculations.js"></script>
+		<script src="assets/js/main.js"></script>
+	</head>
+	<body>
+		<h1>World of Warcraft - Downranking recommendations</h1>
+		<div id="character-info">
+			<label for="level">Character level</label>
+			<input id="level" type="number" min="1" max="60" value="60">
+			<label for="healing">Healing power</label>
+			<input id="healing" type="number" min="0" max="10000">
+		</div>
+		<div id="class-selection">
+			<h4 class="header">Pick a class</h4>
+			<div class="navbar">
+				<a class="wow-class icon-medium" id="druid" title="Druid" style="background-image: url(assets/images/class_druid.jpg)"></a>
+				<a class="wow-class icon-medium" id="paladin" title="Paladin" style="background-image: url(assets/images/class_paladin.jpg)"></a>
+				<a class="wow-class icon-medium" id="priest" title="Priest" style="background-image: url(assets/images/class_priest.jpg)"></a>
+				<a class="wow-class icon-medium" id="shaman" title="Shaman" style="background-image: url(assets/images/class_shaman.jpg)"></a>
+			</div>
+		</div>
+		<div id="spell-selection" class="hidden">
+			<h4 class="header">Pick a spell</h4>
+			<div class="navbar">
+			</div>
+		</div>
+		<div id="result" class="hidden">
+			<h4 class="header">Most efficient rank</h4>
+			<div id="tooltip"></div>
+		</div>
+	</body>
+</html>
