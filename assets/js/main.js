@@ -79,7 +79,7 @@ function spellSelection(className){
 }
 
 function buildSpellHtmlForClass(className, container){
-	$.get("assets/spelldata/" + className, function(response){
+	$.get(`assets/spelldata/${className}`, function(response){
 		var html = "";
 		$(response).find("li > a").each(function(){
 			let spellName = $(this).attr('href').split('.json')[0];
