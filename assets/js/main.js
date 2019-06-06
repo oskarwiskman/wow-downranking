@@ -127,10 +127,12 @@ function buildDescription(spell, rank) {
 	var description = spell.description;
 	let regExp = /\${([^}]+)}/g;
 	let matches = description.match(regExp);
-	for(let i = 0; i < matches.length; i++){
-		let match = matches[i];
-		let attribute = match.substring(2, matches[i].length -1);
-		description = description.replace(match, spell.ranks[rank][attribute]);
+	if(matches){
+		for(let i = 0; i < matches.length; i++){
+			let match = matches[i];
+			let attribute = match.substring(2, matches[i].length -1);
+			description = description.replace(match, spell.ranks[rank][attribute]);
+		}
 	}
 	return description;
 }
