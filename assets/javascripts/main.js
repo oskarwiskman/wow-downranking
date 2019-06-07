@@ -84,7 +84,7 @@ function buildSpellHtmlForClass(className, container){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${spellName}" style="background-image: url(/images/${spellName}.jpg)"></a>\n`
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)"></a>\n`
 		})
 		container.html(html);
 	});
@@ -122,6 +122,14 @@ function buildTooltipHtmlForSpell(spell, rank){
 				`</p>` +
 			`</div>`
 
+}
+
+function toTitleCase(str) {
+	let split = str.split('_');
+	for(let i = 0; i < split.length; i++){
+		split[i] = split[i].charAt(0).toUpperCase() + split[i].substr(1);
+	}
+	return split.join(' ');
 }
 
 function buildDescription(spell, rank) {
