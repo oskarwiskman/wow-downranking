@@ -17,6 +17,14 @@ body {
 	opacity: 0.3;
 }
 
+.icon-medium:hover {
+	cursor: pointer;
+	opacity: 0.8;
+	-moz-box-shadow:    inset 0 0 10px #7facf4;
+	-webkit-box-shadow: inset 0 0 10px #7facf4;
+	box-shadow:         inset 0 0 10px #7facf4;
+}
+
 .navbar > .icon-medium.active {
 	opacity: 1;
 }
