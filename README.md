@@ -81,8 +81,12 @@ A few notes on this process:
 * All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.
 * All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.
 
+# Sources
+All the spell data used in the project has been gathered from [ClassicDB](https://classicdb.ch/) and the calculation formulas from [Allakhazam](http://wow.allakhazam.com/wiki/spell_coefficient_(wow)).
 
-Sources: 
-http://wow.allakhazam.com/wiki/spell_coefficient_(wow)
-https://classicdb.ch/
+# Contributions
+As stated above I am happy to receive constructive feedback, in order to make this tool better.
 
+Feel free to post bug reports on this repo, or create a Pull Request, but bare in mind that unless you provide a reasonable source to your claims they will be disregarded.
+
+If you're not a developer, or simply don't care for GitHUb you can also message me on Reddit [u/Oggzor](https://www.reddit.com/user/Oggzor).
