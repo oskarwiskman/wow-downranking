@@ -77,9 +77,9 @@ Now when we have all the parts we can calculate the final effective coefficient 
 
 A few notes on this process:
 
-All cast times are considered before any spell haste or casting time talents are applied.
-All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.
-All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.
+* All cast times are considered before any spell haste or casting time talents are applied.
+* All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.
+* All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.
 
 
 Sources: 
