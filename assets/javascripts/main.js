@@ -7,6 +7,7 @@ document.addEventListener('click',function(e){
 $(document).ready(function(){
 	$(".wow-class").on('click', function(){
 		onClassClicked(this);
+		newRandomTip();
 	});
 	$("#healing").change(function(){
 		refreshTooltip();
@@ -14,6 +15,7 @@ $(document).ready(function(){
 	$("#level").change(function(){
 		refreshTooltip();
 	});
+	newRandomTip();
 });
 
 function onClassClicked(elem){
@@ -45,6 +47,15 @@ function onSpellClicked(elem){
 		target.addClass('active');
 		refreshTooltip();
 	}
+}
+
+function newRandomTip(){
+	loadJSON('/data/tips.json', updateTip);
+}
+
+function updateTip(tipData){
+	console.log(tipData);
+	$('#tip').html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]);
 }
 
 function refreshTooltip(){
