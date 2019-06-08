@@ -73,6 +73,10 @@ footer > p > a {
 	display: inline-block;
 }
 
+#breakpoints {
+	display: inline-block;
+}
+
 .spell-tooltip {
 	font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
 	box-shadow: 1px 1px #555;
@@ -154,4 +158,17 @@ footer > p > a {
 #tip-title {
 	color: #ffd100;
 	margin-right:2px;
+}
+
+#breakpoints {
+	padding: 5px;
+	margin-left: 30px;
+    background-color: #111;
+    opacity: 0.8;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#breakpoints > table > caption {
+	color: #ffd100;
 }

@@ -66,6 +66,7 @@ function refreshTooltip(){
 	let spellName = $('.wow-spell.active').data('spell-name');
 	if(className && spellName){
 		loadSpellData(className, spellName, updateTooltip);
+		loadSpellData(className, spellName, buildBreakpointsTable);
 	}
 }
 
@@ -138,6 +139,39 @@ function buildTooltipHtmlForSpell(spell, rank){
 
 }
 
+function buildBreakpointsTable(spellData){
+	let bpMap = {};
+	let currentRank = 0;
+	let rows = "";
+
+	for(let i = 0; i < 3000; i++){
+		currentRank = calculateMostEfficientRank(60, i, spellData);
+		if(!bpMap[currentRank]) {
+			bpMap[currentRank] = i;
+		}
+	}
+	Object.keys(bpMap).sort(sortNumberAsc).forEach(function(key){
+		rows += buildBreakpointRow(bpMap[key], key);
+	});
+
+	let table = 
+	'<table>\n' +
+		'<caption>Breakpoints</caption>\n' +
+			'<tr>\n' +
+				'<th>Spell power</th>\n' +
+				'<th>Rank</th>\n' +
+			'</tr>\n'
+	table += rows;
+
+	table += '</table>\n'
+
+	$('#breakpoints').html(table);
+}
+
+function buildBreakpointRow(rank, spellpower){
+	return `<tr>\n\t<td>${rank}</td>\n\t<td>${spellpower}</td>\n</tr>\n`
+}
+
 function toTitleCase(str) {
 	let split = str.split('_');
 	for(let i = 0; i < split.length; i++){
@@ -174,4 +208,8 @@ function loadJSON(path, callback) {
 	    });
 	    return json;
 	})();
+}
+
+function sortNumberAsc(a, b) {
+  return b - a;
 }
