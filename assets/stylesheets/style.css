@@ -74,6 +74,7 @@ footer > p > a {
 }
 
 .spell-tooltip {
+	font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
 	box-shadow: 1px 1px #555;
     background-color: #111;
     border: 1px solid #aaa;
