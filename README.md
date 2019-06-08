@@ -1,5 +1,7 @@
 # World of Warcraft - Downranking tips
-Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
+Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. 
+
+The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
 
 Currently supported spells:
 
