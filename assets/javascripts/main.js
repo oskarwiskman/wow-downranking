@@ -142,21 +142,28 @@ function buildTooltipHtmlForSpell(spell, rank){
 }
 
 function buildBreakpointsTable(spellData){
-	let bpMap = {};
+	let bpMapFrom = {};
+	let bpMapTo = {};
 	let currentRank = 0;
 	let rows = "";
 	let characterLevel = $('#level').val();
+	let lastRank = undefined;
 	if(!characterLevel || characterLevel < 0) characterLevel = 0;
 	if(characterLevel > 60) characterLevel = 60;
 
-	for(let i = 0; i < 3000; i++){
+	for(let i = 0; i < 5000; i++){
 		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
-		if(!bpMap[currentRank]) {
-			bpMap[currentRank] = i;
+		if(bpMapFrom[currentRank] === undefined) {
+			bpMapFrom[currentRank] = i;
+			if(lastRank){
+				bpMapTo[lastRank] = i - 1;
+			}
+			lastRank = currentRank;
 		}
 	}
-	Object.keys(bpMap).sort(sortNumberAsc).forEach(function(key){
-		rows += buildBreakpointRow(bpMap[key], key);
+
+	Object.keys(bpMapFrom).sort(sortNumberAsc).forEach(function(key){
+		rows += buildBreakpointRow(bpMapFrom[key], bpMapTo[key], key);
 	});
 
 	let table = 
@@ -173,8 +180,13 @@ function buildBreakpointsTable(spellData){
 	$('#breakpoints').html(table);
 }
 
-function buildBreakpointRow(rank, spellpower){
-	return `<tr>\n\t<td>${rank}</td>\n\t<td>${spellpower}</td>\n</tr>\n`
+function buildBreakpointRow(spellpowerFrom, spellpowerTo, rank){
+	if(!spellpowerTo){
+		spellpowerTo = "+";
+	} else{
+		spellpowerTo = ` - ${spellpowerTo}`;
+	}
+	return `<tr>\n\t<td>${spellpowerFrom}${spellpowerTo}</td>\n\t<td>${rank}</td>\n</tr>\n`
 }
 
 function toTitleCase(str) {
