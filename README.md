@@ -11,7 +11,6 @@ Healing Touch
 Paladin:
 Flash of Light
 Holy Light
-Holy Shock
 
 Priest:
 Flash Heal
