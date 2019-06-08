@@ -1,5 +1,12 @@
-@import url(//db.onlinewebfonts.com/c/c8e8fcd5d85d9b587022fe0a79809b73?family=Friz+Quadrata);
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+@font-face {
+  font-family: 'Friz Quadrata';
+  src: url('../Friz Quadrata.eot'); /* IE9 Compat Modes */
+  src: url('../Friz Quadrata.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../Friz Quadrata.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../Friz Quadrata.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 
 html {
 	height: 100%;

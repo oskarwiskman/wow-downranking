@@ -7,14 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/spelldata/*', function(req, res, next) {
-	fs.readdir("./assets/" + req.path, (err, files) => {
-		res.send(files);
+	fs.readdir("./assets/" + req.path, (err, data) => {
+		res.send(data);
 	});
 });
 
 router.get('/data/*', function(req, res, next) {
-	fs.readdir("./assets/" + req.path, (err, files) => {
-		res.send(files);
+	fs.readdir("./assets/" + req.path, (err, data) => {
+		res.send(data);
 	});
 });
 
