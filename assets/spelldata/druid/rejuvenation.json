@@ -122,6 +122,6 @@
 			"tickInterval":3,
 			"tickDuration":12,
 			"tickPower":888
-		},
+		}
 	]
 }
