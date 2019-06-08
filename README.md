@@ -34,35 +34,46 @@ The sections below will describe how this tool calculates Spell Coefficients, sh
 These two are the most straigt forward, since they are comprised of a single dividing factor.
 
 Direct spells are spells that only have a direct impact such as Smite, Shadowbolt, Flash Heal or Healing Touch. The coefficient is calculated by:
+
 ```[Direct spell coefficient] = [Cast Time of Spell] / 3.5```
 
 Over-Time spells includes both Damage over time (DoTs) and Healing over Time (HoTs), such as Rejuvenation or Curse of Agony. The added damage or healing is divided equally among each tick of the spell and the standard formula is:
+
 ```[Over-Time spell coefficient] = [Duration of Spell] / 15```
 
 
 ### Hybrid spells
 Hybrid spells is a little bit more complicated, these are spells with both a direct effect and a Over-Time portion, such as Regrowth, or Fire Ball. The standard formula for hybrid spells is:
-[Over-Time part] = ([Duration] / 15) / (([Duration] / 15) + ([Cast Time] / 3.5))
-[Direct part] = 1 - [Over-Time portion]
+
+```[Over-Time part] = ([Duration] / 15) / (([Duration] / 15) + ([Cast Time] / 3.5))```
+
+```[Direct part] = 1 - [Over-Time portion]```
 
 The duration and cast time limitations are then applied:
-[Over-Time coefficient] = ([Duration] / 15) * [Over-Time part]
-[Direct coefficient] = ([Cast Time / 3.5) * [Direct part]
+
+```[Over-Time coefficient] = ([Duration] / 15) * [Over-Time part]```
+
+```[Direct coefficient] = ([Cast Time / 3.5) * [Direct part]```
 
 ### Pentalties
 Certain spells will also have various coefficient penalties associated with them.
 
 #### Spells below level 20
-Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is: (20 - [Spell Level]) * .0375 = [Penalty]
+Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
+
+```(20 - [Spell Level]) * .0375 = [Penalty]```
 
 #### Downranking
-Downranking also has significant effects on the spell's coefficient. The forumla for this is: ([Level of next rank - 1] + 5) / [Character Level] = [Downranking Coefficient]
+Downranking also has significant effects on the spell's coefficient. The forumla for this is: ([Level of next rank - 1] + 5) / 
+
+```[Character Level] = [Downranking Coefficient]```
 
 What the "Level of next rank - 1" means is the level right before the caster would get the next rank of the spell. For example, Greater Heal (Rank 3) would be considered a level 57 spell for this calculation, since Greater Heal (Rank 4) is a level 58 spell.
 
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
-[Effective Coefficient] = [Basic Coefficient] * [Downranking Penalty] * [Sub Level 20 Penalty]
+
+```[Effective Coefficient] = [Basic Coefficient] * [Downranking Penalty] * [Sub Level 20 Penalty]```
 
 A few notes on this process:
 
