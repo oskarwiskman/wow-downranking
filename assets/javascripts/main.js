@@ -8,7 +8,6 @@ document.addEventListener('click',function(e){
 $(document).ready(function(){
 	$(".wow-class").on('click', function(){
 		onClassClicked(this);
-		newRandomTip();
 	});
 	$("#healing").change(function(){
 		refreshTooltip();
@@ -16,7 +15,6 @@ $(document).ready(function(){
 	$("#level").change(function(){
 		refreshTooltip();
 	});
-	newRandomTip();
 });
 
 function onClassClicked(elem){
