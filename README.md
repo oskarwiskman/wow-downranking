@@ -24,7 +24,7 @@ Shaman:
 * Lesser Healing Wave
 
 ## Spell Coefficient
-The Spell Coefficient (SP) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SP is calculated depends on the spell mechanics, there are some general rules for how to calculate the SP, in addition to this a few spells have unique SPs due to balance.
+The Spell Coefficient (SC) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SC is calculated depends on the spell mechanics, there are some general rules for how to calculate the SC, in addition to this a few spells have unique SCs due to balance.
 
 The sections below will describe how this tool calculates Spell Coefficients, should you encounter any errors your are welcome to report a bug, or create a pull request. However, unless a reliable source is provided the requests will be rejected.
 
