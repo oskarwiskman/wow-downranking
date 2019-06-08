@@ -145,9 +145,12 @@ function buildBreakpointsTable(spellData){
 	let bpMap = {};
 	let currentRank = 0;
 	let rows = "";
+	let characterLevel = $('#level').val();
+	if(!characterLevel || characterLevel < 0) characterLevel = 0;
+	if(characterLevel > 60) characterLevel = 60;
 
 	for(let i = 0; i < 3000; i++){
-		currentRank = calculateMostEfficientRank(60, i, spellData);
+		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
 		if(!bpMap[currentRank]) {
 			bpMap[currentRank] = i;
 		}
@@ -158,7 +161,7 @@ function buildBreakpointsTable(spellData){
 
 	let table = 
 	'<table>\n' +
-		'<caption>Breakpoints</caption>\n' +
+		`<caption>Breakpoints at level ${characterLevel}</caption>\n` +
 			'<tr>\n' +
 				'<th>Spell power</th>\n' +
 				'<th>Rank</th>\n' +
