@@ -1,6 +1,7 @@
 document.addEventListener('click',function(e){
     if(e.target && $(e.target).hasClass('wow-spell')){
 		onSpellClicked(e.target);
+		newRandomTip();
      }
  });
 
@@ -49,12 +50,16 @@ function onSpellClicked(elem){
 	}
 }
 
+function setRandomBackground() {
+	let backgrounds = ["Kalimdor.png", "EasternKingdoms.png"];
+	$('body').css('background', `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../images/${backgrounds[Math.floor(Math.random() * backgrounds.length)]}"`);
+}
+
 function newRandomTip(){
 	loadJSON('/data/tips.json', updateTip);
 }
 
 function updateTip(tipData){
-	console.log(tipData);
 	$('#tip').html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]);
 }
 
