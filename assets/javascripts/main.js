@@ -1,13 +1,14 @@
 document.addEventListener('click',function(e){
     if(e.target && $(e.target).hasClass('wow-spell')){
 		onSpellClicked(e.target);
-		newRandomTip();
+		$('#tip-container').hide();
      }
  });
 
 $(document).ready(function(){
 	$(".wow-class").on('click', function(){
 		onClassClicked(this);
+		newRandomTip();
 	});
 	$("#healing").change(function(){
 		refreshTooltip();
@@ -54,6 +55,7 @@ function setRandomBackground() {
 }
 
 function newRandomTip(){
+	$('#tip-container').show();
 	loadJSON('/data/tips.json', updateTip);
 }
 
