@@ -14,7 +14,7 @@ $(document).ready(function(){
 function onClassClicked(elem){
 	let target = $(elem);
 	let navbar = target.closest('.navbar');
-	$('#result').hide();
+	hideResult();
 	if(target.hasClass('active')){
 		target.removeClass('active');
 		spellSelection("");
@@ -33,7 +33,7 @@ function onSpellClicked(elem){
 
 	if(target.hasClass('active')){
 		target.removeClass('active');
-		$('#result').hide();
+		hideResult();
 		newRandomTip();
 
 	} else {
@@ -62,6 +62,14 @@ function updateTip(tipData){
 	$('#tip').html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]);
 }
 
+function hideResult(){
+	$('#result').addClass("hidden");
+}
+
+function showResult(){
+	$('#result').removeClass("hidden");
+}
+
 function refreshTooltip(){
 	let className = $('.wow-spell.active').data('class-name');
 	let spellName = $('.wow-spell.active').data('spell-name');
@@ -81,7 +89,7 @@ function updateTooltip(spellData){
 	if(healingPower > 5000) healingPower = 5000;
 
 	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(characterLevel, healingPower, spellData)));
-	$('#result').show();
+	showResult();
 }
 
 function spellSelection(className){
@@ -167,7 +175,7 @@ function buildBreakpointsTable(spellData){
 
 	let table = 
 	'<table>\n' +
-		`<caption>Breakpoints at level ${characterLevel}</caption>\n` +
+		`<caption>Breakpoints</br> <span class="subtitle"><span class="name">${spellData.name}</span> at level ${characterLevel}</span></caption>\n` +
 			'<tr>\n' +
 				'<th>Spell power</th>\n' +
 				'<th>Rank</th>\n' +
