@@ -1,10 +1,3 @@
-document.addEventListener('click',function(e){
-    if(e.target && $(e.target).hasClass('wow-spell')){
-		onSpellClicked(e.target);
-		$('#tip-container').hide();
-     }
- });
-
 $(document).ready(function(){
 	$(".wow-class").on('click', function(){
 		onClassClicked(this);
@@ -101,7 +94,7 @@ function buildSpellHtmlForClass(className, container){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)"></a>\n`
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>\n`
 		})
 		container.html(html);
 	});
