@@ -34,10 +34,12 @@ function onSpellClicked(elem){
 	if(target.hasClass('active')){
 		target.removeClass('active');
 		$('#result').hide();
+		newRandomTip();
 
 	} else {
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
+		hideTip();
 		refreshTooltip();
 	}
 }
@@ -45,6 +47,10 @@ function onSpellClicked(elem){
 function setRandomBackground() {
 	let backgrounds = ["Kalimdor.png", "EasternKingdoms.png"];
 	$('body').css('background', `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../images/${backgrounds[Math.floor(Math.random() * backgrounds.length)]}"`);
+}
+
+function hideTip(){
+	$('#tip-container').hide();
 }
 
 function newRandomTip(){
