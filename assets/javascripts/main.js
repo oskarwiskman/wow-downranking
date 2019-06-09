@@ -79,16 +79,22 @@ function refreshTooltip(){
 	}
 }
 
-function updateTooltip(spellData){
+function getCharacterLevel(){
 	let characterLevel = $('#level').val();
-	if(!characterLevel || characterLevel < 0) characterLevel = 0;
+	if(!characterLevel || characterLevel < 1) characterLevel = 1;
 	if(characterLevel > 60) characterLevel = 60;
+	return characterLevel;
+}
 
+function getHealingPower(){
 	let healingPower = $('#healing').val();
 	if(!healingPower || healingPower < 0) healingPower = 0;
 	if(healingPower > 5000) healingPower = 5000;
+	return healingPower;
+}
 
-	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(characterLevel, healingPower, spellData)));
+function updateTooltip(spellData){
+	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(getCharacterLevel(), getHealingPower(), spellData)));
 	showResult();
 }
 
@@ -153,25 +159,29 @@ function buildBreakpointsTable(spellData){
 	let bpMapTo = {};
 	let currentRank = 0;
 	let rows = "";
-	let characterLevel = $('#level').val();
+	let characterLevel = getCharacterLevel();
 	let lastRank = undefined;
-	if(!characterLevel || characterLevel < 0) characterLevel = 0;
-	if(characterLevel > 60) characterLevel = 60;
 
 	for(let i = 0; i < 5000; i++){
 		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
-		if(bpMapFrom[currentRank] === undefined) {
-			bpMapFrom[currentRank] = i;
-			if(lastRank){
-				bpMapTo[lastRank] = i - 1;
+		if(characterLevel >= spellData.ranks[currentRank - 1].level){
+			if(bpMapFrom[currentRank] === undefined) {
+				bpMapFrom[currentRank] = i;
+				if(lastRank){
+					bpMapTo[lastRank] = i - 1;
+				}
+				lastRank = currentRank;
 			}
-			lastRank = currentRank;
 		}
 	}
 
 	Object.keys(bpMapFrom).sort(sortNumberAsc).forEach(function(key){
 		rows += buildBreakpointRow(bpMapFrom[key], bpMapTo[key], key);
 	});
+
+	if(rows === ""){
+		rows = `<tr>\n\t<td>0+</td>\n\t<td>Level too low</td>\n</tr>\n`
+	}
 
 	let table = 
 	'<table>\n' +
