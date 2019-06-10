@@ -5,6 +5,8 @@
 		<meta charset="utf-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href='/stylesheets/style.css'>
+		<script src="/javascripts/htmlBuilder.js"></script>
+		<script src="/javascripts/utils.js"></script>
 		<script src="/javascripts/calculations.js"></script>
 		<script src="/javascripts/main.js"></script>
 	</head>
@@ -21,7 +23,7 @@
 			<div class="character-info">
 				<label for="healing">Healing Power</label>
 				<span>
-					<input id="healing" type="number" min="0" max="10000">
+					<input id="healing" type="number" min="0" max="10000" value="0">
 				<span>
 			</div>
 		</div>
@@ -33,6 +35,12 @@
 				<a class="wow-class icon-medium" id="priest" title="Priest" style="background-image: url(/images/class_priest.jpg)"></a>
 				<a class="wow-class icon-medium" id="shaman" title="Shaman" style="background-image: url(/images/class_shaman.jpg)"></a>
 			</div>
+		</div>
+		<div id="crit-chance-container" class="character-info hidden">
+			<label for="crit-chance">Critical effect chance</label>
+			<span>
+				<input id="crit-chance" type="number" min="0" max="100" value="0">
+			<span>
 		</div>
 		<div id="spell-selection" class="hidden">
 			<h4 class="header">Pick a spell</h4>
@@ -59,7 +67,7 @@
 		<p>Credits to:</br>
 			<a href="https://www.reddit.com/user/slendydaddy/">u/slendydaddy</a> for the amazing high def background</br>
 			<a href="https://classicdb.ch">ClassicDB</a>  for spell data</br>
-			Fanbytes <a href="http://wow.allakhazam.com">WoW Allakhazam</a> for coefficient calculations
+			Fanbytes <a href="http://wow.allakhazam.com/wiki/spell_coefficient_(wow)">WoW Allakhazam</a> for coefficient calculations
 		</p>
 	</footer>
 </html>

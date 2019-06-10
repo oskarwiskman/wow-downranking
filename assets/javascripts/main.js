@@ -17,13 +17,19 @@ function onClassClicked(elem){
 	$('#result').hide();
 	if(target.hasClass('active')){
 		target.removeClass('active');
-		spellSelection("");
+		showSpellSelectionFor();
+		hideCritChance();
 
 	} else {
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
-		let className = target.attr('id'); 
-		spellSelection(className);
+		let className = target.attr('id');
+		if(className === "paladin"){
+			showCritChance();
+		} else {
+			hideCritChance();
+		}
+		showSpellSelectionFor(className);
 	}
 }
 
