@@ -1,5 +1,26 @@
 {
 	"class":"priest",
 	"talents": [
+		{
+			"name":"divine_fury",
+			"maxRank":5,
+			"rankIncrement":0.1,
+			"description":"Reduces the casting time of your Smite, Holy Fire, Heal and Greater Heal spells by ${rankIncrement} sec.",
+			"image":"divine_fury.jpg"
+		},
+		{
+			"name":"improved_healing",
+			"maxRank":3,
+			"rankIncrement":5,
+			"description":"Reduces the Mana cost of your Lesser Heal, Heal, and Greater Heal spells by ${rankIncrement}%.",
+			"image":"heal.jpg"
+		},
+		{
+			"name":"spiritual_healing",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Increases the amount healed by your healing spells by ${rankIncrement}%.",
+			"image":"spiritual_healing.jpg"
+		}
 	]
 }

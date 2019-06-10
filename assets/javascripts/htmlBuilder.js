@@ -64,20 +64,35 @@ function buildSpellDescription(spell, rank) {
 	return description;
 }
 
-function buildTalentDescription(talent, rank) {
+function buildTalentTooltip(talent, rank) {
+
 	var description = talent.description;
 	let regExp = /\${([^}]+)}/g;
 	let matches = description.match(regExp);
+	let state = "";
+	let footer = "";
 	if(matches){
 		for(let i = 0; i < matches.length; i++){
 			let match = matches[i];
 			let attribute = match.substring(2, matches[i].length -1);
 			if(rank === 0){
-				description = description.replace(match, talent[attribute] * (rank + 1));
+				description = description.replace(match, toOneDecimal(talent[attribute] * (rank + 1)));
+				footer = "Click to learn";
+				state = "first";
+			} else if (rank === talent.maxRank){
+				description = description.replace(match, toOneDecimal(talent[attribute] * rank));
+				footer = "Click to unlearn"
+				state = "last";
+			} else {
+				description = description.replace(match, toOneDecimal(talent[attribute] * rank));
+				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, toOneDecimal(talent[attribute] * (rank + 1)))}</span>`
 			}
 		}
 	}
-	return description;
+	return `<div class="header">${toTitleCase(talent.name)}</div>
+			<div class="rank">Rank ${rank}/${talent.maxRank}</div>
+			<div class="description">${description}</div>
+			<div class="footer ${state}">${footer}</div>`
 }
 
 function buildTooltipHtmlForSpell(spell, rank){
@@ -138,13 +153,8 @@ function buildTalentHtmlForClass(talentData){
 }
 
 function buildTalentIcon(className, talentData, rank){
-	return `<div id="${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent-name="${talentData.name}" data-talent-max-rank="${talentData.maxRank}" data-current-rank="${rank}" data-talent-description="${talentData.description} data-talent-rank-increment="${talentData.rankIncrement}" data-direction="up">
-				<span class="talent-tooltip">
-					<div class="header">${toTitleCase(talentData.name)}</div>
-					<div class="rank">Rank ${rank}/${talentData.maxRank}</div>
-					<div class="description">${buildTalentDescription(talentData, rank)}</div>
-					<div class="footer">Click to learn</div>
-				</span>
+	return `<div class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
+				<span class="talent-tooltip">${buildTalentTooltip(talentData, rank)}</span>
 				<ins style="background-image: url(/images/${talentData.image})"></ins>
 				<del></del>
 				<a onClick="updateTalent(this)"></a>

@@ -58,9 +58,11 @@ footer > p > a {
 }
 
 .talent-icon{
+	display: inline-block;
+	margin: 10px;
 	width: 44px;
 	height: 44px;
-	margin: auto;
+    margin: 0 3px 0 3px;
 	z-index: 0;
 	position: relative;
 }
@@ -88,6 +90,10 @@ footer > p > a {
     background-repeat: no-repeat;
 }
 
+.talent-icon:hover a {
+	background: url(../images/icon_hilite_medium_talent.png) no-repeat 0 0;
+}
+
 .talent-icon a {
 	display: block;
     position: absolute;
@@ -99,7 +105,6 @@ footer > p > a {
     outline: none;
     width: 38px;
     height: 38px;
-    background: url(../images/icon_hilite_medium_talent.png) no-repeat 38px 0;
 }
 
 .talent-icon .icon-border {
@@ -166,8 +171,16 @@ footer > p > a {
 	color: #E7BA00;
 }
 
-.talent-icon .talent-tooltip .footer{
+.talent-icon .talent-tooltip .footer.first{
 	color: #17FD17;
+}
+
+.talent-icon .talent-tooltip .footer.last{
+	color: #fd1717;
+}
+
+.talent-icon .talent-tooltip .footer .next-rank {
+	color: #E7BA00;
 }
 
 .talent-icon:hover .talent-tooltip {
@@ -258,7 +271,7 @@ footer > p > a {
 	display: block;
 }
 
-.character-info > span > input {
+input {
 	font-size: 22px;
 	width: 100px;
     background: #222;
@@ -318,8 +331,13 @@ footer > p > a {
 	color: #7facf4;
 }
 
+#crit-chance-container {
+	margin-top: 10px;
+}
+
 #crit-chance-container > span > input {
 	width: 55px;
+	font-size: 14px;
 }
 
 #crit-chance-container > span > span {

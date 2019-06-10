@@ -1,5 +1,26 @@
 {
 	"class":"druid",
 	"talents": [
+		{
+			"name":"moonglow",
+			"maxRank":3,
+			"rankIncrement":1,
+			"description":"Reduces the Mana cost of your Moonfire, Starfire, Wrath, Healing Touch, Regrowth and Rejuvenation spells by ${rankIncrement}%.",
+			"image":"moonglow.jpg"
+		},
+		{
+			"name":"improved_healing_touch",
+			"maxRank":5,
+			"rankIncrement":0.1,
+			"description":"Reduces the cast time of your Healing Touch spell by ${rankIncrement} sec.",
+			"image":"healing_touch.jpg"
+		},
+		{
+			"name":"tranquil_spirit",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Reduces the mana cost of your Healing Touch and Tranquility spells by ${rankIncrement}%.",
+			"image":"tranquil_spirit.jpg"
+		}
 	]
 }

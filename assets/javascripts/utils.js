@@ -11,7 +11,9 @@ function updateTalent(elem){
 	let talent = $(elem).closest(".talent-icon");
 	let bubble = talent.find(".icon-bubble");
 	let border = talent.find(".icon-border");
-	let maxRank = talent.data("talent-max-rank");
+	let talentTooltip = talent.find(".talent-tooltip");
+	let talentData = talent.data("talent");
+	let maxRank = talentData.maxRank;
 	let currentRank = talent.data("current-rank");
 	let direction = talent.data("direction");
 	if(direction === "up" && currentRank < maxRank){
@@ -33,6 +35,7 @@ function updateTalent(elem){
 		border.removeClass("maxed");
 		bubble.removeClass("maxed");
 	}
+	talentTooltip.html(buildTalentTooltip(talentData, currentRank));
 	bubble.html(currentRank);
 }
 
@@ -42,7 +45,11 @@ function updateTooltip(spellData){
 }
 
 function showSpellAffectingTalentsFor(className){
-	loadTalentData(className, buildTalentHtmlForClass);
+	if(!className) {
+		$('#talent-selection').addClass('hidden');
+	} else {
+		loadTalentData(className, buildTalentHtmlForClass);
+	}
 }
 
 function showSpellSelectionFor(className){
@@ -150,6 +157,10 @@ function loadJSON(path, callback) {
 	    });
 	    return json;
 	})();
+}
+
+function toOneDecimal(number){
+	return Math.round(number * 10)/10;
 }
 
 function sortNumberAsc(a, b) {
