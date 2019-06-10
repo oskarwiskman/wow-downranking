@@ -50,7 +50,7 @@ function buildBreakpointRow(spellpowerFrom, spellpowerTo, rank){
 	return `<tr>\n\t<td>${spellpowerFrom}${spellpowerTo}</td>\n\t<td>${rank}</td>\n</tr>\n`
 }
 
-function buildDescription(spell, rank) {
+function buildSpellDescription(spell, rank) {
 	var description = spell.description;
 	let regExp = /\${([^}]+)}/g;
 	let matches = description.match(regExp);
@@ -59,6 +59,22 @@ function buildDescription(spell, rank) {
 			let match = matches[i];
 			let attribute = match.substring(2, matches[i].length -1);
 			description = description.replace(match, spell.ranks[rank][attribute]);
+		}
+	}
+	return description;
+}
+
+function buildTalentDescription(talent, rank) {
+	var description = talent.description;
+	let regExp = /\${([^}]+)}/g;
+	let matches = description.match(regExp);
+	if(matches){
+		for(let i = 0; i < matches.length; i++){
+			let match = matches[i];
+			let attribute = match.substring(2, matches[i].length -1);
+			if(rank === 0){
+				description = description.replace(match, talent[attribute] * (rank + 1));
+			}
 		}
 	}
 	return description;
@@ -74,7 +90,7 @@ function buildTooltipHtmlForSpell(spell, rank){
 	let tickInterval = spell.ranks[rank].tickInterval;
 	let tickDuration = spell.ranks[rank].tickDuration;
 	let tickPower = spell.ranks[rank].tickPower;
-	let description = buildDescription(spell, rank);
+	let description = buildSpellDescription(spell, rank);
 
 	return 	`<div class="spell-tooltip">\n` +
 				`<div class="header">` +
@@ -104,3 +120,39 @@ function buildSpellHtmlForClass(className, container){
 		container.html(html);
 	});
 }
+
+function buildTalentHtmlForClass(talentData){
+	target = $("#talent-selection");
+	container = target.find(".navbar");
+	if(talentData.talents.length){
+		let html = "";
+		target.removeClass("hidden");
+		for(let i = 0; i < talentData.talents.length; i++){
+			html += buildTalentIcon(talentData.class, talentData.talents[i], 0);
+		}
+		container.html(html);
+	} 
+	else {
+		target.addClass("hidden");
+	}
+}
+
+function buildTalentIcon(className, talentData, rank){
+	return `<div id="${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent-name="${talentData.name}" data-talent-max-rank="${talentData.maxRank}" data-current-rank="${rank}" data-talent-description="${talentData.description} data-talent-rank-increment="${talentData.rankIncrement}" data-direction="up">
+				<span class="talent-tooltip">
+					<div class="header">${toTitleCase(talentData.name)}</div>
+					<div class="rank">Rank ${rank}/${talentData.maxRank}</div>
+					<div class="description">${buildTalentDescription(talentData, rank)}</div>
+					<div class="footer">Click to learn</div>
+				</span>
+				<ins style="background-image: url(/images/${talentData.image})"></ins>
+				<del></del>
+				<a onClick="updateTalent(this)"></a>
+				<div class="icon-border ${rank === talentData.maxPoints ? "maxed" : ""}"></div>
+				<div class="icon-bubble ${rank === talentData.maxPoints ? "maxed" : ""}">${rank}</div>
+			</div>`
+}
+
+
+
+

@@ -1,0 +1,12 @@
+{
+	"class":"paladin",
+	"talents": [
+		{
+			"name":"illumination",
+			"maxRank":5,
+			"rankIncrement":20,
+			"description":"After getting a critical effect from your Flash of Light, Holy Light, or Holy Shock heal spell, gives you a ${rankIncrement}% chance to gain Mana equal to the base cost of the spell.",
+			"image":"greater_heal.jpg"
+		}
+	]
+}

@@ -18,6 +18,7 @@ function onClassClicked(elem){
 	if(target.hasClass('active')){
 		target.removeClass('active');
 		showSpellSelectionFor();
+		showSpellAffectingTalentsFor();
 		hideCritChance();
 
 	} else {
@@ -29,6 +30,7 @@ function onClassClicked(elem){
 		} else {
 			hideCritChance();
 		}
+		showSpellAffectingTalentsFor(className);
 		showSpellSelectionFor(className);
 	}
 }

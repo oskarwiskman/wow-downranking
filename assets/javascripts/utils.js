@@ -7,9 +7,42 @@ function refreshTooltip(){
 	}
 }
 
+function updateTalent(elem){
+	let talent = $(elem).closest(".talent-icon");
+	let bubble = talent.find(".icon-bubble");
+	let border = talent.find(".icon-border");
+	let maxRank = talent.data("talent-max-rank");
+	let currentRank = talent.data("current-rank");
+	let direction = talent.data("direction");
+	if(direction === "up" && currentRank < maxRank){
+		currentRank ++;
+		talent.data("current-rank", currentRank);
+	}
+	if(direction === "down" && currentRank > 0){
+		currentRank --;
+		talent.data("current-rank", currentRank);
+	}
+	if(currentRank === 0){
+		talent.data("direction", "up");
+	}
+	if(currentRank === maxRank){
+		border.addClass("maxed");
+		bubble.addClass("maxed");
+		talent.data("direction", "down");
+	} else {
+		border.removeClass("maxed");
+		bubble.removeClass("maxed");
+	}
+	bubble.html(currentRank);
+}
+
 function updateTooltip(spellData){
 	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(getCharacterLevel(), getHealingPower(), spellData)));
 	showResult();
+}
+
+function showSpellAffectingTalentsFor(className){
+	loadTalentData(className, buildTalentHtmlForClass);
 }
 
 function showSpellSelectionFor(className){
@@ -95,7 +128,12 @@ function toTitleCase(str) {
 
 function loadSpellData(className, spellName, callback){
 	let spellPath = `/spelldata/${className}/${spellName}.json`;
-	return loadJSON(spellPath, callback);
+	loadJSON(spellPath, callback);
+}
+
+function loadTalentData(className, callback){
+	let talentPath = `/talents/${className}.json`
+	loadJSON(talentPath, callback);
 }
 
 function loadJSON(path, callback) {

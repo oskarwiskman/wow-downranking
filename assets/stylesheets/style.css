@@ -32,7 +32,7 @@ footer {
 	width: 100%;
 	height: 70px;
 	text-align: left;
-	color: #ffd100;
+	color: #E7BA00;
 }
 
 footer > p > a {
@@ -51,6 +51,127 @@ footer > p > a {
 	width: 50px;
 	height: 50px;
 	opacity: 0.3;
+}
+
+#talent-selection h4 {
+	margin-bottom: 10px;
+}
+
+.talent-icon{
+	width: 44px;
+	height: 44px;
+	margin: auto;
+	z-index: 0;
+	position: relative;
+}
+
+.talent-icon ins {
+	width: 36px;
+	height: 36px;
+	left: 4px;
+	top: 4px;
+	display: block;
+    position: absolute;
+    z-index: 5;
+    background-repeat: no-repeat;
+}
+
+.talent-icon del {
+	width: 44px;
+    height: 44px;
+    background-image: url(../images/icon_border_medium.png);
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-repeat: no-repeat;
+}
+
+.talent-icon a {
+	display: block;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    z-index: 20;
+	color: #7facf4;
+    cursor: pointer;
+    outline: none;
+    width: 38px;
+    height: 38px;
+    background: url(../images/icon_hilite_medium_talent.png) no-repeat 38px 0;
+}
+
+.talent-icon .icon-border {
+	position: absolute;
+    z-index: 15;
+    left: 1px;
+    top: 1px;
+    width: 42px;
+    height: 42px;
+    background: url(../images/border.gif) no-repeat;
+    background-position: -84px 0px;
+}
+
+.talent-icon .icon-border.maxed {
+    background-position: -42px 0px;
+}
+
+.talent-icon div.icon-bubble {
+	color: #17FD17;
+    visibility: visible;
+	position: absolute;
+    z-index: 16;
+    width: 22px;
+    height: 23px;
+    left: 30px;
+    top: 29px;
+    background: url(../images/bubble.png) no-repeat;
+    line-height: 24px;
+    font-family: Verdana,sans-serif;
+    font-size: 12px;
+    text-align: center;
+    cursor: default;
+}
+
+.talent-icon div.icon-bubble.maxed {
+	color: #E7BA00;
+}
+
+.talent-icon .talent-tooltip {
+	visibility: hidden;
+	font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+	box-shadow: 1px 1px #555;
+    background-color: #111;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+	font-size: 14px;
+    width: 300px;
+    padding: 7px;
+    opacity: 0.9;
+    color: white;
+    line-height: 20px;
+    text-align: left;
+	position: absolute;
+    z-index: 50;
+    bottom: 42px;
+    left: 42px;
+}
+
+.talent-icon .talent-tooltip .header{
+	font-size: 16px;
+}
+
+.talent-icon .talent-tooltip .description{
+	color: #E7BA00;
+}
+
+.talent-icon .talent-tooltip .footer{
+	color: #17FD17;
+}
+
+.talent-icon:hover .talent-tooltip {
+	visibility: visible;
 }
 
 .icon-medium:hover {
@@ -117,7 +238,7 @@ footer > p > a {
 }
 
 .spell-tooltip p.description {
-	color: #ffd100;
+	color: #E7BA00;
 	margin: 8px 0px 0px 0px;
 }
 
@@ -128,7 +249,7 @@ footer > p > a {
 }
 
 .character-info > label {
-	color: #ffd100;
+	color: #E7BA00;
 	font-size: 22px;
 	text-shadow: 1px 1px 3px #111;
 }
@@ -152,7 +273,7 @@ footer > p > a {
 }
 
 #tip-title {
-	color: #ffd100;
+	color: #E7BA00;
 	margin-right:2px;
 }
 
@@ -184,7 +305,7 @@ footer > p > a {
 } 
 
 #breakpoints > table > caption {
-	color: #ffd100;
+	color: #E7BA00;
 	font-size: 18px;
 	line-height: 18px;
 }
@@ -196,6 +317,16 @@ footer > p > a {
 #breakpoints > table > caption > .subtitle > .name{
 	color: #7facf4;
 }
+
+#crit-chance-container > span > input {
+	width: 55px;
+}
+
+#crit-chance-container > span > span {
+	margin-left: 5px;
+	color: #E7BA00;
+}
+
 
 
 
