@@ -66,14 +66,10 @@ footer > p > a {
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 #tooltip{
-	display: inline-block;
-}
-
-#breakpoints {
 	display: inline-block;
 }
 
@@ -160,17 +156,45 @@ footer > p > a {
 	margin-right:2px;
 }
 
+#result {
+	display: inline-block;
+}
+
 #breakpoints {
 	padding: 5px;
-	margin-left: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
     background-color: #111;
     opacity: 0.8;
     border-radius: 5px;
     border: 1px solid #ddd;
 }
 
+#breakpoints > table {
+	width: 100%;
+	font-size: 16px;
+}
+
+#breakpoints > table > td {
+	width: 50%;
+} 
+
+#breakpoints > table > tbody > tr > th {
+	color: white;
+} 
+
 #breakpoints > table > caption {
 	color: #ffd100;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+#breakpoints > table > caption > .subtitle{
+	font-size: 14px;
+}
+
+#breakpoints > table > caption > .subtitle > .name{
+	color: #7facf4;
 }
 
 
