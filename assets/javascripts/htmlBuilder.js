@@ -6,7 +6,7 @@ function buildBreakpointsTable(spellData){
 	let characterLevel = getCharacterLevel();
 	let lastRank = undefined;
 
-	for(let i = 0; i < 5000; i++){
+	for(let i = 0; i < 4000; i++){
 		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
 		if(characterLevel >= spellData.ranks[currentRank - 1].level){
 			if(bpMapFrom[currentRank] === undefined) {
@@ -153,7 +153,7 @@ function buildTalentHtmlForClass(talentData){
 }
 
 function buildTalentIcon(className, talentData, rank){
-	return `<div class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
+	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
 				<span class="talent-tooltip">${buildTalentTooltip(talentData, rank)}</span>
 				<ins style="background-image: url(/images/${talentData.image})"></ins>
 				<del></del>

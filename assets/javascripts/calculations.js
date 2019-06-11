@@ -58,7 +58,41 @@ function getSpellType(spell){
 	}
 }
 
+function getTalentPowerCoefficient(className, spellName){
+	switch(className) {
+		case "druid":
+			return 1;
+		case "paladin":
+			let healingLight = $('#talent-healing_light');
+			let healingLightData = healingLight.data("talent");
+			let healingLightRank = healingLight.data("current-rank");
+			let coefficient = 1 + ((healingLightData.rankIncrement * healingLightRank) / 100);
+			return coefficient;
+		case "priest":
+			return 1;
+		case "shaman":
+			return 1;
+	}
+	return 1;
+}
 
+function getTalentCostCoefficient(className, spellName){
+	switch(className) {
+		case "druid":
+			return 1;
+		case "paladin":
+			let critChance = $('#crit-chance').val();
+			let illumination = $('#talent-illumination');
+			let illuminationData = illumination.data("talent");
+			let illuminationRank = illumination.data("current-rank");
+			let coefficient = 1 - ((critChance/100) * ((illuminationData.rankIncrement * illuminationRank) / 100));
+			return coefficient;
+		case "priest":
+			return 1;
+		case "shaman":
+			return 1;
+	}
+}
 
 /**
  * The coeficients for direct spells are affected by the cast time.

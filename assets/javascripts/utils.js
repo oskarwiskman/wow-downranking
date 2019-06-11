@@ -37,6 +37,7 @@ function updateTalent(elem){
 	}
 	talentTooltip.html(buildTalentTooltip(talentData, currentRank));
 	bubble.html(currentRank);
+	refreshTooltip();
 }
 
 function updateTooltip(spellData){
