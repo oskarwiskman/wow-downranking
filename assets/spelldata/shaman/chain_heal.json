@@ -9,7 +9,7 @@
 			"range":40,
 			"baseCastSpeed":2.5,
 			"powerMin":320,
-			"powerMax":369,
+			"powerMax":368,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -20,7 +20,7 @@
 			"range":40,
 			"baseCastSpeed":2.5,
 			"powerMin":405,
-			"powerMax":466,
+			"powerMax":465,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -31,7 +31,7 @@
 			"range":40,
 			"baseCastSpeed":2.5,
 			"powerMin":551,
-			"powerMax":630,
+			"powerMax":629,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0

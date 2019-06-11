@@ -9,7 +9,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":62,
-			"powerMax":73,
+			"powerMax":72,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -20,7 +20,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":96,
-			"powerMax":111,
+			"powerMax":110,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -31,7 +31,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":145,
-			"powerMax":164,
+			"powerMax":163,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -42,7 +42,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":197,
-			"powerMax":222,
+			"powerMax":221,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -53,7 +53,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":267,
-			"powerMax":300,
+			"powerMax":299,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -64,7 +64,7 @@
 			"range":40,
 			"baseCastSpeed":1.5,
 			"powerMin":343,
-			"powerMax":384,
+			"powerMax":383,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
