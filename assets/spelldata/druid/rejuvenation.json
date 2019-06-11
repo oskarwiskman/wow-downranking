@@ -1,4 +1,5 @@
 {
+	"class":"druid",
 	"name":"Rejuvenation",
 	"description":"Heals the target for ${tickPower} over 12 sec.",
 	"ranks":[

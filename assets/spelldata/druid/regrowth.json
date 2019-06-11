@@ -1,4 +1,5 @@
 {
+	"class":"druid",
 	"name":"Regrowth",
 	"description":"Heals a friendly target for ${powerMin} to ${powerMax} and another ${tickPower} over 21 sec.",
 	"ranks":[

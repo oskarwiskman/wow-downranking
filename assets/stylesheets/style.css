@@ -28,7 +28,7 @@ body {
 footer {
 	font-size: 10px;
 	position: absolute;
-	bottom: 50px;
+	bottom: 60px;
 	width: 100%;
 	height: 70px;
 	text-align: left;
@@ -336,7 +336,7 @@ input {
 }
 
 #crit-chance-container > span > input {
-	width: 55px;
+	width: 42px;
 	font-size: 14px;
 }
 
