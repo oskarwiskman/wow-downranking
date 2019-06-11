@@ -25,17 +25,16 @@ body {
 	text-align: center;
 }
 
-footer {
+body footer {
 	font-size: 10px;
 	position: absolute;
-	bottom: 60px;
+	bottom: 20px;
 	width: 100%;
-	height: 70px;
 	text-align: left;
 	color: #E7BA00;
 }
 
-footer > p > a {
+body footer a {
 	text-decoration: none;
 	color: #7facf4;
 }
