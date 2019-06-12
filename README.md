@@ -25,6 +25,13 @@ Shaman:
 * Healing Wave
 * Lesser Healing Wave
 
+### Update log
+
+#### 2019-06-12 Talents and formula
+* Noticed error in the how the ```[Sub Level 20 Penalty]``` was applied and this has now been fixed.
+* Added talent selection for talents that affect the breakpoints. (Currenlty not used in calculation)
+* Temporarily removed the ```[Downranking Penalty]```, due to different sources having conflicts in how it is applied.
+
 ## Spell Coefficient
 The Spell Coefficient (SC) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SC is calculated depends on the spell mechanics, there are some general rules for how to calculate the SC, in addition to this a few spells have unique SCs due to balance.
 
@@ -75,7 +82,9 @@ What the "Level of next rank - 1" means is the level right before the caster wou
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
 
-```[Effective Coefficient] = [Basic Coefficient] * [Downranking Penalty] * [Sub Level 20 Penalty]```
+```[Effective Coefficient] = [Basic Coefficient] * [Downranking Penalty] * (1 - [Sub Level 20 Penalty]```
+
+Thus the final power of the spell is ```[Base power] + [+Power] * [Effective Coefficient]```
 
 A few notes on this process:
 
