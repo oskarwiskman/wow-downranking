@@ -106,10 +106,7 @@ function getSelectedSpellName(){
 }
 
 function getCharacterLevel(){
-	let characterLevel = $('#level').val();
-	if(!characterLevel || characterLevel < 1) characterLevel = 1;
-	if(characterLevel > 60) characterLevel = 60;
-	return characterLevel;
+	return 60;
 }
 
 function getHealingPower(){
