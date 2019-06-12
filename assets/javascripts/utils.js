@@ -97,6 +97,10 @@ function showCritChance(){
 	$('#crit-chance-container').removeClass("hidden");
 }
 
+function getCritChance(){
+	return Math.max(0, Math.min(100, $('#crit-chance').val()));
+}
+
 function getSelectedClassName(){
 	return $('.wow-spell.active').data('class-name');
 }

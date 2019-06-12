@@ -98,7 +98,7 @@ function getTalentCostCoefficient(className, spellName){
 		case "druid":
 			return 1;
 		case "paladin":
-			let critChance = $('#crit-chance').val();
+			let critChance = getCritChance();
 			let illumination = $('#talent-illumination');
 			let illuminationData = illumination.data("talent");
 			let illuminationRank = illumination.data("current-rank");
