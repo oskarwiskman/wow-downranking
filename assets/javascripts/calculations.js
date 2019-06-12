@@ -5,13 +5,15 @@
 function calculateMostEfficientRank(characterLevel, healingPower, spellData){
 
 	let bestRank = 1;
-	let bestPpM = 0;
+	let bestMagicFactor = 0;
 
 	for(let rank = 1; rank <= spellData.ranks.length; rank++){
 		if(characterLevel < spellData.ranks[rank-1].level) continue;
 		let PpM = calculatePowerPerMana(characterLevel, healingPower, spellData, rank);
-		if(PpM > bestPpM){
-			bestPpM = PpM;
+		let PpS = calculatePowerPerSecond(characterLevel, healingPower, spellData, rank);
+		let magicFactor = PpM * Math.log(PpS);
+		if(magicFactor > bestMagicFactor){
+			bestMagicFactor = magicFactor;
 			bestRank = rank;
 		}
 	}
@@ -42,7 +44,6 @@ function calculatePower(characterLevel, healingPower, spellData, rank){
 	  		extraPower = directExtraPower + overTimeExtraPower;
 	    	break;
 	}
-	extraPower *= getDownrankingCoefficient(characterLevel, nextRankLevel);
 	extraPower *= getSubLevel20Penalty(rankData.level);
 	let totalPower = power + extraPower;
 	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name);
@@ -64,7 +65,7 @@ function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
 	  		divider = rankData.baseCastTime;
 	  		break;
 	}
-	return power / Math.min(1.5, divider); // Assuming 1.5 global cooldown.
+	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
 }
 
 function calculatePowerPerMana(characterLevel, healingPower, spellData, rank){
@@ -194,9 +195,9 @@ function getHybridCoeficients(castTime, duration){
  *
  * @return 	{double} 	downrankCoeff 		Returns the coefficient calculated by the formula above. If levelOfNextRank is undefined returns 1.
  */
-function getDownrankingCoefficient(characterLevel, levelOfNextRank){
+function getDownrankingCoefficient(characterLevel, rankLevel, levelOfNextRank){
 	if(levelOfNextRank){
-		return Math.min(1, ((levelOfNextRank - 1) + 5) / characterLevel);
+		return Math.min(1, (((levelOfNextRank - 1) + 5) / characterLevel));
 	}
 	return 1;
 }
