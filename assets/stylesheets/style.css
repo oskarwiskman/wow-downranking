@@ -13,7 +13,7 @@ html {
 }
 
 body {
-	background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/Kalimdor.png');
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/KalimdorV2.png') no-repeat 0 0;
 	background-color: #1d1d1d;
 	color: #ccc;
 	font-family: "Friz Quadrata";

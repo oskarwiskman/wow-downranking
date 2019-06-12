@@ -100,7 +100,7 @@ function buildTooltipHtmlForSpell(spell, rank){
 	let name = spell.name;
 	let cost = spell.ranks[rank].cost;
 	let range = spell.ranks[rank].range;
-	let baseCastSpeed = spell.ranks[rank].baseCastSpeed === 0 ? 'Instant' : spell.ranks[rank].baseCastSpeed + " sec cast";
+	let baseCastTime = spell.ranks[rank].baseCastTime === 0 ? 'Instant' : spell.ranks[rank].baseCastTime + " sec cast";
 	let power = spell.ranks[rank].power;
 	let tickInterval = spell.ranks[rank].tickInterval;
 	let tickDuration = spell.ranks[rank].tickDuration;
@@ -116,7 +116,7 @@ function buildTooltipHtmlForSpell(spell, rank){
 					`<span class="cost">${cost} Mana</span>` +
 					`<span class="range">${range} yd. range</span>` +
 				`</div>` +
-				`<div class="cast-time">${baseCastSpeed}</div>` +
+				`<div class="cast-time">${baseCastTime}</div>` +
 				`<p class="description">` +
 					`${description}` +
 				`</p>` +

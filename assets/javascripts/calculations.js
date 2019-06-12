@@ -1,61 +1,77 @@
 
 /**
-* [Basic Coefficient] * [Downranking Penalty] * [Sub Level 20 Penalty] = [Effective Coefficient]
+* [Basic Coefficient] * [Downranking Coefficient] * [Sub Level 20 Penalty] = [Effective Coefficient]
 */
 function calculateMostEfficientRank(characterLevel, healingPower, spellData){
 
-	let bestRank = 0;
-	let bestPowerPerMana = 0;
+	let bestRank = 1;
+	let bestPpM = 0;
 
-	for(let i = 0; i < spellData.ranks.length; i++){
-		let currentRank = spellData.ranks[i];
-		if(characterLevel < currentRank.level) continue;
-		let type = getSpellType(currentRank);
-		let power = 0;
-		let extraPower = 0;
-		let nextRankLevel = i < spellData.ranks.length - 1 ? spellData.ranks[i+1].level : -1;
-		switch(type) {
-			case "direct":
-				power = (currentRank.powerMax + currentRank.powerMin) / 2;
-				extraPower = healingPower * getDirectSpellCoeficient(currentRank.baseCastSpeed);
-				break;
-		  	case "overTime":
-		  		power = currentRank.tickPower;
-				extraPower = healingPower * getOverTimeCoeficient(currentRank.tickDuration);
-		    	break;
-		  	case "hybrid":
-		  		power = ((currentRank.powerMax + currentRank.powerMin) / 2) + currentRank.tickPower;
-		  		let hybridCoeficients = getHybridCoeficients(currentRank.baseCastSpeed, currentRank.tickDuration);
-		  		let directExtraPower = healingPower * hybridCoeficients[0];
-		  		let overTimeExtraPower = healingPower * hybridCoeficients[1];
-		  		extraPower = directExtraPower + overTimeExtraPower;
-		    	break;
-		  	default:
+	for(let rank = 1; rank <= spellData.ranks.length; rank++){
+		if(characterLevel < spellData.ranks[rank-1].level) continue;
+		let PpM = calculatePowerPerMana(characterLevel, healingPower, spellData, rank);
+		if(PpM > bestPpM){
+			bestPpM = PpM;
+			bestRank = rank;
 		}
-		extraPower *= getDownrankingPenalty(characterLevel, nextRankLevel);
-		extraPower *= getSubLevel20Penalty(currentRank.level);
-		let powerPerMana = (power + extraPower) / currentRank.cost;
-		if(powerPerMana > bestPowerPerMana){
-			bestPowerPerMana = powerPerMana;
-			bestRank = i;
-		}
-
 	}
-
-
-	return bestRank + 1;
+	return bestRank;
 }
 
-function getSpellType(spell){
-	if(spell.powerMax > 0 && spell.tickPower > 0){
-		return "hybrid";
+function calculatePower(characterLevel, healingPower, spellData, rank){
+	let index = rank-1;
+	let rankData = spellData.ranks[index];
+	let nextRankLevel = index < spellData.ranks.length - 1 ? spellData.ranks[index+1].level : undefined;
+	let power;
+	let extraPower;
+	let coefficient;
+	switch(getSpellType(rankData)){
+		case "direct":
+			power = (rankData.powerMax + rankData.powerMin) / 2;
+			extraPower = healingPower * getDirectSpellCoeficient(rankData.baseCastTime);
+			break;
+	  	case "overTime":
+	  		power = rankData.tickPower;
+	  		extraPower = healingPower * getOverTimeCoeficient(rankData.tickDuration);
+	    	break;
+	  	case "hybrid":
+	  		power = (((rankData.powerMax + rankData.powerMin) / 2) + rankData.tickPower);
+	  		let hybridCoeficients = getHybridCoeficients(rankData.baseCastTime, rankData.tickDuration);
+	  		let directExtraPower = healingPower * hybridCoeficients[0];
+	  		let overTimeExtraPower = healingPower * hybridCoeficients[1];
+	  		extraPower = directExtraPower + overTimeExtraPower;
+	    	break;
 	}
-	if(spell.powerMax > 0){
-		return "direct";
+	//extraPower *= getDownrankingCoefficient(characterLevel, nextRankLevel);
+	extraPower *= getSubLevel20Penalty(rankData.level);
+	let totalPower = power + extraPower;
+	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name);
+	return totalPower;
+}
+
+function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
+	let power = calculatePower(characterLevel, healingPower, spellData, rank);
+	let rankData = spellData.ranks[rank-1];
+	let divider;
+	switch(getSpellType(rankData)){
+		case "direct":
+			divider = rankData.baseCastTime;
+			break;
+	  	case "overTime":
+	  		divider = rankData.tickDuration / rankData.tickFrequency;
+	    	break;
+	  	case "hybrid":
+	  		divider = rankData.baseCastTime;
+	  		break;
 	}
-	if(spell.tickPower > 0){
-		return "overTime";
-	}
+	return power / Math.min(1.5, divider); // Assuming 1.5 global cooldown.
+}
+
+function calculatePowerPerMana(characterLevel, healingPower, spellData, rank){
+	let power = calculatePower(characterLevel, healingPower, spellData, rank);
+	let cost = spellData.ranks[rank-1].cost;
+	cost *= getTalentCostCoefficient(spellData.class, spellData.name);
+	return cost === 0 ? power * 1000 : power / cost; //Edge case of a Paladin with 100% crit will have 0 cost.
 }
 
 function getTalentPowerCoefficient(className, spellName){
@@ -94,16 +110,30 @@ function getTalentCostCoefficient(className, spellName){
 	}
 }
 
+function getSpellType(spell){
+	if(spell.powerMax > 0 && spell.tickPower > 0){
+		return "hybrid";
+	}
+	if(spell.powerMax > 0){
+		return "direct";
+	}
+	if(spell.tickPower > 0){
+		return "overTime";
+	}
+}
+
+
 /**
  * The coeficients for direct spells are affected by the cast time.
  * The formula for this is: [Cast Time of Spell] / 3.5 = [Coefficient]
  * 
  * @param 	{double}	castTime      	Spell cast time in seconds.
  *
- * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above. If castTime larger than 3.5 returns 1.
+ * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above. If castTime larger than 7 returns 2.
  */
 function getDirectSpellCoeficient(castTime){
-	if(castTime > 3.5) return 1;
+	if(castTime > 7) castTime = 7;
+	if(castTime < 1.5) castTime = 1.5;
 	return castTime/3.5;
 }
 
@@ -136,8 +166,11 @@ function getOverTimeCoeficient(duration){
  * @return 	{Array[2]} 	hybridCoeficients 	Array containing the respective coeficients, index 0 holds direct coeficient and 1 holds over time coeficient.
  */
 function getHybridCoeficients(castTime, duration){
-	if(castTime > 3.5){
-		castTime = 3.5;
+	if(castTime > 7){
+		castTime = 7;
+	}
+	if(castTime < 1.5){
+		castTime = 1.5;
 	}
 	if(duration > 15){
 		duration = 15;
@@ -159,13 +192,13 @@ function getHybridCoeficients(castTime, duration){
  * @param 	{integer}	characterLevel      The level of the character.
  * @param 	{integer}	levelOfNextRank 	The level where the next rank of the spell can be learned. If there is no higher rank this should be negative.
  *
- * @return 	{double} 	downrankPenalty 	Returns the penalty calculated by the formula above. If levelOfNextRank is negative returns 1.
+ * @return 	{double} 	downrankCoeff 		Returns the coefficient calculated by the formula above. If levelOfNextRank is undefined returns 1.
  */
-function getDownrankingPenalty(characterLevel, levelOfNextRank){
-	if(levelOfNextRank < 1){
-		return 1;
+function getDownrankingCoefficient(characterLevel, levelOfNextRank){
+	if(levelOfNextRank){
+		return ((levelOfNextRank - 1) + 5) / characterLevel;
 	}
-	return ((levelOfNextRank - 1) + 5) / characterLevel;
+	return 1;
 }
 
 /**
@@ -178,7 +211,7 @@ function getDownrankingPenalty(characterLevel, levelOfNextRank){
  */
 function getSubLevel20Penalty(spellLevel){
 	if(spellLevel < 20){
-		return (20 - spellLevel) * .0375;
+		return 1 - ((20 - spellLevel) * .0375);
 	} else {
 		return 1;
 	}
