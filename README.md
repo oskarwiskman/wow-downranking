@@ -25,9 +25,9 @@ Shaman:
 * Healing Wave
 * Lesser Healing Wave
 
-# Update log
+### Update log
 
-## 2019-06-12 Talents and formula
+#### 2019-06-12 Talents and formula
 * Noticed error in the how the ```[Sub Level 20 Penalty]``` was applied and this has now been fixed.
 * Added talent selection for talents that affect the breakpoints. (Currenlty not used in calculation)
 * Temporarily removed the ```[Downranking Penalty]```, due to different sources having conflicts in how it is applied.
