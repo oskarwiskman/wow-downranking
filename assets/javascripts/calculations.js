@@ -42,7 +42,7 @@ function calculatePower(characterLevel, healingPower, spellData, rank){
 	  		extraPower = directExtraPower + overTimeExtraPower;
 	    	break;
 	}
-	//extraPower *= getDownrankingCoefficient(characterLevel, nextRankLevel);
+	extraPower *= getDownrankingCoefficient(characterLevel, nextRankLevel);
 	extraPower *= getSubLevel20Penalty(rankData.level);
 	let totalPower = power + extraPower;
 	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name);
@@ -196,7 +196,7 @@ function getHybridCoeficients(castTime, duration){
  */
 function getDownrankingCoefficient(characterLevel, levelOfNextRank){
 	if(levelOfNextRank){
-		return ((levelOfNextRank - 1) + 5) / characterLevel;
+		return Math.min(1, ((levelOfNextRank - 1) + 5) / characterLevel);
 	}
 	return 1;
 }
