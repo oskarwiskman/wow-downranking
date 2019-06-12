@@ -78,7 +78,7 @@ function newRandomTip(){
 }
 
 function updateTip(tipData){
-	$('#tip').html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]);
+	$('#tip').hide().html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]).fadeIn('slow');
 }
 
 function hideResult(){

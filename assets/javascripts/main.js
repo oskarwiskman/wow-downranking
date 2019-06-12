@@ -40,14 +40,14 @@ function onSpellClicked(elem){
 	let navbar = target.closest('.navbar');
 
 	if(target.hasClass('active')){
+		newRandomTip();
 		target.removeClass('active');
 		hideResult();
-		newRandomTip();
 
 	} else {
+		hideTip();
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
-		hideTip();
 		refreshTooltip();
 	}
 }
