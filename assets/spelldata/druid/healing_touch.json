@@ -1,6 +1,7 @@
 {
 	"class":"druid",
 	"name":"Healing Touch",
+	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
 	"ranks":[
 		{	"rank":1,

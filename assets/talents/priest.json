@@ -6,21 +6,35 @@
 			"maxRank":5,
 			"rankIncrement":0.1,
 			"description":"Reduces the casting time of your Smite, Holy Fire, Heal and Greater Heal spells by ${rankIncrement} sec.",
-			"image":"divine_fury.jpg"
+			"image":"divine_fury.jpg",
+			"affectedSpells": [
+				"Smite",
+				"Holy Fire",
+				"Heal",
+				"Greater Heal"
+			]
 		},
 		{
 			"name":"improved_healing",
 			"maxRank":3,
 			"rankIncrement":5,
 			"description":"Reduces the Mana cost of your Lesser Heal, Heal, and Greater Heal spells by ${rankIncrement}%.",
-			"image":"heal.jpg"
+			"image":"heal.jpg",
+			"affectedSpells": [
+				"Lesser Heal",
+				"Heal",
+				"Greater Heal"
+			]
 		},
 		{
 			"name":"spiritual_healing",
 			"maxRank":5,
 			"rankIncrement":2,
 			"description":"Increases the amount healed by your healing spells by ${rankIncrement}%.",
-			"image":"spiritual_healing.jpg"
+			"image":"spiritual_healing.jpg",
+			"affectedSpells": [
+				"heal"
+			]
 		}
 	]
 }

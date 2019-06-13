@@ -46,7 +46,7 @@ function calculatePower(characterLevel, healingPower, spellData, rank){
 	}
 	extraPower *= getSubLevel20Penalty(rankData.level);
 	let totalPower = power + extraPower;
-	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name);
+	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	return totalPower;
 }
 
@@ -71,29 +71,64 @@ function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
 function calculatePowerPerMana(characterLevel, healingPower, spellData, rank){
 	let power = calculatePower(characterLevel, healingPower, spellData, rank);
 	let cost = spellData.ranks[rank-1].cost;
-	cost *= getTalentCostCoefficient(spellData.class, spellData.name);
+	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
 	return cost === 0 ? power * 1000 : power / cost; //Edge case of a Paladin with 100% crit will have 0 cost.
 }
 
-function getTalentPowerCoefficient(className, spellName){
+function getTalentPowerCoefficient(className, spellName, spellType){
 	switch(className) {
 		case "druid":
 			return 1;
 		case "paladin":
-			let healingLight = $('#talent-healing_light');
-			let healingLightData = healingLight.data("talent");
-			let healingLightRank = healingLight.data("current-rank");
-			let coefficient = 1 + ((healingLightData.rankIncrement * healingLightRank) / 100);
-			return coefficient;
+			let talent = $('#talent-healing_light');
+			let data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				let rank = talent.data("current-rank");
+				return 1 + ((data.rankIncrement * rank) / 100);
+			}
+			return 1;
 		case "priest":
 			return 1;
 		case "shaman":
+			return 1;
+		default:
 			return 1;
 	}
 	return 1;
 }
 
-function getTalentCostCoefficient(className, spellName){
+function getTalentCostCoefficient(className, spellName, spellType){
+	let talent;
+	let data;
+	let rank;
+	switch(className) {
+		case "druid":
+			talent = getTalentByName('moonglow');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 - ((data.rankIncrement * rank) / 100);
+			}
+			return 1;
+		case "paladin":
+			let critChance = getCritChance();
+			talent = getTalentByName('illumination');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 - ((critChance/100) * ((data.rankIncrement * rank) / 100));
+			}
+			return 1;
+		case "priest":
+			return 1;
+		case "shaman":
+			return 1;
+		default:
+			return 1;
+	}
+}
+
+function getTalentCastTimeCoefficient(className, spellName){
 	switch(className) {
 		case "druid":
 			return 1;
@@ -108,7 +143,13 @@ function getTalentCostCoefficient(className, spellName){
 			return 1;
 		case "shaman":
 			return 1;
+		default:
+			return 1;
 	}
+}
+
+function isAffected(spellName, spellType, data){
+	return data.affectedSpells.includes(spellType) || data.affectedSpells.includes(spellName);
 }
 
 function getSpellType(spell){

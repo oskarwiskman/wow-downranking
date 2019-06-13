@@ -1,6 +1,7 @@
 {
 	"class":"priest",
 	"name":"Greater Heal",
+	"type":"heal",
 	"description":"Slow casting spell that heals a single target for ${powerMin} to ${powerMax}.",
 	"ranks":[
 		{	"rank":1,

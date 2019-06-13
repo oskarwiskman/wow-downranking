@@ -1,6 +1,7 @@
 {
 	"class":"priest",
 	"name":"Renew",
+	"type":"heal",
 	"description":"Heals the target of ${tickPower} over ${tickDuration} sec.",
 	"ranks":[
 		{	"rank":1,

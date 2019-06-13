@@ -1,6 +1,7 @@
 {
 	"class":"shaman",
 	"name":"Lesser Healing Wave",
+	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
 	"ranks":[
 		{	"rank":1,

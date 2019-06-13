@@ -113,6 +113,10 @@ function getCharacterLevel(){
 	return 60;
 }
 
+function getTalentByName(talentName){
+	return $(`#talent-${talentName}`);
+}
+
 function getHealingPower(){
 	let healingPower = $('#healing').val();
 	if(!healingPower || healingPower < 0) healingPower = 0;

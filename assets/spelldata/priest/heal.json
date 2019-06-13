@@ -1,6 +1,7 @@
 {
 	"class":"priest",
 	"name":"Heal",
+	"type":"heal",
 	"description":"Heal your target for ${powerMin} to ${powerMax}.",
 	"ranks":[
 		{	"rank":1,

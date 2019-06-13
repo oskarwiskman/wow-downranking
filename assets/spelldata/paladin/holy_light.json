@@ -1,6 +1,7 @@
 {
 	"class":"paladin",
 	"name":"Holy Light",
+	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
 	"ranks":[
 		{	"rank":1,
