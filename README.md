@@ -28,6 +28,10 @@ Shaman:
 ### Update log
 
 #### 2019-06-12 Talents and formula
+* Talents for Paladin (*Illumination* and *Healing Light*) and *Moonglow* for Druid are now used in calculations.
+* Updated formula for calculating the best rank to take the HpS in to consideration, formula is ```[HpME] * log([HpS])```
+
+#### 2019-06-12 Talents and formula
 * Noticed error in the how the ```[Sub Level 20 Penalty]``` was applied and this has now been fixed.
 * Added talent selection for talents that affect the breakpoints. (Currenlty not used in calculation)
 * Temporarily removed the ```[Downranking Penalty]```, due to different sources having conflicts in how it is applied.
