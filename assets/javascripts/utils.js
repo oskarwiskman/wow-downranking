@@ -117,6 +117,21 @@ function getTalentByName(talentName){
 	return $(`#talent-${talentName}`);
 }
 
+function getSliderValues(){
+	let slider = $('input[type="range"]');
+	let maxValue = (slider.attr('max')/2)|0;
+	let slidervalue = slider.val();
+	let HpMEpower = slidervalue < maxValue ? (maxValue + 1) - slidervalue : 1;
+	let HpSpower = slidervalue > maxValue ? (parseInt(slidervalue) + 1) - maxValue : 1;
+	if(HpMEpower === maxValue + 1){
+		HpSpower = 0;
+	}
+	if(HpSpower === maxValue + 1){
+		HpMEpower = 0;
+	}
+	return [HpMEpower, HpSpower];
+}
+
 function getHealingPower(){
 	let healingPower = $('#healing').val();
 	if(!healingPower || healingPower < 0) healingPower = 0;

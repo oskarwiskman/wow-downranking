@@ -11,7 +11,8 @@ function calculateMostEfficientRank(characterLevel, healingPower, spellData){
 		if(characterLevel < spellData.ranks[rank-1].level) continue;
 		let PpM = calculatePowerPerMana(characterLevel, healingPower, spellData, rank);
 		let PpS = calculatePowerPerSecond(characterLevel, healingPower, spellData, rank);
-		let magicFactor = PpM * Math.log(PpS);
+		let powerValues = getSliderValues();
+		let magicFactor = Math.pow(PpM, powerValues[0]) * Math.pow(Math.log(PpS), powerValues[1]);
 		if(magicFactor > bestMagicFactor){
 			bestMagicFactor = magicFactor;
 			bestRank = rank;

@@ -3,8 +3,10 @@
 	<head>
 		<title>World of Warcraft - Downranking recommendations</title>
 		<meta charset="utf-8">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href='/stylesheets/style.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/rangeslider.css'>
+		<script src="/javascripts/jquery-3.4.1.min.js"></script>
+		<script src="/javascripts/rangeslider.min.js"></script>
 		<script src="/javascripts/htmlBuilder.js"></script>
 		<script src="/javascripts/utils.js"></script>
 		<script src="/javascripts/calculations.js"></script>
@@ -46,8 +48,15 @@
 			</div>
 		</div>
 		<div id="result" class="hidden">
-			<h4 class="header">Rank with most bang for the buck</h4>
+			<h4 class="header">Recommended rank to use for high mana efficiency</h4>
 			<div id="tooltip"></div>
+			<div class="tune-selection">
+				<h4 class="header">Slide to change importance of HpME vs HpS</h4>
+				<div class="rangeslider-container">
+					<input type="range" min="0" max="10" step="1" value="5" data-orientation="horizontal">
+					<span id="hpme">HpME</span><span id="hps">HpS</span>
+				</div>
+			</div>
 			<div id="breakpoints"></div>
 		</div>
 		<div id="tip-container">

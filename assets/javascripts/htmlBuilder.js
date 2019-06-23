@@ -6,7 +6,7 @@ function buildBreakpointsTable(spellData){
 	let characterLevel = getCharacterLevel();
 	let lastRank = undefined;
 
-	for(let i = 0; i < 4000; i++){
+	for(let i = 0; i < 2000; i++){
 		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
 		if(characterLevel >= spellData.ranks[currentRank - 1].level){
 			if(bpMapFrom[currentRank] === undefined) {

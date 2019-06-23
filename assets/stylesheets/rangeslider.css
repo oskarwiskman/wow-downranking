@@ -1,0 +1,88 @@
+.rangeslider-container {
+  display: inline-block;
+  width: 260px;
+}
+
+.rangeslider-container span {
+  color: #E7BA00;
+
+}
+.rangeslider-container span#hpme {
+  float: left;
+}
+
+.rangeslider-container span#hps {
+  float: right;
+}
+
+.rangeslider,
+.rangeslider__fill {
+  display: block;
+  background: #222;
+  opacity: 0.7;
+  border-radius: 7px;
+  color: white;
+  border-color: #999;
+}
+
+.rangeslider {
+  border: 1px inset #999;
+  position: relative;
+}
+
+.rangeslider--horizontal {
+  height: 15px;
+  width: 100%;
+}
+
+.rangeslider--vertical {
+  width: 20px;
+  min-height: 150px;
+  max-height: 100%;
+}
+
+.rangeslider--disabled {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
+
+.rangeslider__fill {
+
+}
+.rangeslider--horizontal .rangeslider__fill {
+  top: 0;
+  height: 100%;
+}
+.rangeslider--vertical .rangeslider__fill {
+  bottom: 0;
+  width: 100%;
+}
+
+.rangeslider__handle {
+  cursor: pointer;
+  display: inline-block;
+  width: 15px;
+  height: 25px;
+  position: absolute;
+  background-image: url('../images/hd_handle.png') !important;
+  background-size: 100%;
+}
+.rangeslider__handle:after {
+}
+.rangeslider__handle:active, .rangeslider--active .rangeslider__handle {
+
+}
+.rangeslider--horizontal .rangeslider__handle {
+  top: -7px;
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+}
+.rangeslider--vertical .rangeslider__handle {
+  left: -10px;
+  touch-action: pan-x;
+  -ms-touch-action: pan-x;
+}
+
+input[type="range"]:focus + .rangeslider .rangeslider__handle {
+
+}
