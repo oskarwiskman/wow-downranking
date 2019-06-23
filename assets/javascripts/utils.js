@@ -101,6 +101,18 @@ function getCritChance(){
 	return Math.max(0, Math.min(100, $('#crit-chance').val()));
 }
 
+function hideSpirit(){
+	$('#spirit-container').addClass("hidden");
+}
+
+function showSpirit(){
+	$('#spirit-container').removeClass("hidden");
+}
+
+function getSpirit(){
+	return Math.max(0, $('#spirit').val());
+}
+
 function getSelectedClassName(){
 	return $('.wow-spell.active').data('class-name');
 }

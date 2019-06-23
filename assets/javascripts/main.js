@@ -31,6 +31,11 @@ function onClassClicked(elem){
 		} else {
 			hideCritChance();
 		}
+		if(className === "priest"){
+			showSpirit();
+		} else {
+			hideSpirit();
+		}
 		showSpellAffectingTalentsFor(className);
 		showSpellSelectionFor(className);
 	}

@@ -32,14 +32,20 @@
 				<a class="wow-class icon-medium" id="shaman" title="Shaman" style="background-image: url(/images/class_shaman.jpg)"></a>
 			</div>
 		</div>
-		<div id="crit-chance-container" class="hidden">
+		<div id="crit-chance-container" class="class-stat hidden">
 			<label for="crit-chance">Critical effect chance</label>
 			<span>
 				<input id="crit-chance" type="number" min="0" max="100" value="0" onChange="refreshTooltip()"><span>%</span>
 			<span>
 		</div>
+		<div id="spirit-container" class="class-stat hidden">
+			<label for="spirit">Amount of spirit</label>
+			<span>
+				<input id="spirit" type="number" min="0" value="0" onChange="refreshTooltip()">
+			<span>
+		</div>
 		<div id="talent-selection" class="hidden">
-			<h4 class="header">Fill out your talents <br/><span style="font-size: 10px">(Currently only affects Paladin)</span></h4>
+			<h4 class="header">Fill out your talents</h4>
 			<div class="navbar"></div>
 		</div>
 		<div id="spell-selection" class="hidden">

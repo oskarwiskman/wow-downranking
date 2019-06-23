@@ -48,7 +48,7 @@ function calculatePower(characterLevel, healingPower, spellData, rank){
 	extraPower *= getSubLevel20Penalty(rankData.level);
 	let totalPower = power + extraPower;
 	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
-	return totalPower;
+	return totalPower + getTalentExtraPower(spellData.class, spellData.name, spellData.type);
 }
 
 function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
@@ -66,6 +66,7 @@ function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
 	  		divider = rankData.baseCastTime;
 	  		break;
 	}
+	divider -= getTalentCastTimeReduction(spellData.class, spellData.name, spellData.type);
 	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
 }
 
@@ -77,20 +78,35 @@ function calculatePowerPerMana(characterLevel, healingPower, spellData, rank){
 }
 
 function getTalentPowerCoefficient(className, spellName, spellType){
+	let talent;
+	let data;
+	let rank;
 	switch(className) {
 		case "druid":
 			return 1;
 		case "paladin":
-			let talent = $('#talent-healing_light');
-			let data = talent.data("talent");
+			talent = getTalentByName('healing_light');
+			data = talent.data("talent");
 			if(isAffected(spellName, spellType, data)){
-				let rank = talent.data("current-rank");
+				rank = talent.data("current-rank");
 				return 1 + ((data.rankIncrement * rank) / 100);
 			}
 			return 1;
 		case "priest":
+			talent = getTalentByName('spiritual_healing');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 + ((data.rankIncrement * rank) / 100);
+			}
 			return 1;
 		case "shaman":
+			talent = getTalentByName('purification');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 + ((data.rankIncrement * rank) / 100);
+			}
 			return 1;
 		default:
 			return 1;
@@ -104,13 +120,20 @@ function getTalentCostCoefficient(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
+			let costCoeff = 1;
 			talent = getTalentByName('moonglow');
 			data = talent.data("talent");
 			if(isAffected(spellName, spellType, data)){
 				rank = talent.data("current-rank");
-				return 1 - ((data.rankIncrement * rank) / 100);
+				costCoeff *= (1 - ((data.rankIncrement * rank) / 100));
 			}
-			return 1;
+			talent = getTalentByName('tranquil_spirit');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				costCoeff *= (1 - ((data.rankIncrement * rank) / 100));
+			}
+			return costCoeff;
 		case "paladin":
 			let critChance = getCritChance();
 			talent = getTalentByName('illumination');
@@ -121,6 +144,34 @@ function getTalentCostCoefficient(className, spellName, spellType){
 			}
 			return 1;
 		case "priest":
+			talent = getTalentByName('improved_healing');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 - ((data.rankIncrement * rank) / 100);
+			}
+			return 1;
+		case "shaman":
+			talent = getTalentByName('tidal_focus');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return 1 - ((data.rankIncrement * rank) / 100);
+			}
+			return 1;
+		default:
+			return 1;
+	}
+}
+
+function getTalentCastTimeReduction(className, spellName){
+	return 0;
+	switch(className) {
+		case "druid":
+			return 1;
+		case "paladin":
+			return 1;
+		case "priest":
 			return 1;
 		case "shaman":
 			return 1;
@@ -129,23 +180,16 @@ function getTalentCostCoefficient(className, spellName, spellType){
 	}
 }
 
-function getTalentCastTimeCoefficient(className, spellName){
-	switch(className) {
-		case "druid":
-			return 1;
-		case "paladin":
-			let critChance = getCritChance();
-			let illumination = $('#talent-illumination');
-			let illuminationData = illumination.data("talent");
-			let illuminationRank = illumination.data("current-rank");
-			let coefficient = 1 - ((critChance/100) * ((illuminationData.rankIncrement * illuminationRank) / 100));
-			return coefficient;
-		case "priest":
-			return 1;
-		case "shaman":
-			return 1;
-		default:
-			return 1;
+
+function getTalentExtraPower(className, spellName, spellType){
+	if(className === "priest"){
+		let talent = getTalentByName('spiritual_guidance');
+		let data = talent.data("talent");
+		let rank = talent.data("current-rank");
+		return (getSpirit() * ((data.rankIncrement * rank)/100))|0;
+	}
+	else {
+		return 0;
 	}
 }
 

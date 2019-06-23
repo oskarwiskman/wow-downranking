@@ -330,19 +330,28 @@ input {
 	color: #7facf4;
 }
 
-#crit-chance-container {
+.class-stat {
 	margin-top: 10px;
 }
 
-#crit-chance-container > span > input {
-	width: 42px;
+.class-stat input {
 	font-size: 14px;
 }
 
-#crit-chance-container > span > span {
+.class-stat#spirit-container input {
+	width: 60px;
+}
+
+.class-stat#crit-chance-container input {
+	width: 42px;
+}
+
+#crit-chance-container span span {
 	margin-left: 5px;
 	color: #E7BA00;
 }
+
+
 
 
 

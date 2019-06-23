@@ -27,6 +27,16 @@
 			]
 		},
 		{
+			"name":"spiritual_guidance",
+			"maxRank":5,
+			"rankIncrement":5,
+			"description":"Increases spell damage and healing by up to ${rankIncrement}% of your total spirit.",
+			"image":"spiritual_guidance.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		},
+		{
 			"name":"spiritual_healing",
 			"maxRank":5,
 			"rankIncrement":2,
