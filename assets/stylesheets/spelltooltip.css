@@ -1,0 +1,51 @@
+#tooltip{
+	display: inline-block;
+}
+
+.spell-tooltip {
+	font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+	box-shadow: 1px 1px #555;
+    background-color: #111;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+	font-size: 16px;
+    width: 300px;
+    padding: 7px;
+    opacity: 0.9;
+    color: white;
+    line-height: 20px;
+    text-align: left;
+}
+
+.spell-tooltip .header {
+	font-size: 18px;
+}
+
+.spell-tooltip .header .name {
+	color: #7facf4;
+}
+
+.spell-tooltip .header .rank{
+	color: #9d9d9d;
+	float: right;
+}
+
+.spell-tooltip .requirements {
+}
+
+.spell-tooltip .requirements .cost{
+
+}
+
+.spell-tooltip .requirements .range{
+	float: right;
+}
+
+.spell-tooltip .cast-time {
+
+}
+
+.spell-tooltip p.description {
+	color: #E7BA00;
+	margin: 8px 0px 0px 0px;
+}

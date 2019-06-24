@@ -1,0 +1,45 @@
+body .modal {
+    background: url(../images/window_border.png) no-repeat;
+    background-size: 100%;
+	height: 700px;
+	padding: 19px;
+}
+
+body .blocker {
+	background-color: none;
+	background-color: rgba(0,0,0,0);
+}
+
+.modal .background {
+    width: 93%;
+    height: 94%;
+    background-color: #000;
+    opacity: 0.75;
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+    top: 20px;
+}
+
+.modal .content {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    overflow: auto;
+}
+
+.modal .content h1.title {
+	font-size: 17px;
+    color: #E7BA00;
+    width: 200px;
+    height: 50px;
+    margin: 0;
+    display: block;
+    position: absolute;
+    top: -12px;
+    left: 160px;
+    background: url(../images/menu_title.png) no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    padding-top: 13px;
+}

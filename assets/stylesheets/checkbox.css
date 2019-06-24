@@ -1,0 +1,75 @@
+.aq-tome-container{
+	display: inline-block;
+}
+
+.aq-tome-container label {
+	cursor: pointer;
+}
+
+.aq-tome-container input {
+	width: 14px;
+	cursor: pointer;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark-background {
+    position: absolute;
+    top: 2px;
+    right: -22px;
+    height: 15px;
+    width: 15px;
+    background-color: #111;
+    opacity: 0.6;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	right: -24px;
+	height: 18px;
+	width: 18px;
+	background: url(../images/icon_border_medium.png) no-repeat;
+	background-size: contain;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  
+}
+
+.checkbox-container input:checked ~ .checkmark {
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+	top: 1px;
+    width: 18px;
+    height: 16px;
+    background: url(../images/checkmark.png) no-repeat;
+    background-size: contain;
+}

@@ -274,22 +274,6 @@ function getHybridCoeficients(castTime, duration){
 }
 
 /**
- * Downranking has significant effects on the spell's coefficient.
- * The formula for this is: ([Level of next rank - 1] + 5) / [Character Level] = [Downranking Coefficient]
- * 
- * @param 	{integer}	characterLevel      The level of the character.
- * @param 	{integer}	levelOfNextRank 	The level where the next rank of the spell can be learned. If there is no higher rank this should be negative.
- *
- * @return 	{double} 	downrankCoeff 		Returns the coefficient calculated by the formula above. If levelOfNextRank is undefined returns 1.
- */
-function getDownrankingCoefficient(characterLevel, rankLevel, levelOfNextRank){
-	if(levelOfNextRank){
-		return Math.min(1, (((levelOfNextRank - 1) + 5) / characterLevel));
-	}
-	return 1;
-}
-
-/**
  * Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. 
  * The formula for this is: (20 - [Spell Level]) * .0375 = [Penalty]
  * 
