@@ -1,5 +1,5 @@
 # World of Warcraft - Downranking tips
-Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. 
+Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Metric (HEM), which considers both HpME and HpS. HEM is used when recommending the rank, since looking at only HpME or HpS wouldn't give accurate results.
 
 The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
 
@@ -26,6 +26,11 @@ Shaman:
 * Lesser Healing Wave
 
 ### Update log
+
+#### 2019-06-24 Talents, Slider and HEM
+* Added all talents that affect either healing power or spell cost.
+* Added Spiritual Guidance talent for Priests, along with an input field for spirit.
+* Added a slider for adjusting the importance of either HpME or HpS. The resulting value is reffered to as Healing Efficiency Metric (HEM) and is calculated as ```[HpME]^X * [HpS]^Y```, default is ```X = Y = 1```, but the values may be changed by moving the slider. 
 
 #### 2019-06-12 Talents and formula
 * Talents for Paladin (*Illumination* and *Healing Light*) and *Moonglow* for Druid are now used in calculations.
@@ -83,12 +88,16 @@ Downranking also has significant effects on the spell's coefficient. The forumla
 
 What the "Level of next rank - 1" means is the level right before the caster would get the next rank of the spell. For example, Greater Heal (Rank 3) would be considered a level 57 spell for this calculation, since Greater Heal (Rank 4) is a level 58 spell.
 
+NOTE: This is currently not part of the calculation since there seems to be conflicting opinions on how this works. If you find any sources, please share them so I can get it right.
+
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
 
-```[Effective Coefficient] = [Basic Coefficient] * [Downranking Penalty] * (1 - [Sub Level 20 Penalty]```
+```[Effective Coefficient] = [Basic Coefficient] * (1 - [Sub Level 20 Penalty]```
 
 Thus the final power of the spell is ```[Base power] + [+Power] * [Effective Coefficient]```
+
+The result of the function above is what is used when calculating HpME, HpS and finally HEM.
 
 A few notes on this process:
 
