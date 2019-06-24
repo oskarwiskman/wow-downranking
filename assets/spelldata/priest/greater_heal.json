@@ -57,7 +57,8 @@
 			"powerMax":2194,
 			"tickInterval":0,
 			"tickDuration":0,
-			"tickPower":0
+			"tickPower":0,
+			"tome":true
 		}
 	]
 }

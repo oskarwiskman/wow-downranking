@@ -129,6 +129,10 @@ function getTalentByName(talentName){
 	return $(`#talent-${talentName}`);
 }
 
+function getAqReleased(){
+	return $('#aq-tome:checked').length > 0;
+}
+
 function getSliderValues(){
 	let slider = $('input[type="range"]');
 	let maxValue = (slider.attr('max')/2)|0;

@@ -121,7 +121,6 @@ function buildTooltipHtmlForSpell(spell, rank){
 					`${description}` +
 				`</p>` +
 			`</div>`
-
 }
 
 function buildSpellHtmlForClass(className, container){

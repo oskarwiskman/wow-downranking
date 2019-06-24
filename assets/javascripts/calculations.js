@@ -9,6 +9,7 @@ function calculateMostEfficientRank(characterLevel, healingPower, spellData){
 
 	for(let rank = 1; rank <= spellData.ranks.length; rank++){
 		if(characterLevel < spellData.ranks[rank-1].level) continue;
+		if(!getAqReleased() && spellData.ranks[rank-1].tome) continue;
 		let PpM = calculatePowerPerMana(characterLevel, healingPower, spellData, rank);
 		let PpS = calculatePowerPerSecond(characterLevel, healingPower, spellData, rank);
 		let powerValues = getSliderValues();
