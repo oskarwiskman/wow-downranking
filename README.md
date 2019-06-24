@@ -73,22 +73,10 @@ The duration and cast time limitations are then applied:
 
 ```[Direct coefficient] = ([Cast Time / 3.5) * [Direct part]```
 
-### Pentalties
-Certain spells will also have various coefficient penalties associated with them.
-
-#### Spells below level 20
+### Spells below level 20
 Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
 
 ```(20 - [Spell Level]) * .0375 = [Penalty]```
-
-#### Downranking
-Downranking also has significant effects on the spell's coefficient. The forumla for this is: ([Level of next rank - 1] + 5) / 
-
-```[Character Level] = [Downranking Coefficient]```
-
-What the "Level of next rank - 1" means is the level right before the caster would get the next rank of the spell. For example, Greater Heal (Rank 3) would be considered a level 57 spell for this calculation, since Greater Heal (Rank 4) is a level 58 spell.
-
-NOTE: This is currently not part of the calculation since there seems to be conflicting opinions on how this works. If you find any sources, please share them so I can get it right.
 
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
@@ -106,7 +94,7 @@ A few notes on this process:
 * All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.
 
 # Sources
-All the spell data used in the project has been gathered from [ClassicDB](https://classicdb.ch/) and the calculation formulas from [Allakhazam](http://wow.allakhazam.com/wiki/spell_coefficient_(wow)).
+All the spell data used in the project has been gathered from Classic WoW Beta Servers and [ClassicWowHead](https://classic.wowhead.com/). Calculation formulas from have been derived from several sources and verified in the Classic WoW Beta.
 
 # Contributions
 As stated above I am happy to receive constructive feedback, in order to make this tool better.
