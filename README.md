@@ -1,5 +1,5 @@
 # World of Warcraft - Downranking tips
-Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Metric (HEM), which considers both HpME and HpS. HEM is used when recommending ranks, since looking at only HpME or HpS wouldn't give accurate results.
+Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS wouldn't give accurate results.
 
 The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
 
@@ -27,10 +27,10 @@ Shaman:
 
 ### Update log
 
-#### 2019-06-24 Talents, Slider and HEM
+#### 2019-06-24 Talents, Slider and HES
 * Added all talents that affect either healing power or spell cost.
 * Added Spiritual Guidance talent for Priests, along with an input field for spirit.
-* Added a slider for adjusting the importance of either HpME or HpS. The resulting value is reffered to as Healing Efficiency Metric (HEM) and is calculated as ```[HpME]^X * [HpS]^Y```, default is ```X = Y = 1```, but the values may be changed by moving the slider. 
+* Added a slider for adjusting the importance of either HpME or HpS. The resulting value is reffered to as Healing Efficiency Score (HES) and is calculated as ```[HpME]^X * [HpS]^Y```, default is ```X = Y = 1```, but the values may be changed by moving the slider. 
 
 #### 2019-06-12 Talents and formula
 * Talents for Paladin (*Illumination* and *Healing Light*) and *Moonglow* for Druid are now used in calculations.
