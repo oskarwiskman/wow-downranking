@@ -1,5 +1,5 @@
 # World of Warcraft - Downranking tips
-Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Metric (HEM), which considers both HpME and HpS. HEM is used when recommending the rank, since looking at only HpME or HpS wouldn't give accurate results.
+Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Metric (HEM), which considers both HpME and HpS. HEM is used when recommending ranks, since looking at only HpME or HpS wouldn't give accurate results.
 
 The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
 
