@@ -80,7 +80,7 @@ function initRangeSlider(){
 
     // Callback function
     onSlide: function(position, value) {
-		refreshTooltip();
+		refreshDetailsModal();
     },
 
     // Callback function

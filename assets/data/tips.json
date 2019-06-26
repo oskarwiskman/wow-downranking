@@ -1,6 +1,6 @@
 {
 	"tips":[
-		"If you want to know how the ranks are calculated checkout the <a href='https://github.com/oskarholmberg/wow-downranking'>GitHub page.</a>",
+		"If you want to know how the ranks are calculated checkout the <a href='https://github.com/oskarholmberg/wow-downranking' target='_blank'>GitHub page.</a>",
 		"Roll a tank, your server needs them!",
 		"There is no cow level. Or is there?",
 		"You can't turn off these tips...",
@@ -14,13 +14,13 @@
 		"There is no 'Sword of a Thousand Truths'.",
 		"What happens in trade chat STAYS in trade chat.",
 		"If the tank dies first, blame the healer. Otherwise, blame the tank.",
-		"Did someone say <a href='https://www.wowhead.com/item=19019/thunderfury-blessed-blade-of-the-windseeker' style='color: #ff8000 !important; text-decoration: none;'>[Thunderfury, Blessed Blade of the Windseeker]</a>?",
+		"Did someone say <a href='https://www.wowhead.com/item=19019/thunderfury-blessed-blade-of-the-windseeker' style='color: #ff8000 !important; text-decoration: none;'  target='_blank'>[Thunderfury, Blessed Blade of the Windseeker]</a>?",
 		"Remember to take all things in moderation (even min-maxing)",
 		"Struggling with a tough foe? Remember, just keep your Health above 0 while lowering your enemy's Health to 0. Works every time!",
 		"MORE DOTS!",
 		"Just self-res and BAAAM cast FROST SHOCK!",
 		"If you die to fire on a boss fight, remember to blame your cat for stepping on the keyboard.",
 		"Remember to use your healthstone!",
-		"If you want more detailed tips on World of Warcraft, consider subscribing to <a href='https://www.youtube.com/channel/UCGm8RmKIW0EF1RfmNFVr2-Q'>Defcamp & Melderon TV</a> for in depth guides on many subjects."
+		"If you want more detailed tips on World of Warcraft, consider subscribing to <a href='https://www.youtube.com/channel/UCGm8RmKIW0EF1RfmNFVr2-Q'  target='_blank'>Defcamp & Melderon TV</a> for in depth guides on many subjects."
 	]
 }

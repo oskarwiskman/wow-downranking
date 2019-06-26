@@ -1,7 +1,8 @@
 body .modal {
     background: url(../images/window_border.png) no-repeat;
     background-size: 100%;
-	height: 700px;
+    max-width: 600px;
+	height: 835px;
 	padding: 19px;
 }
 
@@ -11,14 +12,15 @@ body .blocker {
 }
 
 .modal .background {
-    width: 93%;
-    height: 94%;
+    width: 552px;
+    height: 792px;
     background-color: #000;
-    opacity: 0.75;
+    opacity: 0.85;
     border-radius: 10px;
     position: absolute;
     z-index: -1;
-    top: 20px;
+    top: 24px;
+    left: 24px;
 }
 
 .modal .content {
@@ -37,7 +39,7 @@ body .blocker {
     display: block;
     position: absolute;
     top: -12px;
-    left: 160px;
+    left: 200px;
     background: url(../images/menu_title.png) no-repeat;
     background-size: 100% 100%;
     text-align: center;
@@ -75,23 +77,6 @@ body .blocker {
     border: 1px inset #999;
 }
 
-.modal #close-modal-btn {
-	float: right;
-    color: #ddd;
-    text-decoration: none;
-    background-color: #670506;
-    display: block;
-    width: 80px;
-    height: 21px;
+#details-modal .content {
     text-align: center;
-    border: 1px outset #888;
-    border-radius: 5px;
-    -moz-box-shadow: 3px 0 0 8px #000;
-    -webkit-box-shadow: 3px 0 0 8px #000;
-    box-shadow: inset 0 0 8px #000;
-    opacity: 0.8;
-}
-
-.modal #close-modal-btn:hover {
-	opacity: 1;
 }

@@ -3,7 +3,6 @@ function refreshTooltip(){
 	let spellName = getSelectedSpellName();
 	if(className && spellName){
 		loadSpellData(className, spellName, updateTooltip);
-		loadSpellData(className, spellName, buildBreakpointsTable);
 	}
 }
 
@@ -41,7 +40,7 @@ function updateTalent(elem){
 }
 
 function updateTooltip(spellData){
-	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(getCharacterLevel(), getHealingPower(), spellData)));
+	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(getHealingPower(), spellData)));
 	showResult();
 }
 
@@ -133,10 +132,19 @@ function getAqReleased(){
 	return $('#aq-tome:checked').length > 0;
 }
 
-function openInfoModal(){
-	$("#info-modal").modal({
+function openModal(id){
+	$(`#${id}`).modal({
 		showClose: false
 	});
+	if(id === 'details-modal'){
+		let className = getSelectedClassName();
+		let spellName = getSelectedSpellName();
+		if(className && spellName){
+			loadSpellData(className, spellName, buildBreakpointsTable);
+			loadSpellData(className, spellName, buildSpellCharts);
+			$(`#${id}`).find('.content-title').find('.name').html(toTitleCase(spellName));
+		}
+	}
 }
 
 function getSliderValues(){
@@ -176,6 +184,15 @@ function toTitleCase(str) {
 	return split.join(' ');
 }
 
+function refreshDetailsModal(){
+	let className = getSelectedClassName();
+	let spellName = getSelectedSpellName();
+	if(className && spellName){
+		loadSpellData(className, spellName, buildBreakpointsTable);
+		loadSpellData(className, spellName, buildHESChart);
+	}
+}
+
 function loadSpellData(className, spellName, callback){
 	let spellPath = `/spelldata/${className}/${spellName}.json`;
 	loadJSON(spellPath, callback);
@@ -202,8 +219,50 @@ function loadJSON(path, callback) {
 	})();
 }
 
-function toOneDecimal(number){
-	return Math.round(number * 10)/10;
+function range(min, max , step = 1) {
+    let arr = [];
+    let totalSteps = Math.floor((max - min)/step);
+    for (let ii = 0; ii <= totalSteps; ii++ ) { arr.push(ii * step + min) }
+    return arr;
+}
+
+function normalizeDatasets(datasets) {
+	let allDataPoints = [];
+	for(let i = 0; i < datasets.length; i++){
+		allDataPoints = allDataPoints.concat(datasets[i].data);
+	}
+	let rMin = Math.min(...allDataPoints);
+	let rMax = Math.max(...allDataPoints);
+	for(let i = 0; i < datasets.length; i++){
+		datasets[i].data = normalizeArray(datasets[i].data, 0, 10, rMin, rMax);
+	}
+	return datasets;
+}
+
+function normalizeArray(array, tMin=0, tMax=1, rMin, rMax, round=3){
+	if(rMin === undefined) rMin = Math.min(...array);
+	if(rMax === undefined) rMax = Math.max(...array);
+	for(let i = 0; i < array.length; i ++){
+		array[i] = normalizeValue(array[i], tMin, tMax, rMin, rMax, round);
+	}
+	return array;
+}
+
+function normalizeValue(value, tMin, tMax, rMin, rMax, round=3) {
+	return roundNumber((tMax - tMin) * (value - rMin) / (rMax - rMin) + tMin, round);
+}
+
+function roundNumber(num, scale) {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
 }
 
 function sortNumberAsc(a, b) {

@@ -2,27 +2,30 @@
 /**
 * [Basic Coefficient] * [Downranking Coefficient] * [Sub Level 20 Penalty] = [Effective Coefficient]
 */
-function calculateMostEfficientRank(characterLevel, healingPower, spellData){
+function calculateMostEfficientRank(healingPower, spellData){
 
 	let bestRank = 1;
-	let bestMagicFactor = 0;
+	let bestHES = 0;
 
 	for(let rank = 1; rank <= spellData.ranks.length; rank++){
-		if(characterLevel < spellData.ranks[rank-1].level) continue;
 		if(!getAqReleased() && spellData.ranks[rank-1].tome) continue;
-		let PpM = calculatePowerPerMana(characterLevel, healingPower, spellData, rank);
-		let PpS = calculatePowerPerSecond(characterLevel, healingPower, spellData, rank);
-		let powerValues = getSliderValues();
-		let magicFactor = Math.pow(PpM, powerValues[0]) * Math.pow(Math.log(PpS), powerValues[1]);
-		if(magicFactor > bestMagicFactor){
-			bestMagicFactor = magicFactor;
+		let PpM = calculatePowerPerMana(healingPower, spellData, rank);
+		let PpS = calculatePowerPerSecond(healingPower, spellData, rank);
+		let HES = calculateHES(PpM, PpS);
+		if(HES > bestHES){
+			bestHES = HES;
 			bestRank = rank;
 		}
 	}
 	return bestRank;
 }
 
-function calculatePower(characterLevel, healingPower, spellData, rank){
+function calculateHES(PpM, PpS){
+	let powerValues = getSliderValues();
+	return Math.pow(PpM, powerValues[0]) * Math.pow(Math.log(PpS), powerValues[1]);
+}
+
+function calculatePower(healingPower, spellData, rank){
 	let index = rank-1;
 	let rankData = spellData.ranks[index];
 	let nextRankLevel = index < spellData.ranks.length - 1 ? spellData.ranks[index+1].level : undefined;
@@ -52,8 +55,8 @@ function calculatePower(characterLevel, healingPower, spellData, rank){
 	return totalPower + getTalentExtraPower(spellData.class, spellData.name, spellData.type);
 }
 
-function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
-	let power = calculatePower(characterLevel, healingPower, spellData, rank);
+function calculatePowerPerSecond(healingPower, spellData, rank){
+	let power = calculatePower(healingPower, spellData, rank);
 	let rankData = spellData.ranks[rank-1];
 	let divider;
 	switch(getSpellType(rankData)){
@@ -71,8 +74,8 @@ function calculatePowerPerSecond(characterLevel, healingPower, spellData, rank){
 	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
 }
 
-function calculatePowerPerMana(characterLevel, healingPower, spellData, rank){
-	let power = calculatePower(characterLevel, healingPower, spellData, rank);
+function calculatePowerPerMana(healingPower, spellData, rank){
+	let power = calculatePower(healingPower, spellData, rank);
 	let cost = spellData.ranks[rank-1].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
 	return cost === 0 ? power * 1000 : power / cost; //Edge case of a Paladin with 100% crit will have 0 cost.

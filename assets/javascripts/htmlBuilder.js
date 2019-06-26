@@ -3,19 +3,16 @@ function buildBreakpointsTable(spellData){
 	let bpMapTo = {};
 	let currentRank = 0;
 	let rows = "";
-	let characterLevel = getCharacterLevel();
 	let lastRank = undefined;
 
 	for(let i = 0; i < 2000; i++){
-		currentRank = calculateMostEfficientRank(characterLevel, i, spellData);
-		if(characterLevel >= spellData.ranks[currentRank - 1].level){
-			if(bpMapFrom[currentRank] === undefined) {
-				bpMapFrom[currentRank] = i;
-				if(lastRank){
-					bpMapTo[lastRank] = i - 1;
-				}
-				lastRank = currentRank;
+		currentRank = calculateMostEfficientRank(i, spellData);
+		if(bpMapFrom[currentRank] === undefined) {
+			bpMapFrom[currentRank] = i;
+			if(lastRank){
+				bpMapTo[lastRank] = i - 1;
 			}
+			lastRank = currentRank;
 		}
 	}
 
@@ -29,7 +26,7 @@ function buildBreakpointsTable(spellData){
 
 	let table = 
 	'<table>\n' +
-		`<caption>Breakpoints</br> <span class="subtitle"><span class="name">${spellData.name}</span> at level ${characterLevel}</span></caption>\n` +
+		`<caption>HES Breakpoints</caption>\n` +
 			'<tr>\n' +
 				'<th>Spell power</th>\n' +
 				'<th>Rank</th>\n' +
@@ -76,16 +73,16 @@ function buildTalentTooltip(talent, rank) {
 			let match = matches[i];
 			let attribute = match.substring(2, matches[i].length -1);
 			if(rank === 0){
-				description = description.replace(match, toOneDecimal(talent[attribute] * (rank + 1)));
+				description = description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1));
 				footer = "Click to learn";
 				state = "first";
 			} else if (rank === talent.maxRank){
-				description = description.replace(match, toOneDecimal(talent[attribute] * rank));
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
 				footer = "Click to unlearn"
 				state = "last";
 			} else {
-				description = description.replace(match, toOneDecimal(talent[attribute] * rank));
-				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, toOneDecimal(talent[attribute] * (rank + 1)))}</span>`
+				description = description.replace(match, roundNumber(talent[attribute] * rank));
+				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
 			}
 		}
 	}
@@ -107,20 +104,21 @@ function buildTooltipHtmlForSpell(spell, rank){
 	let tickPower = spell.ranks[rank].tickPower;
 	let description = buildSpellDescription(spell, rank);
 
-	return 	`<div class="spell-tooltip">\n` +
-				`<div class="header">` +
-					`<span class="name">${name}</span>` + 
-					`<span class="rank">${rank+1}</span>` +
-				`</div>` +
-				`<div class="requirements">` +
-					`<span class="cost">${cost} Mana</span>` +
-					`<span class="range">${range} yd. range</span>` +
-				`</div>` +
-				`<div class="cast-time">${baseCastTime}</div>` +
-				`<p class="description">` +
-					`${description}` +
-				`</p>` +
-			`</div>`
+	return 	`<div class="spell-tooltip">\n
+				<div class="header">
+					<span class="name">${name}</span> 
+					<span class="rank">${rank+1}</span>
+				</div>
+				<div class="requirements">
+					<span class="cost">${cost} Mana</span>
+					<span class="range">${range} yd. range</span>
+				</div>
+				<div class="cast-time">${baseCastTime}</div>
+				<p class="description">
+					${description}
+				</p>
+				<a href="#" onClick="openModal('details-modal')">Click here for more details</a>
+			</div>`
 }
 
 function buildSpellHtmlForClass(className, container){

@@ -1,0 +1,27 @@
+<div id="details-modal" class="modal">
+	<div class="background"></div>
+	<div class="content">
+		<h1 class="title">Spell details</h1>
+		<h2 class="content-title"><span class="name blue">Spell</span> details at level 60</h2>
+		<div id="breakpoints"></div>
+		<div class="tune-selection">
+			<h4 class="header">Slide to change importance of HpME vs HpS</h4>
+			<div class="rangeslider-container">
+				<input type="range" min="0" max="10" step="1" value="5" data-orientation="horizontal">
+				<span id="hpme">HpME</span><span id="hps">HpS</span>
+			</div>
+		</div>
+		<div class="chart-container">
+			<canvas id="hes-chart" class="chart" width="400" height="400"></canvas>
+		</div>
+		<div class="chart-container">
+			<canvas id="hpme-chart" class="chart" width="400" height="400"></canvas>
+		</div>
+		<div class="chart-container">
+			<canvas id="hps-chart" class="chart" width="400" height="400"></canvas>
+		</div>
+		<span class="btn pull-right">
+			<a href="#" rel="modal:close">Close</a>
+		</span>
+	</div>
+</div>
