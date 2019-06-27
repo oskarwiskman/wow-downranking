@@ -74,10 +74,15 @@ function calculatePowerPerSecond(healingPower, spellData, rank){
 	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
 }
 
-function calculatePowerPerMana(healingPower, spellData, rank){
-	let power = calculatePower(healingPower, spellData, rank);
+function calculateCost(healingPower, spellData, rank){
 	let cost = spellData.ranks[rank-1].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
+	return cost;
+}
+
+function calculatePowerPerMana(healingPower, spellData, rank){
+	let power = calculatePower(healingPower, spellData, rank);
+	let cost = calculateCost(healingPower, spellData, rank);
 	return cost === 0 ? power * 1000 : power / cost; //Edge case of a Paladin with 100% crit will have 0 cost.
 }
 

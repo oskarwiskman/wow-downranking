@@ -10,6 +10,7 @@ $(document).ready(function(){
 		refreshTooltip();
 	});
     initRangeSlider();
+    $('table').tablesort();
 });
 
 function onClassClicked(elem){

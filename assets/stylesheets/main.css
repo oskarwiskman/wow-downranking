@@ -165,6 +165,7 @@ input {
 }
 
 .table-container table td {
+	text-align: left;
     padding: 2px 15px;
 }
 

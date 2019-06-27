@@ -142,6 +142,7 @@ function openModal(id){
 		if(className && spellName){
 			loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
 			$(`#${id}`).find('.content-title').find('.name').html(toTitleCase(spellName));
+    		$('table').tablesort();
 		}
 	}
 }

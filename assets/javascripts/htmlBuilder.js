@@ -82,6 +82,8 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 
 	return `<tr>\n
 				\t<td>${rank}</td>\n
+				\t<td>${calculatePower(healingPower, spellData, rank)}</td>\n
+				\t<td>${calculateCost(healingPower, spellData, rank)}</td>\n
 				\t<td>${roundNumber(HpME, 1)}</td>\n
 				\t<td>${roundNumber(HpS, 1)}</td>\n
 				\t<td>${roundNumber(HES, 1)}</td>\n
