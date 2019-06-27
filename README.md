@@ -109,7 +109,7 @@ As stated above I am happy to receive constructive feedback, in order to make th
 
 Feel free to post bug reports on this repo, or create a Pull Request, but bare in mind that unless you provide a reasonable source to your claims they will be disregarded.
 
-If you're not a developer, or simply don't care for GitHUb you can also message me on Reddit [u/Oggzor](https://www.reddit.com/user/Oggzor).
+If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Oggzor](https://www.reddit.com/user/Oggzor).
 
 ## Getting started
 1. Make sure that you have node.js installed [download link](https://nodejs.org/en/download/)
