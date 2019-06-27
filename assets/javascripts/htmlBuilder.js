@@ -71,7 +71,7 @@ function buildSpellTable(spellData, healingPower) {
 				</tr>`
 	}
 
-	let table = `<table>
+	let table = `<table class="sortable">
 					<caption>Stats at <b class="blue">${healingPower}</b> Healing Power</caption>
 					<thead>
 						<tr>
@@ -89,6 +89,7 @@ function buildSpellTable(spellData, healingPower) {
 				</table>`
 
 	$('#spell-table').html(table);
+    $('#spell-table table.sortable').tablesort();
 	highlightMaxValue('spell-table');
 }
 
