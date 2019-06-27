@@ -31,7 +31,6 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            events: ['click'],
             title: {
                 display: true,
                 text: title,
