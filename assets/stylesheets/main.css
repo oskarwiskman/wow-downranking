@@ -12,6 +12,10 @@ html {
 	height: 100%;
 }
 
+.green {
+	color: #17FD17;
+}
+
 .yellow {
 	color: #E7BA00;
 }
@@ -21,7 +25,7 @@ html {
 }
 
 .red {
-	color: #670506;
+	color: #fd1717;
 }
 
 .pull-right {
@@ -30,6 +34,30 @@ html {
 
 .pull-left {
 	float: left;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #E7BA00;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.chart-loader {
+	padding: 160px 225px;
+    height: 400px;
+}
+
+.chart-loader .loader {
+	width: 80px;
+    height: 80px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 body {
@@ -153,6 +181,10 @@ input {
     border: 1px solid #ddd;
 }
 
+.table-container table.sortable th {
+	cursor: pointer;
+}
+
 .table-container table th {
 	color: white;
 } 
@@ -222,6 +254,11 @@ input {
 	opacity: 1;
     color: #ddd;
     text-decoration: none;
+}
+
+.chart-container {
+	min-height: 400px;
+    min-width: 400px;
 }
 
 

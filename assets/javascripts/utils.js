@@ -132,6 +132,53 @@ function getAqReleased(){
 	return $('#aq-tome:checked').length > 0;
 }
 
+function highlightMaxValue(tableid){
+	let tdCount = $(`#${tableid} tr:eq(1) td`).length,
+	    trCount = $(`#${tableid} tr`).length;
+
+	for (let i = 0; i < tdCount; i++) {
+	    let $td = $(`#${tableid}  tbody tr:eq(0) td:eq(${i})`),
+	    	sortmode = $(`#${tableid} thead tr:eq(0) th:eq(${i})`).data('sort-mode'),
+	        highest = 0,
+	        lowest = 9e99;
+	    if(sortmode === 'no') {
+	    	continue;
+	    }
+	    for (let j = 2; j < trCount; j++) {
+	        $td = $td.add(`#${tableid}  tr:eq(${j}) td:eq(${i})`);
+	    }
+
+	    $td.each(function(i, el){
+	        let $el = $(el);
+	        if (i >= 0) {
+	            let val = parseFloat($el.data('sort-value'));
+	            if (val > highest) {
+	                highest = val;
+	                if(sortmode === 'asc') {
+	                	$td.removeClass('red');
+	                	$el.addClass('red');
+	                }
+	                else {
+	                	$td.removeClass('green');
+	                	$el.addClass('green');
+	                }
+	            }
+	            if (val < lowest) {
+	                lowest = val;
+	                if(sortmode === 'asc') {
+	                	$td.removeClass('green');
+	                	$el.addClass('green');
+	                }
+	                else {
+	                	$td.removeClass('red');
+	                	$el.addClass('red');
+	                }
+	            }
+	        }
+	    });
+	}
+}
+
 function openModal(id){
 	$(`#${id}`).modal({
 		showClose: false
@@ -140,14 +187,18 @@ function openModal(id){
 		let className = getSelectedClassName();
 		let spellName = getSelectedSpellName();
 		if(className && spellName){
+			$('#details-modal').find('.background').find('.loader').removeClass('hidden');
+			$('#details-modal').find('.content').hide();
 			loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
-			$(`#${id}`).find('.content-title').find('.name').html(toTitleCase(spellName));
-    		$('table').tablesort();
 		}
 	}
 }
 
 function buildSpellDetailsContent(spellData, healingPower){
+	$('#details-modal').find('.background').find('.loader').addClass('hidden');
+	$('#details-modal').find('.content').show();
+	$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
+
 	buildSpellTable(spellData, healingPower);
 	buildBreakpointsTable(spellData);
 	buildSpellCharts(spellData);

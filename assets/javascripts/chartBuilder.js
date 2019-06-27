@@ -13,10 +13,16 @@ const colors = [
                 'rgba(221, 99, 255, 0.8)',
                 'rgba(128, 99, 105, 0.8)'
                 ]
+var hesChart;
+var hpmeChart;
+var hpsChart;
 
-function buildLineChart(target, title, datasets, labels, xLabel, yLabel){
+function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
-    var myChart = new Chart(ctx, {
+    if (chart) {
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -63,6 +69,7 @@ function buildLineChart(target, title, datasets, labels, xLabel, yLabel){
             }
         }
     });
+    return chart;
 }
 
 function buildSpellCharts(spellData){
@@ -96,7 +103,7 @@ function buildHESChart(spellData){
     }
 
     datasets = normalizeDatasets(datasets);
-    buildLineChart('hes-chart', 'Normalized HES over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing Efficiency Score');
+    hesChart = buildLineChart(hesChart, 'hes-chart', 'Normalized HES over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing Efficiency Score');
 }
 
 function buildHpSChart(spellData){
@@ -119,7 +126,7 @@ function buildHpSChart(spellData){
             }
         );
     }
-    buildLineChart('hps-chart', 'HpS over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Second');
+    hpsChart = buildLineChart(hpsChart, 'hps-chart', 'HpS over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Second');
 }
 
 function buildHpMEChart(spellData){
@@ -142,7 +149,7 @@ function buildHpMEChart(spellData){
             }
         );
     }
-    buildLineChart('hpme-chart', 'HpME over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Mana Efficiency');
+    hpmeChart = buildLineChart(hpmeChart, 'hpme-chart', 'HpME over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Mana Efficiency');
 }
 
 

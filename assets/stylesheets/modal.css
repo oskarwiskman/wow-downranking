@@ -21,6 +21,7 @@ body .blocker {
     z-index: -1;
     top: 24px;
     left: 24px;
+    padding: 36%;
 }
 
 .modal .content {

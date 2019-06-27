@@ -173,19 +173,39 @@ function getTalentCostCoefficient(className, spellName, spellType){
 	}
 }
 
-function getTalentCastTimeReduction(className, spellName){
-	return 0;
+function getTalentCastTimeReduction(className, spellName, spellType){
+	let talent;
+	let data;
+	let rank;
 	switch(className) {
 		case "druid":
-			return 1;
+			talent = getTalentByName('improved_healing_touch');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return data.rankIncrement * rank;
+			}
+			return 0;
 		case "paladin":
-			return 1;
+			return 0;
 		case "priest":
-			return 1;
+			talent = getTalentByName('divine_fury');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return data.rankIncrement * rank;
+			}
+			return 0;
 		case "shaman":
-			return 1;
+			talent = getTalentByName('improved_healing_wave');
+			data = talent.data("talent");
+			if(isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				return data.rankIncrement * rank;
+			}
+			return 0;
 		default:
-			return 1;
+			return 0;
 	}
 }
 

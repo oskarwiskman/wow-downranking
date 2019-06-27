@@ -21,19 +21,25 @@ function buildBreakpointsTable(spellData){
 	});
 
 	if(rows === ""){
-		rows = `<tr>\n\t<td>0+</td>\n\t<td>No data found</td>\n</tr>\n`
+		rows = `<tr>
+					<td>0+</td>
+					<td>No data found</td>
+				</tr>`
 	}
 
 	let table = 
-	'<table>\n' +
-		`<caption>HES Breakpoints</caption>\n` +
-			'<tr>\n' +
-				'<th>Spell power</th>\n' +
-				'<th>Rank</th>\n' +
-			'</tr>\n'
-	table += rows;
-
-	table += '</table>\n'
+	`<table>
+		<caption>HES Breakpoints</caption>
+			<thead>
+				<tr>
+					<th>Spell power</th>
+					<th>Rank</th>
+				</tr>
+			</thead>
+			<tbody>
+				${rows}
+			</tbody>
+	</table>`
 
 	$('#breakpoints').html(table);
 }
@@ -44,7 +50,10 @@ function buildBreakpointRow(spellpowerFrom, spellpowerTo, rank){
 	} else{
 		spellpowerTo = `  to  ${spellpowerTo}`;
 	}
-	return `<tr>\n\t<td>${spellpowerFrom}${spellpowerTo}</td>\n\t<td>${rank}</td>\n</tr>\n`
+	return `<tr>
+				<td>${spellpowerFrom}${spellpowerTo}</td>
+				<td>${rank}</td>
+			</tr>`
 }
 
 function buildSpellTable(spellData, healingPower) {
@@ -56,23 +65,31 @@ function buildSpellTable(spellData, healingPower) {
 	}
 
 	if(rows === ""){
-		rows = `<tr>\n\t<td>0+</td>\n\t<td>No data found</td>\n</tr>\n`
+		rows = `<tr>
+					<td>0+</td>
+					<td>No data found</td>
+				</tr>`
 	}
 
-	let table = `<table>\n
-					<caption>Stats at <b class="blue">${healingPower}</b> Healing Power</caption>\n
-					<tr>\n
-						<th>Rank</th>\n
-						<th>Healing</th>\n
-						<th>Mana cost</th>\n
-						<th>HpME</th>\n
-						<th>HpS</th>\n
-						<th>HES</th>\n
-					</tr>\n
-					${rows}
-				</table>\n`
+	let table = `<table>
+					<caption>Stats at <b class="blue">${healingPower}</b> Healing Power</caption>
+					<thead>
+						<tr>
+							<th data-sort-mode="no">Rank</th>
+							<th>Healing</th>
+							<th data-sort-mode="asc">Mana cost</th>
+							<th>HpME</th>
+							<th>HpS</th>
+							<th>HES</th>
+						</tr>
+					</thead>
+					<tbody>
+						${rows}
+					</tbody>
+				</table>`
 
 	$('#spell-table').html(table);
+	highlightMaxValue('spell-table');
 }
 
 function buildSpellTableRow(healingPower, spellData, rank) {
@@ -80,14 +97,14 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
 	let HES = calculateHES(HpME, HpS);
 
-	return `<tr>\n
-				\t<td>${rank}</td>\n
-				\t<td>${calculatePower(healingPower, spellData, rank)}</td>\n
-				\t<td>${calculateCost(healingPower, spellData, rank)}</td>\n
-				\t<td>${roundNumber(HpME, 1)}</td>\n
-				\t<td>${roundNumber(HpS, 1)}</td>\n
-				\t<td>${roundNumber(HES, 1)}</td>\n
-			</tr>\n`
+	return `<tr>
+				<td data-sort-value="${rank}">${rank}</td>
+				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 1)}">${roundNumber(calculatePower(healingPower, spellData, rank), 1)}</td>
+				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 1)}">${roundNumber(calculateCost(healingPower, spellData, rank), 1)}</td>
+				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
+				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
+				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>
+			</tr>`
 }
 
 
@@ -148,7 +165,7 @@ function buildTooltipHtmlForSpell(spell, rank){
 	let tickPower = spell.ranks[rank].tickPower;
 	let description = buildSpellDescription(spell, rank);
 
-	return 	`<div class="spell-tooltip">\n
+	return 	`<div class="spell-tooltip">
 				<div class="header">
 					<span class="name">${name}</span> 
 					<span class="rank">${rank+1}</span>
@@ -171,7 +188,7 @@ function buildSpellHtmlForClass(className, container){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>\n`
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>`
 		})
 		container.html(html);
 	});
