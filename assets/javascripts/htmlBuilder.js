@@ -143,7 +143,7 @@ function buildTalentTooltip(talent, rank) {
 				footer = "Click to unlearn"
 				state = "last";
 			} else {
-				description = description.replace(match, roundNumber(talent[attribute] * rank));
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
 				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
 			}
 		}
