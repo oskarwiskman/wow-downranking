@@ -1,7 +1,7 @@
 # World of Warcraft - Downranking tips
 Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS wouldn't give accurate results.
 
-The website is hosted by Heroku and can be found here https://wow-downranking.herokuapp.com/
+The website is hosted by Heroku and can be found here http://www.wowdownrank.com/
 
 Currently supported spells:
 
@@ -26,6 +26,10 @@ Shaman:
 * Lesser Healing Wave
 
 ### Update log
+
+#### 2019-06-26 Spell details with graphs
+* Added a spell details modal, opened by clicking on the details link within a spell tooltip. Spell details present graphs for the selected spell, showing how HES, HpME and HpS increase with +Healing.
+* HES slider and breakpoints can now be found in the Spell details modal.
 
 #### 2019-06-24 Talents, Slider and HES
 * Added all talents that affect either healing power or spell cost.
