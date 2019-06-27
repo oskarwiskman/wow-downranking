@@ -1,0 +1,41 @@
+{
+	"class":"paladin",
+	"name":"Holy Shock",
+	"type":"heal",
+	"description":"Blasts the target with Holy energy, causing ${powerMin} to ${powerMax} Holy damage to an enemy, or ${powerMin} to ${powerMax} healing to an ally.",
+	"ranks":[
+		{	"rank":1,
+			"level":1,
+			"cost":225,
+			"range":20,
+			"baseCastTime":0,
+			"powerMin":204,
+			"powerMax":220,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":6,
+			"cost":275,
+			"range":20,
+			"baseCastTime":0,
+			"powerMin":279,
+			"powerMax":301,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":14,
+			"cost":110,
+			"range":20,
+			"baseCastTime":0,
+			"powerMin":365,
+			"powerMax":395,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}
