@@ -80,7 +80,11 @@ The duration and cast time limitations are then applied:
 ### Spells below level 20
 Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
 
-```(20 - [Spell Level]) * .0375 = [Penalty]```
+```((20 - [Spell Level]) * .0375 = [Penalty]```
+
+Which results in the coefficient being:
+
+```1 - [Penalty]```
 
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
