@@ -138,35 +138,38 @@ input {
 	margin-bottom: 100px;
 }
 
-#breakpoints {
+.table-container {
+
+}
+
+.table-container table {
 	margin-top: 20px;
     display: inline-block;
-    max-width: 300px;
-    min-width: 250px;
-    padding: 5px 12px;
+    max-width: 400px;
+    padding: 10px 12px;
     background-color: #111;
     opacity: 0.8;
     border-radius: 5px;
     border: 1px solid #ddd;
 }
 
-#breakpoints > table {
-	width: 100%;
-	font-size: 16px;
-}
-
-#breakpoints > table > td {
-	width: 50%;
-} 
-
-#breakpoints > table > tbody > tr > th {
+.table-container table th {
 	color: white;
 } 
 
-#breakpoints > table > caption {
+.table-container table caption {
 	color: #E7BA00;
 	font-size: 18px;
 	line-height: 18px;
+	margin-bottom: 8px;
+}
+
+.table-container table td {
+    padding: 2px 15px;
+}
+
+.table-container table tr:nth-child(even) {
+	background-color: #333;
 }
 
 .class-stat {

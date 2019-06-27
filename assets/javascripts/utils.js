@@ -140,11 +140,16 @@ function openModal(id){
 		let className = getSelectedClassName();
 		let spellName = getSelectedSpellName();
 		if(className && spellName){
-			loadSpellData(className, spellName, buildBreakpointsTable);
-			loadSpellData(className, spellName, buildSpellCharts);
+			loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
 			$(`#${id}`).find('.content-title').find('.name').html(toTitleCase(spellName));
 		}
 	}
+}
+
+function buildSpellDetailsContent(spellData, healingPower){
+	buildSpellTable(spellData, healingPower);
+	buildBreakpointsTable(spellData);
+	buildSpellCharts(spellData);
 }
 
 function getSliderValues(){
@@ -193,9 +198,9 @@ function refreshDetailsModal(){
 	}
 }
 
-function loadSpellData(className, spellName, callback){
+function loadSpellData(className, spellName, callback, param){
 	let spellPath = `/spelldata/${className}/${spellName}.json`;
-	loadJSON(spellPath, callback);
+	loadJSON(spellPath, callback, param);
 }
 
 function loadTalentData(className, callback){
@@ -203,19 +208,24 @@ function loadTalentData(className, callback){
 	loadJSON(talentPath, callback);
 }
 
-function loadJSON(path, callback) {
+function loadJSON(path, callback, param) {
 	return (function () {
 	    var json = null;
 	    $.ajax({
 	        'async': !!callback,
 	        'global': false,
+	        'data': param,
 	        'url': path,
 	        'dataType': "json",
-	        'success': !!callback ? callback : function (data) {
-	            json = data;
-	        }
+	        'success': !!callback ? 
+	        	function(data) { 
+	        		callback(data, param) 
+	        	} : 
+	        	function (data) {
+	            	json = data;
+	        	}
 	    });
-	    return json;
+    	return json;
 	})();
 }
 

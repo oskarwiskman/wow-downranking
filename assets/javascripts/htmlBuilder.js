@@ -21,7 +21,7 @@ function buildBreakpointsTable(spellData){
 	});
 
 	if(rows === ""){
-		rows = `<tr>\n\t<td>0+</td>\n\t<td>Level too low</td>\n</tr>\n`
+		rows = `<tr>\n\t<td>0+</td>\n\t<td>No data found</td>\n</tr>\n`
 	}
 
 	let table = 
@@ -40,12 +40,54 @@ function buildBreakpointsTable(spellData){
 
 function buildBreakpointRow(spellpowerFrom, spellpowerTo, rank){
 	if(!spellpowerTo){
-		spellpowerTo = "+";
+		spellpowerTo = "  and more";
 	} else{
-		spellpowerTo = ` - ${spellpowerTo}`;
+		spellpowerTo = `  to  ${spellpowerTo}`;
 	}
 	return `<tr>\n\t<td>${spellpowerFrom}${spellpowerTo}</td>\n\t<td>${rank}</td>\n</tr>\n`
 }
+
+function buildSpellTable(spellData, healingPower) {
+
+	let rows = "";
+
+	for(let r = 0; r < spellData.ranks.length; r++){
+		rows += buildSpellTableRow(healingPower, spellData, r+1);
+	}
+
+	if(rows === ""){
+		rows = `<tr>\n\t<td>0+</td>\n\t<td>No data found</td>\n</tr>\n`
+	}
+
+	let table = `<table>\n
+					<caption>Stats at <b class="blue">${healingPower}</b> Healing Power</caption>\n
+					<tr>\n
+						<th>Rank</th>\n
+						<th>Healing</th>\n
+						<th>Mana cost</th>\n
+						<th>HpME</th>\n
+						<th>HpS</th>\n
+						<th>HES</th>\n
+					</tr>\n
+					${rows}
+				</table>\n`
+
+	$('#spell-table').html(table);
+}
+
+function buildSpellTableRow(healingPower, spellData, rank) {
+	let HpME = calculatePowerPerMana(healingPower, spellData, rank);
+	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
+	let HES = calculateHES(HpME, HpS);
+
+	return `<tr>\n
+				\t<td>${rank}</td>\n
+				\t<td>${roundNumber(HpME, 1)}</td>\n
+				\t<td>${roundNumber(HpS, 1)}</td>\n
+				\t<td>${roundNumber(HES, 1)}</td>\n
+			</tr>\n`
+}
+
 
 function buildSpellDescription(spell, rank) {
 	var description = spell.description;
