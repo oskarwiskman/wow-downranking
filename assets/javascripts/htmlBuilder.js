@@ -182,9 +182,6 @@ function buildTooltipHtmlForSpell(spell, rank){
 				<span class="btn">
 					<button href="#" onClick="openModal('details-modal')">Spell details</button>
 				</span>
-				<span class="btn pull-right">
-					<button href="#" onClick="openModal('compare-modal')">Compare</button>
-				</span>
 			</div>`
 }
 
@@ -194,7 +191,7 @@ function buildSpellHtmlForClass(className, container){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>`
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>`
 		})
 		container.html(html);
 	});
@@ -219,7 +216,7 @@ function buildTalentHtmlForClass(talentData){
 function buildTalentIcon(className, talentData, rank){
 	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
 				<span class="talent-tooltip">${buildTalentTooltip(talentData, rank)}</span>
-				<ins style="background-image: url(/images/${talentData.image})"></ins>
+				<img style="background-image: url(/images/${talentData.image})"></img>
 				<del></del>
 				<a onClick="updateTalent(this)"></a>
 				<div class="icon-border ${rank === talentData.maxPoints ? "maxed" : ""}"></div>

@@ -28,6 +28,10 @@ html {
 	color: #fd1717;
 }
 
+.grey {
+	color: #ccc;;
+}
+
 .pull-right {
 	float: right;
 }
@@ -88,7 +92,8 @@ body footer a {
 }
 
 #main-header {
-	margin-top: 70px;
+    max-width: 450px;
+    margin-top: 40px;
 }
 
 #secondary-header {
@@ -231,6 +236,7 @@ input {
 
 }
 
+<<<<<<< HEAD
 .col {
 	display: inline;
 	width: 45%;
@@ -239,6 +245,24 @@ input {
 
 #trench.col {
 	width: 10%;
+=======
+.cc-compliance a {
+    color: #ddd;
+    text-decoration: none;
+    background-color: #670506;
+    display: block;
+	padding: 2px 12px;
+    text-align: center;
+    border: 1px outset #888;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 0 0 8px #000;
+    -webkit-box-shadow: 3px 0 0 8px #000;
+    box-shadow: inset 0 0 8px #000;
+    opacity: 0.8;
+}
+
+.cc-message {
+	color: #E7BA00;
 }
 
 .btn {
