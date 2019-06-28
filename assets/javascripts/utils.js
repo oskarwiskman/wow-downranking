@@ -184,13 +184,27 @@ function openModal(id){
 		showClose: false
 	});
 	if(id === 'details-modal'){
-		let className = getSelectedClassName();
-		let spellName = getSelectedSpellName();
-		if(className && spellName){
-			$('#details-modal').find('.background').find('.loader').removeClass('hidden');
-			$('#details-modal').find('.content').hide();
-			loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
-		}
+		openDetailsModal();
+	}
+	if(id === 'compare-modal'){
+		openCompareModal();
+	}
+}
+
+function openCompareModal(){
+	let firstSpell = $('#first-spell');
+	let secondSpell = $('#second-spell');
+	buildSpellHtmlForClass("priest", firstSpell.find('.select-spell'));
+	buildSpellHtmlForClass("priest", secondSpell.find('.select-spell'));
+}
+
+function openDetailsModal(){
+	let className = getSelectedClassName();
+	let spellName = getSelectedSpellName();
+	if(className && spellName){
+		$('#details-modal').find('.background').find('.loader').removeClass('hidden');
+		$('#details-modal').find('.content').hide();
+		loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
 	}
 }
 

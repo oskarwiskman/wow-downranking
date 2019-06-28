@@ -231,11 +231,21 @@ input {
 
 }
 
+.col {
+	display: inline;
+	width: 45%;
+	height: 100%;
+}
+
+#trench.col {
+	width: 10%;
+}
+
 .btn {
 	display: inline-block;
 }
 
-.btn a {
+.btn button {
     color: #ddd;
     text-decoration: none;
     background-color: #670506;
@@ -250,7 +260,11 @@ input {
     opacity: 0.8;
 }
 
-.btn:hover a {
+.btn button:focus {
+	outline: none;
+}
+
+.btn:hover button {
 	opacity: 1;
     color: #ddd;
     text-decoration: none;
