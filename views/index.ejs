@@ -23,10 +23,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	</head>
 	<body>
-		<h1 id="main-header">World of Warcraft</h1>
-		<h2 id="secondary-header">What rank to pick?</h2>
+		<img id="main-header" src="/images/classic-wow-logo.png" alt="World of Warcraft: Classic"></img>
+		<h2 id="secondary-header">Downranking tool</h2>
 		<span class="btn">
-			<button href="#" onClick="openModal('info-modal')">How it works!</button>
+			<button href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</button>
 		</span>
 
 		<div id="character-info-container">
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="aq-tome-container">
-				<label class="checkbox-container" title="Do you have access to AQ tomes?">Ahn'Qiraj released?
+				<label class="checkbox-container" title="Check this if you want the suggestion to consider AQ20 spell tablets.">Ahn'Qiraj released?
 					<input id="aq-tome" type="checkbox" name="tome" value="tome" onChange="refreshTooltip()">
 					<span class="checkmark-background"></span>
 					<span class="checkmark"></span>

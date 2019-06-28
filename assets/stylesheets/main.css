@@ -88,7 +88,8 @@ body footer a {
 }
 
 #main-header {
-	margin-top: 70px;
+    max-width: 450px;
+    margin-top: 40px;
 }
 
 #secondary-header {
