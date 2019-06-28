@@ -49,13 +49,3 @@
 	color: #E7BA00;
 	margin: 8px 0px 12px 0px;
 }
-
-.spell-tooltip a {
-	color: #17FD17;
-	display: block;
-    margin-top: 5px;
-}
-
-.spell-tooltip a:hover {
-	text-decoration: none;
-}

@@ -21,6 +21,7 @@ function onClassClicked(elem){
 		showSpellSelectionFor();
 		showSpellAffectingTalentsFor();
 		hideCritChance();
+		hideSpirit();
 
 	} else {
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});

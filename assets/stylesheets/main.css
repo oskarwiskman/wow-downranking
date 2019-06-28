@@ -158,7 +158,7 @@ input {
 }
 
 #tip-container {
-	padding-top: 50px;
+	padding: 50px;
 }
 
 #tip-title {
@@ -236,16 +236,6 @@ input {
 
 }
 
-<<<<<<< HEAD
-.col {
-	display: inline;
-	width: 45%;
-	height: 100%;
-}
-
-#trench.col {
-	width: 10%;
-=======
 .cc-compliance a {
     color: #ddd;
     text-decoration: none;
@@ -269,7 +259,7 @@ input {
 	display: inline-block;
 }
 
-.btn button {
+.btn a {
     color: #ddd;
     text-decoration: none;
     background-color: #670506;
@@ -284,11 +274,11 @@ input {
     opacity: 0.8;
 }
 
-.btn button:focus {
+.btn a:focus {
 	outline: none;
 }
 
-.btn:hover button {
+.btn:hover a {
 	opacity: 1;
     color: #ddd;
     text-decoration: none;

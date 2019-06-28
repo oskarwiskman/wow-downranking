@@ -180,7 +180,10 @@ function buildTooltipHtmlForSpell(spell, rank){
 					${description}
 				</p>
 				<span class="btn">
-					<button href="#" onClick="openModal('details-modal')">Spell details</button>
+					<a href="#" onClick="openModal('details-modal')">Spell details</a>
+				</span>
+				<span class="btn pull-right">
+					<a href="#" onClick="openModal('compare-modal')">Compare</a>
 				</span>
 			</div>`
 }
