@@ -216,7 +216,7 @@ function buildTalentHtmlForClass(talentData){
 function buildTalentIcon(className, talentData, rank){
 	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
 				<span class="talent-tooltip">${buildTalentTooltip(talentData, rank)}</span>
-				<img alt="${toTitleCase(talentData.name)}" style="background-image: url(/images/${talentData.image})"></img>
+				<img style="background-image: url(/images/${talentData.image})"></img>
 				<del></del>
 				<a onClick="updateTalent(this)"></a>
 				<div class="icon-border ${rank === talentData.maxPoints ? "maxed" : ""}"></div>
