@@ -8,7 +8,7 @@ function calculateMostEfficientRank(healingPower, spellData){
 	let bestHES = 0;
 
 	for(let rank = 1; rank <= spellData.ranks.length; rank++){
-		if(!getAqReleased() && spellData.ranks[rank-1].tome) continue;
+		if(!getAqReleased() && spellData.ranks[rank-1].tablet) continue;
 		let PpM = calculatePowerPerMana(healingPower, spellData, rank);
 		let PpS = calculatePowerPerSecond(healingPower, spellData, rank);
 		let HES = calculateHES(PpM, PpS);
