@@ -45,6 +45,11 @@ html {
   animation: spin 2s linear infinite;
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .chart-loader {
 	padding: 160px 225px;
     height: 400px;
@@ -53,11 +58,6 @@ html {
 .chart-loader .loader {
 	width: 80px;
     height: 80px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 body {
@@ -273,6 +273,10 @@ input {
 .chart-container {
 	min-height: 400px;
     min-width: 400px;
+}
+
+#compare-container {
+	column-count: 3;
 }
 
 
