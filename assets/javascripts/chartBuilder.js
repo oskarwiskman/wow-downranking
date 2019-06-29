@@ -16,6 +16,29 @@ const colors = [
 var hesChart;
 var hpmeChart;
 var hpsChart;
+var radarChart;
+
+function buildRadarChart(chart, target, datasets) {
+    var ctx = document.getElementById(target).getContext('2d');
+    if (chart) {
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
+        type: 'radar',
+        data: datasets,
+        options: {
+            scale: {
+                ticks: {
+                    display: false
+                },
+                pointLabels: {
+                    fontSize: 18,
+                    fontColor: "#E7BA00;"
+                }
+            }
+        }
+    });
+}
 
 function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
@@ -75,6 +98,55 @@ function buildSpellCharts(spellData){
     buildHESChart(spellData);
     buildHpSChart(spellData);
     buildHpMEChart(spellData);
+}
+
+function buildCompareRadarChart(spellNames, classNames, ranks) {
+    let spellData;
+    let datasets = [];
+    let healingPower = getHealingPower();
+
+    let healing = [];
+    let mana = [];
+    let hpme = [];
+    let hps = [];
+    let hes = [];
+    let name = [];
+    for(let i = 0; i < spellNames.length; i++){
+        spellData = getCachedSpellData(classNames[i], spellNames[i]);
+        name[i] = spellData.name;
+        ranks[i] = Math.min(Math.max(ranks[i], 0), spellData.ranks.length);
+        healing[i] = calculatePower(healingPower, spellData, ranks[i]);
+        mana[i] = calculateCost(healingPower, spellData, ranks[i]);
+        hpme[i] = calculatePowerPerMana(healingPower, spellData, ranks[i]);
+        hps[i] = calculatePowerPerSecond(healingPower, spellData, ranks[i]);
+        hes[i] = calculateHES(hpme[i], hps[i]);
+    }
+
+    healing = healing.map(x => roundNumber(x/Math.max(...healing), 3) * 10);
+    mana = mana.map(x => roundNumber(x/Math.max(...mana), 3) * 10);
+    hpme = hpme.map(x => roundNumber(x/Math.max(...hpme), 3) * 10);
+    hps = hps.map(x => roundNumber(x/Math.max(...hps), 3) * 10);
+    hes = hes.map(x => roundNumber(x/Math.max(...hes), 3) * 10);
+
+    for(let i = 0; i < spellNames.length; i++){    
+        datasets.push({   
+            label: `${name[i]} (Rank ${ranks[i]})`,
+            backgroundColor: colors[i].replace('0.8', '0.2'),
+            borderColor: colors[i],
+            data: [
+                healing[i],
+                mana[i],
+                hpme[i],
+                hps[i],
+                hes[i]
+            ]
+        })
+    }
+    let compareData = {
+            labels: ["Healing", "Mana cost", "HpME", "HpS", "HES"],  
+            datasets: datasets
+        }; 
+    radarChart = buildRadarChart(radarChart, 'radar-chart', compareData);
 }
 
 

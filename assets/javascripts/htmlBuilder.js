@@ -154,8 +154,8 @@ function buildTalentTooltip(talent, rank) {
 			<div class="footer ${state}">${footer}</div>`
 }
 
-function buildTooltipHtmlForSpell(spell, rank){
-	rank = rank - 1;
+function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
+	rank = Math.min(Math.max(rank - 1, 0), spell.ranks.length-1);
 	let name = spell.name;
 	let cost = spell.ranks[rank].cost;
 	let range = spell.ranks[rank].range;
@@ -166,10 +166,10 @@ function buildTooltipHtmlForSpell(spell, rank){
 	let tickPower = spell.ranks[rank].tickPower;
 	let description = buildSpellDescription(spell, rank);
 
-	return 	`<div class="spell-tooltip">
+	return 	`<div class="spell-tooltip ${cssClass}">
 				<div class="header">
 					<span class="name">${name}</span> 
-					<span class="rank">${rank+1}</span>
+					<span class="rank">Rank ${rank+1}</span>
 				</div>
 				<div class="requirements">
 					<span class="cost">${cost} Mana</span>
@@ -179,19 +179,18 @@ function buildTooltipHtmlForSpell(spell, rank){
 				<p class="description">
 					${description}
 				</p>
-				<span class="btn">
-					<a href="#" onClick="openModal('details-modal')">Spell details</a>
-				</span>
+				${footer}
 			</div>`
 }
 
-function buildSpellHtmlForClass(className, container){
+function buildSpellHtmlForClass(className, onClick, container){
 	var path = `/spelldata/${className}/`
 	$.get(path, function(response){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="onSpellClicked(this)"></a>`
+			loadSpellData(className, spellName);
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="${onClick}"></a>`
 		})
 		container.html(html);
 	});

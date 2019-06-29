@@ -1,15 +1,5 @@
 $(document).ready(function(){
-	$(".wow-class").on('click', function(){
-		onClassClicked(this);
-		newRandomTip();
-	});
-	$("#healing").change(function(){
-		refreshTooltip();
-	});
-	$("#level").change(function(){
-		refreshTooltip();
-	});
-    initRangeSlider();
+    initRangeSliders();
     newRandomTip();
 });
 
@@ -17,9 +7,10 @@ function onClassClicked(elem){
 	let target = $(elem);
 	let navbar = target.closest('.navbar');
 	hideResult();
+	newRandomTip();
 	if(target.hasClass('active')){
 		target.removeClass('active');
-		showSpellSelectionFor();
+		$('#spell-selection').addClass('hidden');
 		showSpellAffectingTalentsFor();
 		hideCritChance();
 		hideSpirit();
@@ -39,7 +30,7 @@ function onClassClicked(elem){
 			hideSpirit();
 		}
 		showSpellAffectingTalentsFor(className);
-		showSpellSelectionFor(className);
+		showSpellSelectionFor(className, 'onSpellClicked(this)', $('#spell-selection'));
 	}
 }
 
@@ -60,7 +51,77 @@ function onSpellClicked(elem){
 	}
 }
 
-function initRangeSlider(){
+function onClassCompareClicked(elem) {
+	let target = $(elem);
+	let navbar = target.closest('.navbar');
+	let column = target.closest('.column');
+	let container = column.find('.compare-spell-select');
+	column.find('.compare-result').addClass('hidden');
+	if(target.hasClass('active')){
+		target.removeClass('active');
+		container.addClass("hidden");
+		column.find('.compare-rank-select').addClass("hidden");
+
+	} else {
+		navbar.find('.active').each(function(){ 
+			$(this).removeClass("active");
+		});
+		target.addClass('active');
+		let className = target.data('class-name');
+		showSpellSelectionFor(className, 'onSpellCompareClicked(this)', container);
+		column.find('.compare-rank-select').removeClass("hidden");
+	}
+	refreshRadarChart();
+}
+
+function onSpellRankChanged(elem) {
+	let target = $(elem);
+	let column = target.closest('.column');
+	let spell = column.find('.wow-spell.active');
+	let resultContainer= column.find('.compare-result');
+	let className = spell.data('class-name');
+	let spellName = spell.data('spell-name');
+	let spellRank = $(elem).val();
+	params = {
+		target: `#${resultContainer.attr('id')}`,
+		rank: spellRank,
+		class: "small",
+		result_container: `#${resultContainer.attr('id')}`,
+	}
+	loadSpellData(className, spellName, updateTooltip, params);
+	refreshRadarChart();
+}
+
+function onSpellCompareClicked(elem) {
+	let target = $(elem);
+	let navbar = target.closest('.navbar');
+	let column = target.closest('.column');
+	let resultContainer= column.find('.compare-result');
+	let className = target.data('class-name');
+	let spellName = target.data('spell-name');
+	let spellRank = column.find('.compare-rank-select input[type="number"]').val();
+
+	if(target.hasClass('active')){
+		target.removeClass('active');
+		resultContainer.addClass('hidden');
+		column.find('.compare-rank-select').addClass("hidden");
+		
+
+	} else {
+		navbar.find('.active').each(function(){ $(this).removeClass("active");});
+		target.addClass('active');
+		params = {
+			target: `#${resultContainer.attr('id')}`,
+			rank: spellRank,
+			class: "small",
+			result_container: `#${resultContainer.attr('id')}`,
+		}
+		loadSpellData(className, spellName, updateTooltip, params);
+	}
+	refreshRadarChart();
+}
+
+function initRangeSliders(){
 	$('input[type="range"]').rangeslider({
 
     // Feature detection the default is `true`.

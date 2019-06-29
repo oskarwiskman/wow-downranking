@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>World of Warcraft - Downranking recommendations</title>
+		<title>Ozgar's Downranking Guide & Tool</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href='/stylesheets/main.css'>
 		<link rel="stylesheet" type="text/css" href='/stylesheets/checkbox.css'>
@@ -27,7 +27,7 @@
 	</head>
 	<body>
 		<img id="main-header" src="/images/classic-wow-logo.png" alt="World of Warcraft: Classic"></img>
-		<h1 id="secondary-header">Ozgar's Downranking Tool</h1>
+		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
 			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
 		</span>
@@ -36,7 +36,7 @@
 			<div class="character-info">
 				<label for="healing">Healing Power</label>
 				<span>
-					<input id="healing" type="number" min="0" max="10000" value="0">
+					<input id="healing" type="number" min="0" max="10000" value="0" onChange="refreshTooltip();">
 				<span>
 			</div>
 		</div>
@@ -50,10 +50,10 @@
 		<div id="class-selection">
 			<h4 class="header">Pick a class</h4>
 			<div class="navbar">
-				<a class="wow-class icon-medium" id="druid" title="Druid" alt="Druid" style="background-image: url(/images/class_druid.jpg)"></a>
-				<a class="wow-class icon-medium" id="paladin" title="Paladin" alt="Paladin" style="background-image: url(/images/class_paladin.jpg)"></a>
-				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)"></a>
-				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)"></a>
+				<a class="wow-class icon-medium" id="druid" title="Druid" alt="Druid" style="background-image: url(/images/class_druid.jpg)" onClick="onClassClicked(this);"></a>
+				<a class="wow-class icon-medium" id="paladin" title="Paladin" alt="Paladin" style="background-image: url(/images/class_paladin.jpg)" onClick="onClassClicked(this);"></a>
+				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)" onClick="onClassClicked(this);"></a>
+				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
 			</div>
 		</div>
 		<div id="crit-chance-container" class="class-stat hidden">
@@ -88,6 +88,7 @@
 	</body>
 	<% include how_it_works_modal.html %>
 	<% include spell_details_modal.html %>
+	<% include compare_modal.html %>
 	<footer>
 		<p>
 			Creator: Oskar Holmberg </br>

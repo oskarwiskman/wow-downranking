@@ -69,7 +69,7 @@ body {
 	background-color: #1d1d1d;
 	color: #ccc;
 	font-family: "Friz Quadrata";
-	min-height:100%; 
+	min-height:150%; 
 	padding:0; 
 	margin:0 0 0 30px; 
 	position:relative; 
@@ -100,7 +100,7 @@ body footer a {
 	margin-bottom: 5px;
 }
 
-.navbar > .icon-medium {
+.icon-medium {
 	border-radius: 25px;
 	background-size: cover;
 	display: inline-block;
@@ -118,7 +118,7 @@ body footer a {
 	box-shadow:         inset 0 0 10px #7facf4;
 }
 
-.navbar > .icon-medium.active {
+.icon-medium.active {
 	opacity: 1;
 }
 
@@ -289,11 +289,63 @@ input {
     min-width: 400px;
 }
 
-#compare-container {
-	column-count: 3;
-}
+ #compare-container {
+	 width: 100%;
+	 background-color: #fff;
+ }
 
+ #compare-container #col1 {
+	 width: 40%;
+	 float: left;
+ }
+ #compare-container #col2outer {
+	 width: 60%;
+	 float: right;
+	 margin: 0;
+	 padding: 0;
+ }
+ #col2outer #col2mid {
+	 width: 33%;
+	 float: left;
+	 padding-top: 35px;
+ }
 
+ #col2outer #col2mid h4{
+	text-align: center;
+    font-size: 30px;
+    margin: 0;
+ }
 
+ #col2outer #col2side {
+	 width: 67%;
+	 float: right;
+ }
 
+ #compare-container .footer {
+	float: left;
+    text-align: center;
+    width: 100%;
+ }
+
+ .compare-class-select {
+ 	margin: 30px 0 10px 0;
+ }
+
+ .compare-spell-select {
+    margin: 10px 0 20px 0px;
+ }
+
+.compare-rank-select label {
+	font-size: 22px;
+ }
+
+ .compare-rank-select input {
+ 	font-size: 24px;
+    height: 35px;
+    width: 42px;
+ }
+
+ .compare-result {
+ 	margin: 30px 0;
+ }
 

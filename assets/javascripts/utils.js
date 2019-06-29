@@ -1,9 +1,45 @@
+const cache = {};
+
+
 function refreshTooltip(){
 	let className = getSelectedClassName();
 	let spellName = getSelectedSpellName();
 	if(className && spellName){
-		loadSpellData(className, spellName, updateTooltip);
+		params = {
+			footer:	`<span class="btn">
+						<a href="#" onClick="openModal('details-modal')">Spell details</a>
+					</span>
+					<span class="btn pull-right">
+						<a href="#" onClick="openModal('compare-modal')">Compare</a>
+					</span>`,
+			target: '#tooltip',
+			result_container: '#result'
+		}
+		loadSpellData(className, spellName, updateTooltip, params);
 	}
+}
+
+function refreshRadarChart(){
+	let spellNames = [];
+	let classNames = [];
+	let spellRanks = [];
+	let firstSpell = $('#first-spell:visible .active');
+	let secondSpell = $('#second-spell:visible .active');
+	let chartContainer = $('.chart-container');
+	chartContainer.hide();
+	if(firstSpell.length > 0) {
+		spellNames.push(firstSpell.data('spell-name'));
+		classNames.push(firstSpell.data('class-name'));
+		spellRanks.push($('#first-spell-rank').val());
+		chartContainer.show();
+	}
+	if(secondSpell.length > 0) {
+		spellNames.push(secondSpell.data('spell-name'));
+		classNames.push(secondSpell.data('class-name'));
+		spellRanks.push($('#second-spell-rank').val());
+		chartContainer.show();
+	}
+	buildCompareRadarChart(spellNames, classNames, spellRanks);
 }
 
 function updateTalent(elem){
@@ -39,9 +75,14 @@ function updateTalent(elem){
 	refreshTooltip();
 }
 
-function updateTooltip(spellData){
-	$('#tooltip').html(buildTooltipHtmlForSpell(spellData, calculateMostEfficientRank(getHealingPower(), spellData)));
-	showResult();
+function updateTooltip(spellData, params){
+	let rank = params.rank;
+	if(!rank) {
+		rank = calculateMostEfficientRank(getHealingPower(), spellData);
+		$('#first-spell-rank').val(rank);
+	}
+	$(params.target).html(buildTooltipHtmlForSpell(spellData, rank, params.class, params.footer));
+	showResult(params.result_container);
 }
 
 function showSpellAffectingTalentsFor(className){
@@ -52,13 +93,13 @@ function showSpellAffectingTalentsFor(className){
 	}
 }
 
-function showSpellSelectionFor(className){
-	let container = $('#spell-selection').find('.navbar');
+function showSpellSelectionFor(className, callback, target){
+	let container = target.find('.navbar');
 	if(!className) {
-		$('#spell-selection').addClass('hidden');
+		target.addClass('hidden');
 	} else {
-		buildSpellHtmlForClass(className, container);
-		$('#spell-selection').removeClass('hidden');
+		buildSpellHtmlForClass(className, callback, container);
+		target.removeClass('hidden');
 	}
 }
 
@@ -84,8 +125,8 @@ function hideResult(){
 	$('#result').addClass("hidden");
 }
 
-function showResult(){
-	$('#result').removeClass("hidden");
+function showResult(id){
+	$(id).removeClass("hidden");
 }
 
 function hideCritChance(){
@@ -184,21 +225,30 @@ function openModal(id){
 		showClose: false
 	});
 	if(id === 'details-modal'){
-		openDetailsModal();
+		loadDetailsModalContent();
 	}
 	if(id === 'compare-modal'){
-		openCompareModal();
+		setTimeout(
+			function() {
+				if($(`#${getSelectedClassName()}1.active`).length === 0){
+					eventFire(document.getElementById(`${getSelectedClassName()}1`), 'click');
+				}
+			}, 250);
+		setTimeout(
+			function() {
+				eventFire($('#first-spell').find(`[data-spell-name="${getSelectedSpellName()}"]`).get(0), 'click');
+			}, 500);
+		setTimeout(
+			function() {
+				if($('#first-spell').find(`.active[data-spell-name="${getSelectedSpellName()}"]`).length === 0){
+					eventFire($('#first-spell').find(`[data-spell-name="${getSelectedSpellName()}"]`).get(0), 'click');
+				}
+				refreshDetailsModal();
+			}, 750);
 	}
 }
 
-function openCompareModal(){
-	let firstSpell = $('#first-spell');
-	let secondSpell = $('#second-spell');
-	buildSpellHtmlForClass("priest", firstSpell.find('.select-spell'));
-	buildSpellHtmlForClass("priest", secondSpell.find('.select-spell'));
-}
-
-function openDetailsModal(){
+function loadDetailsModalContent(){
 	let className = getSelectedClassName();
 	let spellName = getSelectedSpellName();
 	if(className && spellName){
@@ -264,6 +314,14 @@ function refreshDetailsModal(){
 	}
 }
 
+function addSpellDataToDOM(spellData, id) {
+	$(`#${id}`).data("spell-data", spellData);
+}
+
+function getCachedSpellData(className, spellName) {
+	return cache[`/spelldata/${className}/${spellName}.json`];
+}
+
 function loadSpellData(className, spellName, callback, param){
 	let spellPath = `/spelldata/${className}/${spellName}.json`;
 	loadJSON(spellPath, callback, param);
@@ -275,24 +333,41 @@ function loadTalentData(className, callback){
 }
 
 function loadJSON(path, callback, param) {
+	if(cache[path]) {
+		if(typeof callback === 'function') {
+			callback(cache[path], param);
+		}
+		else {
+			return cache[path];
+		}
+	}
 	return (function () {
 	    var json = null;
 	    $.ajax({
-	        'async': !!callback,
 	        'global': false,
 	        'data': param,
 	        'url': path,
 	        'dataType': "json",
 	        'success': !!callback ? 
-	        	function(data) { 
+	        	function(data) {
+	        		cache[path] = data;
 	        		callback(data, param) 
 	        	} : 
 	        	function (data) {
-	            	json = data;
+	        		cache[path] = data;
 	        	}
 	    });
-    	return json;
 	})();
+}
+
+function eventFire(el, etype){
+	if (el.fireEvent) {
+		el.fireEvent('on' + etype);
+	} else {
+		var evObj = document.createEvent('Events');
+		evObj.initEvent(etype, true, false);
+		el.dispatchEvent(evObj);
+	}
 }
 
 function range(min, max , step = 1) {
