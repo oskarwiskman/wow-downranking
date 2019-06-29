@@ -29,7 +29,10 @@ function buildRadarChart(chart, target, datasets) {
         options: {
             scale: {
                 ticks: {
-                    display: false
+                    display: false,
+                    min: 0,
+                    max: 10,
+                    step: 0.001
                 },
                 pointLabels: {
                     fontSize: 18,
@@ -124,7 +127,8 @@ function buildCompareRadarChart(spellNames, classNames, ranks) {
     }
 
     healing = healing.map(x => roundNumber(x/Math.max(...healing), 3) * 10);
-    mana = mana.map(x => roundNumber(x/Math.max(...mana), 3) * 10);
+    mana = mana.map(x => 1 - x/Math.max(...mana));
+    mana = mana.map(x => roundNumber((x +  (1 - Math.max(...mana))), 3) * 10);
     hpme = hpme.map(x => roundNumber(x/Math.max(...hpme), 3) * 10);
     hps = hps.map(x => roundNumber(x/Math.max(...hps), 3) * 10);
     hes = hes.map(x => roundNumber(x/Math.max(...hes), 3) * 10);
