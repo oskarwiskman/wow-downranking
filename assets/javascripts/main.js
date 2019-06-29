@@ -10,6 +10,7 @@ $(document).ready(function(){
 		refreshTooltip();
 	});
     initRangeSlider();
+    newRandomTip();
 });
 
 function onClassClicked(elem){
