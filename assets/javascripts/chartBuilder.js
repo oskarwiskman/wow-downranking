@@ -38,6 +38,7 @@ function buildRadarChart(chart, target, datasets) {
             }
         }
     });
+    return chart;
 }
 
 function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
