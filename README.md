@@ -13,6 +13,7 @@ Druid:
 Paladin:
 * Flash of Light
 * Holy Light
+* Holy Shock
 
 Priest:
 * Flash Heal
@@ -27,9 +28,15 @@ Shaman:
 
 ### Update log
 
+#### 2019-06-29 Compare spells and styling upgrade
+* Added title art (World of Warcraft: Classic). And other minor improvements to site styling.
+* Changed Spell details link in the spell tooltip to a button.
+* Added button in the spell tooltip to pit spells against eachother for comparison.
+
 #### 2019-06-26 Spell details with graphs
 * Added a spell details modal, opened by clicking on the details link within a spell tooltip. Spell details present graphs for the selected spell, showing how HES, HpME and HpS increase with +Healing.
 * HES slider and breakpoints can now be found in the Spell details modal.
+* Added Holy Shock for Paladins.
 
 #### 2019-06-24 Talents, Slider and HES
 * Added all talents that affect either healing power or spell cost.
@@ -80,11 +87,7 @@ The duration and cast time limitations are then applied:
 ### Spells below level 20
 Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
 
-```((20 - [Spell Level]) * .0375 = [Penalty]```
-
-Which results in the coefficient being:
-
-```1 - [Penalty]```
+```((20 - [Spell Level]) * .0375 = [Sub Level 20 Penalty]```
 
 ### Putting it all together
 Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
