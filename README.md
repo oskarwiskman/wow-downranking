@@ -13,6 +13,7 @@ Druid:
 Paladin:
 * Flash of Light
 * Holy Light
+* Holy Shock
 
 Priest:
 * Flash Heal
@@ -35,6 +36,7 @@ Shaman:
 #### 2019-06-26 Spell details with graphs
 * Added a spell details modal, opened by clicking on the details link within a spell tooltip. Spell details present graphs for the selected spell, showing how HES, HpME and HpS increase with +Healing.
 * HES slider and breakpoints can now be found in the Spell details modal.
+* Added Holy Shock for Paladins.
 
 #### 2019-06-24 Talents, Slider and HES
 * Added all talents that affect either healing power or spell cost.
