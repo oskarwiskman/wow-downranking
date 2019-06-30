@@ -28,6 +28,10 @@ Shaman:
 
 ### Update log
 
+#### 2019-06-30 YouTube link and Gift of Nature
+* Added embedded YouTube video where Defcamp & Melderon explain downranking and show case the tool. Watch it here [Classic WoW Downranking Guide & Tool](https://www.youtube.com/watch?v=HBDfRiB1Zlk)
+* Added Druid talent Gift of Nature (Don't know how I forgot about that)
+
 #### 2019-06-29 Compare spells and styling upgrade
 * Added title art (World of Warcraft: Classic). And other minor improvements to site styling.
 * Changed Spell details link in the spell tooltip to a button.
