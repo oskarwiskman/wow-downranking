@@ -109,16 +109,16 @@ function setRandomBackground() {
 }
 
 function hideTip(){
-	$('#tip-container').hide();
 }
 
 function newRandomTip(){
-	$('#tip-container').show();
 	loadJSON('/data/tips.json', updateTip);
 }
 
 function updateTip(tipData){
-	$('#tip').hide().html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]).fadeIn('slow');
+	$('#tip-container').hide();
+	$('#tip').html(tipData.tips[Math.floor(Math.random() * tipData.tips.length)]);
+	$('#tip-container').fadeIn('slow');	
 }
 
 function hideResult(){
@@ -336,6 +336,7 @@ function loadJSON(path, callback, param) {
 	if(cache[path]) {
 		if(typeof callback === 'function') {
 			callback(cache[path], param);
+			return;
 		}
 		else {
 			return cache[path];
