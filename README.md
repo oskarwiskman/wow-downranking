@@ -27,6 +27,11 @@ Shaman:
 
 ### Update log
 
+#### 2019-06-29 Compare spells and styling upgrade
+* Added title art (World of Warcraft: Classic). And other minor improvements to site styling.
+* Changed Spell details link in the spell tooltip to a button.
+* Added button in the spell tooltip to pit spells against eachother for comparison.
+
 #### 2019-06-26 Spell details with graphs
 * Added a spell details modal, opened by clicking on the details link within a spell tooltip. Spell details present graphs for the selected spell, showing how HES, HpME and HpS increase with +Healing.
 * HES slider and breakpoints can now be found in the Spell details modal.
