@@ -94,6 +94,14 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
+			talent = getTalentByName('gift_of_nature');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					return 1 + ((data.rankIncrement * rank) / 100);
+				}
+			}
 			return 1;
 		case "paladin":
 			talent = getTalentByName('healing_light');

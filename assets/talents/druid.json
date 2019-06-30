@@ -37,6 +37,17 @@
 				"Tranquility"
 			]
 
+		},
+		{
+			"name":"gift_of_nature",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Increases the effect of all healing spells by ${rankIncrement}%.",
+			"image":"gift_of_nature.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+
 		}
 	]
 }
