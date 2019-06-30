@@ -6,7 +6,7 @@
 		<p id="introduction">
 			With Classic coming up soon I've been feeling too exited to play any other game, and since I still have no key to the Beta, I decided to make better use of my time than drooling over Beta videos and streams. The result is a tool that will help players choose the most mana efficient healing spell ranks!</br></br>
 
-			The rank selection is based on a <i>Healing Efficiency Score</i> (<b class="blue">HES</b>), which is derived from the combination of <i>Healing per Mana Efficiency</i> (<b class="blue">HPME</b>) and <i>Healing per Second</i> (<b class="blue">HpS</b>)</br></br>
+			The rank selection is based on a <i>Healing Efficiency Score</i> (<b class="yellow">HES</b>), which is derived from the combination of <i>Healing per Mana Efficiency</i> (<b class="yellow">HPME</b>) and <i>Healing per Second</i> (<b class="yellow">HpS</b>)</br></br>
 
 			If you enjoyed the tool please consider a small donation!
 		</p>
@@ -16,6 +16,10 @@
 			<input type="hidden" name="hosted_button_id" value="2NHDAHNTTQ3PQ" />
 			<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
 		</form>
+		</br>
+		<p>If you want a more detailed explanation of how downranking works, what to think about and how to apply it to your gaming, check out this video made by <a href="https://www.youtube.com/channel/UCGm8RmKIW0EF1RfmNFVr2-Q">Defcamp & Melderon</a>!</p>
+		<iframe width="532" height="315" src="https://www.youtube.com/embed/HBDfRiB1Zlk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 		<h3>Using the tool</h3>
 		<ol id="user-guide">
 			<li>Fill out your total amount of Healing Power as shown in the in-game character pane</li>
@@ -26,11 +30,11 @@
 			<li>A tooltip is now shown, displaying the recommended spell rank.</li>
 			<li>Click the button "Spell details" to open the advanced user's window to look at breakpoints and much more!</li>
 			<li>A Table will be displayed for you to see the values of each metric for each rank. You can click on the top row of each column to sort by that factor.</li>
-			<li>(Optional) Drag the slider to change the importance of <b class="blue">HpME</b> and <b class="blue">HpS</b>.. Dragging the slider to the far side of either end, will completely disregard the other attribute. Also, below are two static graphs showing <b class="blue">HpME</b> and <b class="blue">HpS</b>. as a function of spell power by rank.</li>
+			<li>(Optional) Drag the slider to change the importance of <b class="yellow">HpME</b> and <b class="yellow">HpS</b>.. Dragging the slider to the far side of either end, will completely disregard the other attribute. Also, below are two static graphs showing <b class="yellow">HpME</b> and <b class="yellow">HpS</b>. as a function of spell power by rank.</li>
 		</ol>
 		<h3>Calculations</h3>
 		<p id="calc-intro">
-			The Spell Coefficient (<b class="blue">SC</b>) is the factor that your Healing or Spell power is multiplied with in order to determine the final power of the spell. The way the <b class="blue">SC</b> is calculated depends on the nature of the spell, there are some general rules for how to calculate the SC, but as with all rules there are exceptions and a few spells such as Frost Nova and Lay on Hands, have their own modifiers.</br></br>
+			The Spell Coefficient (<b class="yellow">SC</b>) is the factor that your Healing or Spell power is multiplied with in order to determine the final power of the spell. The way the <b class="yellow">SC</b> is calculated depends on the nature of the spell, there are some general rules for how to calculate the SC, but as with all rules there are exceptions and a few spells such as Frost Nova and Lay on Hands, have their own modifiers.</br></br>
 
 			The sections below will describe how this tool calculates Spell Coefficients, should you encounter any errors your are welcome to report a bug, or create a pull request. However, unless a reliable source is provided the requests will be rejected.
 		</p>
@@ -42,7 +46,7 @@
 
 			<code>[Direct spell coefficient] = [Cast Time of Spell] / 3.5</code>
 
-			Over-Time spells includes both Damage over time (<b class="blue">DoTs</b>) and Healing over Time (<b class="blue">HoTs</b>), such as <i>Rejuvenation</i> or <i>Curse of Agony</i>. The added damage or healing is divided equally among each tick of the spell and the standard formula is:
+			Over-Time spells includes both Damage over time (<b class="yellow">DoTs</b>) and Healing over Time (<b class="yellow">HoTs</b>), such as <i>Rejuvenation</i> or <i>Curse of Agony</i>. The added damage or healing is divided equally among each tick of the spell and the standard formula is:
 
 			<code>[Over-Time spell coefficient] = [Duration of Spell] / 15</code>
 		</p>
@@ -83,15 +87,15 @@
 
 			<code>[Actual Power] = [Base power] + [+Power] * [Effective Coefficient]</code>
 
-			The result of the function above is what is used when calculating <b class="blue">HpME</b>, <b class="blue">HpS</b> and finally <b class="blue">HES</b>.
+			The result of the function above is what is used when calculating <b class="yellow">HpME</b>, <b class="yellow">HpS</b> and finally <b class="yellow">HES</b>.
 
-			The <b class="blue">HpME</b> and <b class="blue">HpS</b> are quite straight forward, and calculated as:
+			The <b class="yellow">HpME</b> and <b class="yellow">HpS</b> are quite straight forward, and calculated as:
 			<code>
 				HpME = [Actual Power] / [Mana Cost]</br>
 				HpS = [Actual Power] / [Cast time]
 			</code>
 
-			From these two we calculate the Healing Efficiency Score <b class="blue">HES</b> as:
+			From these two we calculate the Healing Efficiency Score <b class="yellow">HES</b> as:
 
 			<code>
 				HES = HpME^x * ln(HpS)^y 
@@ -108,7 +112,7 @@
 		</p>
 		<h4>Calculation example</h4>
 		<p>
-			As an example I will demonstrate how to determine the power of <b class="blue">Rank 3 Healing Wave</b> with 500 Healing Power.
+			As an example I will demonstrate how to determine the power of <b class="yellow">Rank 3 Healing Wave</b> with 500 Healing Power.
 
 			<code>
 				[Base Power] = (129 + 155) / 2 = 142</br>

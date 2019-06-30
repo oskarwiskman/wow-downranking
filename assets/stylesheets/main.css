@@ -12,6 +12,14 @@ html {
 	height: 100%;
 }
 
+a { 
+	color: #7facf4;
+}
+
+a:hover { 
+	text-decoration: none;
+}
+
 .green {
 	color: #17FD17;
 }
