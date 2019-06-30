@@ -3,7 +3,11 @@ var fs = require('fs');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'WoW Downranking' });
+  res.render('index', { title: "Ozgar's Downranking Guide & Tool" });
+});
+
+router.get('/cookieinfo', function(req, res, next) {
+  res.render('cookieinfo', { title: 'Cookie information' });
 });
 
 router.get('/spelldata/*', function(req, res, next) {

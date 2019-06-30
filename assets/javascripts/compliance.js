@@ -9,9 +9,10 @@ window.addEventListener("load", function(){
 		    }
 		},
 	  	"content": {
-	    "message": "In order for this website to work properly we need to use cookies.",
-	    "allow": "Got it!"
-	  }
+		    "message": "In order for this website to work properly we need to use cookies. By continuing to use the website after being presented with cookie information you consent to such use.",
+		    "allow": "Got it!",
+		    "href": "/cookieinfo"
+	  	}
 	})
 });
 

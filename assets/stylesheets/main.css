@@ -244,6 +244,18 @@ input {
 
 }
 
+#cookie-content {
+	text-align: left;
+}
+
+#cookie-content h2 {
+	color: #E7BA00;
+}
+
+#cookie-content li h5 {
+	color: #E7BA00;
+}
+
 .cc-compliance a {
     color: #ddd;
     text-decoration: none;
@@ -251,12 +263,13 @@ input {
     display: block;
 	padding: 2px 12px;
     text-align: center;
-    border: 1px outset #888;
+    border: 1px outset #888 !important;
     border-radius: 5px;
     -moz-box-shadow: 3px 0 0 8px #000;
     -webkit-box-shadow: 3px 0 0 8px #000;
     box-shadow: inset 0 0 8px #000;
     opacity: 0.8;
+    width: 100px;
 }
 
 .cc-message {
