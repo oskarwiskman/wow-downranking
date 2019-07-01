@@ -316,19 +316,20 @@ input {
  }
 
  #compare-container #col1 {
-	 width: 42%;
+	 width: 225px;
 	 float: left;
  }
  #compare-container #col2outer {
-	 width: 58%;
+	 width: 307px;
 	 float: right;
 	 margin: 0;
 	 padding: 0;
  }
  #col2outer #col2mid {
-	 width: 31%;
-	 float: left;
-	 padding-top: 35px;
+	width: 82px;
+    float: left;
+    padding-top: 35px;
+    padding-right: 16px;
  }
 
  #col2outer #col2mid h4{
@@ -338,7 +339,7 @@ input {
  }
 
  #col2outer #col2side {
-	 width: 69%;
+	 width: 225px;
 	 float: right;
  }
 
