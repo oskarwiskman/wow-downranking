@@ -74,7 +74,6 @@ body .blocker {
     padding: 15px 4px 15px 4px;
     margin: 8px 0px 8px 0px;
     font-size: 12px;
-    max-width: 500px;
     overflow-y: auto;
     background-color: #222;
     border: 1px inset #999;
