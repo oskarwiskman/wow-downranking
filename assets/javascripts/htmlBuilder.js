@@ -156,28 +156,21 @@ function buildTalentTooltip(talent, rank) {
 
 function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
 	rank = Math.min(Math.max(rank - 1, 0), spell.ranks.length-1);
-	let name = spell.name;
-	let cost = spell.ranks[rank].cost;
-	let range = spell.ranks[rank].range;
 	let baseCastTime = spell.ranks[rank].baseCastTime === 0 ? 'Instant' : spell.ranks[rank].baseCastTime + " sec cast";
-	let power = spell.ranks[rank].power;
-	let tickInterval = spell.ranks[rank].tickInterval;
-	let tickDuration = spell.ranks[rank].tickDuration;
-	let tickPower = spell.ranks[rank].tickPower;
-	let description = buildSpellDescription(spell, rank);
 
 	return 	`<div class="spell-tooltip ${cssClass}">
 				<div class="header">
-					<span class="name">${name}</span> 
+					<span class="name">${spell.name}</span> 
 					<span class="rank">Rank ${rank+1}</span>
 				</div>
 				<div class="requirements">
-					<span class="cost">${cost} Mana</span>
-					<span class="range">${range} yd. range</span>
+					<span class="cost">${spell.ranks[rank].cost} Mana</span>
+					<span class="range">${spell.ranks[rank].range} yd. range</span>
 				</div>
 				<div class="cast-time">${baseCastTime}</div>
+				<div class="level">Requires Level ${spell.ranks[rank].level}</div>
 				<p class="description">
-					${description}
+					${buildSpellDescription(spell, rank)}
 				</p>
 				${footer}
 			</div>`
