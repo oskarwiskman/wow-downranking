@@ -116,6 +116,7 @@ function onSpellCompareClicked(elem) {
 			class: "small",
 			result_container: `#${resultContainer.attr('id')}`,
 		}
+		column.find('.compare-rank-select').removeClass("hidden");
 		loadSpellData(className, spellName, updateTooltip, params);
 	}
 	refreshRadarChart();

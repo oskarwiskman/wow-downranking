@@ -7,7 +7,7 @@ function refreshTooltip(){
 	if(className && spellName){
 		params = {
 			footer:	`<span class="btn">
-						<a href="#" onClick="openModal('details-modal')">Spell details</a>
+						<a href="#" onClick="openModal('details-modal')">Detailed Overview</a>
 					</span>
 					<span class="btn pull-right">
 						<a href="#" onClick="openModal('compare-modal')">Compare</a>
