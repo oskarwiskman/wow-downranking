@@ -91,9 +91,9 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 	let talent;
 	let data;
 	let rank;
+	let powerCoef = 1;
 	switch(className) {
 		case "druid":
-			let powerCoef = 1;
 			talent = getTalentByName('gift_of_nature');
 			if(talent.length > 0) {
 				data = talent.data("talent");
@@ -125,10 +125,18 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 + ((data.rankIncrement * rank) / 100);
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}	
+			talent = getTalentByName('holy_power');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + (1 + ((data.rankIncrement * rank) / 100))) / 2 ;
 				}
 			}
-			return 1;
+			return powerCoef;
 		case "priest":
 			talent = getTalentByName('spiritual_healing');
 			if(talent.length > 0) {
