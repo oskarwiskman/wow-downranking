@@ -7,11 +7,11 @@
   color: #E7BA00;
 
 }
-.rangeslider-container span#hpme {
+.rangeslider-container span.hpme-label {
   float: left;
 }
 
-.rangeslider-container span#hps {
+.rangeslider-container span.hps-label {
   float: right;
 }
 

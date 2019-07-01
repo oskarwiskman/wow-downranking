@@ -3,6 +3,8 @@
 	"name":"Regrowth",
 	"type":"heal",
 	"description":"Heals a friendly target for ${powerMin} to ${powerMax} and another ${tickPower} over 21 sec.",
+	"directCoeff":0.325,
+	"overTimeCoeff":0.513,
 	"ranks":[
 		{	"rank":1,
 			"level":12,
@@ -101,7 +103,7 @@
 			"powerMax":1119,
 			"tickFrequency":3,
 			"tickDuration":21,
-			"tickPower":1046
+			"tickPower":1064
 		}
 	]
 }

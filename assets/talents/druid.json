@@ -39,6 +39,17 @@
 
 		},
 		{
+			"name":"improved_rejuvenation",
+			"maxRank":3,
+			"rankIncrement":5,
+			"description":"Increases the effect of your Rejuvenation spell by ${rankIncrement}%.",
+			"image":"rejuvenation.jpg",
+			"affectedSpells": [
+				"Rejuvenation"
+			]
+
+		},
+		{
 			"name":"gift_of_nature",
 			"maxRank":5,
 			"rankIncrement":2,
@@ -46,6 +57,17 @@
 			"image":"gift_of_nature.jpg",
 			"affectedSpells": [
 				"heal"
+			]
+
+		},
+		{
+			"name":"improved_regrowth",
+			"maxRank":5,
+			"rankIncrement":10,
+			"description":"Increases the critical effect chance of your Regrowth spell by ${rankIncrement}%.",
+			"image":"regrowth.jpg",
+			"affectedSpells": [
+				"Regrowth"
 			]
 
 		}

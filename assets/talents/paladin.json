@@ -23,6 +23,16 @@
 				"Holy Light",
 				"Flash of Light"
 			]
+		},
+		{
+			"name":"holy_power",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Increases the critical effect chance of your Holy spells ${rankIncrement}%.",
+			"image":"holy_power.jpg",
+			"affectedSpells": [
+				"heal"
+			]
 		}
 	]
 }

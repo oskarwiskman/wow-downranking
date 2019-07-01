@@ -43,9 +43,8 @@ function calculatePower(healingPower, spellData, rank){
 	    	break;
 	  	case "hybrid":
 	  		power = (((rankData.powerMax + rankData.powerMin) / 2) + rankData.tickPower);
-	  		let hybridCoeficients = getHybridCoeficients(rankData.baseCastTime, rankData.tickDuration);
-	  		let directExtraPower = healingPower * hybridCoeficients[0];
-	  		let overTimeExtraPower = healingPower * hybridCoeficients[1];
+	  		let directExtraPower = healingPower * spellData.directCoeff;
+	  		let overTimeExtraPower = healingPower * spellData.overTimeCoeff;
 	  		extraPower = directExtraPower + overTimeExtraPower;
 	    	break;
 	}
@@ -94,15 +93,32 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
+			let powerCoef = 1;
 			talent = getTalentByName('gift_of_nature');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 + ((data.rankIncrement * rank) / 100);
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}
-			return 1;
+			talent = getTalentByName('improved_rejuvenation');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			talent = getTalentByName('improved_regrowth');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + (1 + ((data.rankIncrement * rank) / 100))) / 2 ;
+				}
+			}
+			return powerCoef;
 		case "paladin":
 			talent = getTalentByName('healing_light');
 			if(talent.length > 0) {
@@ -333,7 +349,10 @@ function getHybridCoeficients(castTime, duration){
 	let directPortion =  1 - overTimePortion;
 	let directCoef = (castTime / 3.5) * directPortion;
 
-	return [directCoef, overTimeCoef];
+	return {
+		"direct": directCoef, 
+		"overTime": overTimeCoef
+	};
 }
 
 /**
