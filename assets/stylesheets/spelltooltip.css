@@ -3,7 +3,7 @@
 }
 
 .wow-spell:not(:first-child) {
-	margin-left: 3px;
+	margin-left: 4px;
 }
 
 .spell-tooltip {

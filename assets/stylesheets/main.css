@@ -316,17 +316,17 @@ input {
  }
 
  #compare-container #col1 {
-	 width: 40%;
+	 width: 42%;
 	 float: left;
  }
  #compare-container #col2outer {
-	 width: 60%;
+	 width: 58%;
 	 float: right;
 	 margin: 0;
 	 padding: 0;
  }
  #col2outer #col2mid {
-	 width: 33%;
+	 width: 31%;
 	 float: left;
 	 padding-top: 35px;
  }
@@ -338,7 +338,7 @@ input {
  }
 
  #col2outer #col2side {
-	 width: 67%;
+	 width: 69%;
 	 float: right;
  }
 
