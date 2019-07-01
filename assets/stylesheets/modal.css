@@ -27,7 +27,7 @@ body .blocker {
 .modal .content {
     width: 100%;
     height: 794px;
-    padding: 15px;
+    padding: 20px;
     margin: 5px 0 0 0;
     overflow: auto;
 }
