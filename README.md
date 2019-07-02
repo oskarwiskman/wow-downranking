@@ -28,6 +28,11 @@ Shaman:
 
 ### Update log
 
+#### 2019-07-01
+* Added Druid talents Improved Rejuvenation and Improved Regrowth, and Paladin talent Holy Power.
+* Updated some link texts, and minor improvements to descriptive texts.
+* Updated spacing for class and spell icons in the compare menu, to make room for the wider scrollbar on Windows.
+
 #### 2019-06-30 YouTube link and Gift of Nature
 * Added embedded YouTube video in the "How it works!" modal, where Defcamp & Melderon explain downranking and show case the tool. Watch it here [Classic WoW Downranking Guide & Tool](https://www.youtube.com/watch?v=HBDfRiB1Zlk)
 * Added Druid talent Gift of Nature (Don't know how I forgot about that)
