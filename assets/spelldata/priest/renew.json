@@ -3,6 +3,7 @@
 	"name":"Renew",
 	"type":"heal",
 	"description":"Heals the target of ${tickPower} over ${tickDuration} sec.",
+	"critable":false,
 	"ranks":[
 		{	"rank":1,
 			"level":8,

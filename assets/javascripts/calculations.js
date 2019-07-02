@@ -29,29 +29,38 @@ function calculatePower(healingPower, spellData, rank){
 	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
 	let rankData = spellData.ranks[index];
 	let nextRankLevel = index < spellData.ranks.length - 1 ? spellData.ranks[index+1].level : undefined;
-	let power;
-	let extraPower;
+	let directPower = 0;
+	let overTimePower = 0;
+	let directExtraPower = 0;
+	let overTimeExtraPower = 0;
 	let coefficient;
+	healingPower + getTalentExtraPower(spellData.class, spellData.name, spellData.type);
 	switch(getSpellType(rankData)){
 		case "direct":
-			power = (rankData.powerMax + rankData.powerMin) / 2;
-			extraPower = healingPower * getDirectSpellCoeficient(rankData.baseCastTime);
+			directPower = (rankData.powerMax + rankData.powerMin) / 2;
+			directExtraPower = healingPower * getDirectSpellCoeficient(rankData.baseCastTime);
 			break;
 	  	case "overTime":
-	  		power = rankData.tickPower;
-	  		extraPower = healingPower * getOverTimeCoeficient(rankData.tickDuration);
+	  		overTimePower = rankData.tickPower;
+	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(rankData.tickDuration);
 	    	break;
 	  	case "hybrid":
-	  		power = (((rankData.powerMax + rankData.powerMin) / 2) + rankData.tickPower);
-	  		let directExtraPower = healingPower * spellData.directCoeff;
-	  		let overTimeExtraPower = healingPower * spellData.overTimeCoeff;
-	  		extraPower = directExtraPower + overTimeExtraPower;
+	  		directPower = (rankData.powerMax + rankData.powerMin) / 2;
+  			overTimePower = rankData.tickPower;
+	  		directExtraPower = healingPower * spellData.directCoeff;
+	  		overTimeExtraPower = healingPower * spellData.overTimeCoeff;
 	    	break;
 	}
-	extraPower *= getSubLevel20Penalty(rankData.level);
-	let totalPower = power + extraPower;
-	totalPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
-	return totalPower + getTalentExtraPower(spellData.class, spellData.name, spellData.type);
+	directExtraPower *= getSubLevel20Penalty(rankData.level);
+	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
+
+	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+
+	let totalOverTimePower = overTimePower + overTimeExtraPower;
+	totalOverTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+
+	return totalDirectPower + totalOverTimePower;
 }
 
 function calculatePowerPerSecond(healingPower, spellData, rank){
@@ -110,14 +119,6 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}
-			talent = getTalentByName('improved_regrowth');
-			if(talent.length > 0) {
-				data = talent.data("talent");
-				if(isAffected(spellName, spellType, data)){
-					rank = talent.data("current-rank");
-					powerCoef *=  (1 + (1 + ((data.rankIncrement * rank) / 100))) / 2 ;
-				}
-			}
 			return powerCoef;
 		case "paladin":
 			talent = getTalentByName('healing_light');
@@ -128,14 +129,6 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}	
-			talent = getTalentByName('holy_power');
-			if(talent.length > 0) {
-				data = talent.data("talent");
-				if(isAffected(spellName, spellType, data)){
-					rank = talent.data("current-rank");
-					powerCoef *=  (1 + (1 + ((data.rankIncrement * rank) / 100))) / 2 ;
-				}
-			}
 			return powerCoef;
 		case "priest":
 			talent = getTalentByName('spiritual_healing');
@@ -143,10 +136,18 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 + ((data.rankIncrement * rank) / 100);
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}
-			return 1;
+			talent = getTalentByName('improved_renew');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
 		case "shaman":
 			talent = getTalentByName('purification');
 			if(talent.length > 0) {
@@ -167,10 +168,10 @@ function getTalentCostCoefficient(className, spellName, spellType){
 	let talent;
 	let data;
 	let rank;
+	let costCoeff = 1;
 	switch(className) {
 		case "druid":
-			let costCoeff = 1;
-			talent = getTalentByName('moonglow');
+			talent = getTalentByName('tranquil_spirit');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
@@ -178,7 +179,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 					costCoeff *= (1 - ((data.rankIncrement * rank) / 100));
 				}
 			}
-			talent = getTalentByName('tranquil_spirit');
+			talent = getTalentByName('moonglow');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
@@ -199,15 +200,23 @@ function getTalentCostCoefficient(className, spellName, spellType){
 			}
 			return 1;
 		case "priest":
+			talent = getTalentByName('mental_agility');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					costCoeff *=  (1 - ((data.rankIncrement * rank) / 100));
+				}
+			}
 			talent = getTalentByName('improved_healing');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 - ((data.rankIncrement * rank) / 100);
+					costCoeff *=  (1 - ((data.rankIncrement * rank) / 100));
 				}
 			}
-			return 1;
+			return costCoeff;
 		case "shaman":
 			talent = getTalentByName('tidal_focus');
 			if(talent.length > 0) {
@@ -281,8 +290,26 @@ function getTalentExtraPower(className, spellName, spellType){
 	}
 }
 
+function getCritChanceCoefficient(className, spellName, spellType) {
+	let crit = parseInt(getCritChance());
+	let talents = ['improved_regrowth', 'holy_specialization', 'holy_power', 'tidal_mastery']
+	let rank;
+	for(let i = 0; i < talents.length; i++){
+		talent = getTalentByName(talents[i]);
+		if(talent.length > 0) {
+			data = talent.data("talent");
+			if(className === talent.data("class-name") && isAffected(spellName, spellType, data)){
+				rank = talent.data("current-rank");
+				crit += data.rankIncrement * rank;
+			}
+		}
+	}
+	crit = (1 + (1 + crit/100)) / 2;
+	return crit;
+}
+
 function isAffected(spellName, spellType, data){
-	return data.affectedSpells.includes(spellType) || data.affectedSpells.includes(spellName);
+	return (data.affectedSpells.includes(spellType) || data.affectedSpells.includes(spellName));
 }
 
 function getSpellType(spell){

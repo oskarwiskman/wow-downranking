@@ -82,6 +82,17 @@
 			<code>(20 - [Spell Level]) * 0.0375 = [Sub Level 20 Penalty]</code>
 		</p>
 
+		<h4>Critical effect chance</h4>
+		<p>
+			Critical effect chance is the base percent chance that a spell will become a critical hit, causing <b class="yellow">150%</b> of its normal effect. Direct spell effects are subjectable to critical hits, and over time effects are not.</br></br>
+
+			Since landing critical hits will highly increase your healing throughput, critical chance does have a small effect on the <b class="yellow">HES</b> due to the higher <b class="yellow">HpS</b>. In this tool, critical chance is applied to the direct part of spells, as a static factor:
+
+			<code>
+				(1 + (1 + [Critical effect chance]/100)) / 2 = [Crit Coefficient]
+			</code>
+		</p>
+
 		<h4>Putting it all together</h4>
 		<p>
 			Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
@@ -117,17 +128,18 @@
 		</p>
 		<h4>Calculation example</h4>
 		<p>
-			As an example I will demonstrate how to determine the power of <b class="yellow">Rank 3 Healing Wave</b> with 500 Healing Power.
+			As an example I will demonstrate how to determine the power of <b class="yellow">Rank 3 Healing Wave</b> with <b class="yellow">500 Healing Power</b>, and a <b class="yellow">10% Critical effect chance</b>.
 
 			<code>
-				[Base Power] = (129 + 155) / 2 = 142</br>
-				[Basic Coefficient] = 2.5 / 3.5 = 0.714</br>
-				[Sub Level 20 Penalty] = 1 - ((20 - 12) * 0.0375) = 0.7</br>
-				[Effective Coefficient] = 0.5</br>
+				[Base Power] = ([Base min Power] + [Base max Power]) / 2 = (129 + 155) / 2 = 142</br>
+				[Basic Coefficient] = [Cast Time] / [Reference Cast Time] = 2.5 / 3.5 = 0.714</br>
+				[Sub Level 20 Penalty] = 1 - ((20 - [Spell level]) * 0.0375) = 1 - ((20 - 12) * 0.0375) = 0.7</br>
+				[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Penalty] = 0.5</br>
+				[Crit Coefficient] = (1 + (1 + 10/100)) / 2 = 1.05
 			</code>
 			Which results in the actual power being:
 			<code>
-				[Actual Power] = 142 + 500 * 0.5 = <i class="yellow">392</i></br>
+				[Actual Power] = [Base Power] + [Extra Power] * [Effective Coefficient] * [Crit Coefficient]  = 142 + 500 * 0.5 * 1.05 = <i class="yellow">392</i></br>
 			</code>
 		</p>
 		<span class="btn pull-right">

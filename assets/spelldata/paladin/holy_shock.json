@@ -3,6 +3,7 @@
 	"name":"Holy Shock",
 	"type":"heal",
 	"description":"Blasts the target with Holy energy, causing ${powerMin} to ${powerMax} Holy damage to an enemy, or ${powerMin} to ${powerMax} healing to an ally.",
+	"critable":true,
 	"ranks":[
 		{	"rank":1,
 			"level":1,

@@ -13,6 +13,7 @@ const colors = [
                 'rgba(221, 99, 255, 0.8)',
                 'rgba(128, 99, 105, 0.8)'
                 ]
+const healingPowerRange = range(0, 1500, 100);
 var hesChart;
 var hpmeChart;
 var hpsChart;
@@ -156,7 +157,6 @@ function buildCompareRadarChart(spellNames, classNames, ranks) {
 
 
 function buildHESChart(spellData){
-    const healingPowerRange = range(0, 2000, 100);
     let datasets = [];
     for(r = 0; r < spellData.ranks.length; r++){
         let data = [];
@@ -183,7 +183,6 @@ function buildHESChart(spellData){
 }
 
 function buildHpSChart(spellData){
-    const healingPowerRange = range(0, 2000, 100);
     let datasets = [];
     for(r = 0; r < spellData.ranks.length; r++){
         let data = [];
@@ -206,7 +205,6 @@ function buildHpSChart(spellData){
 }
 
 function buildHpMEChart(spellData){
-    const healingPowerRange = range(0, 2000, 100);
     let datasets = [];
     for(r = 0; r < spellData.ranks.length; r++){
         let data = [];

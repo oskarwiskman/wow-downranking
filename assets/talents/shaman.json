@@ -18,7 +18,17 @@
 			"description":"Reduces the Mana cost of your healing spells by ${rankIncrement}%.",
 			"image":"tidal_focus.jpg",
 			"affectedSpells": [
-				"HEAL"
+				"heal"
+			]
+		},
+		{
+			"name":"tidal_mastery",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Increases the critical effect chance of your healing and lightning spells by ${rankIncrement}%.",
+			"image":"tidal_mastery.jpg",
+			"affectedSpells": [
+				"heal"
 			]
 		},
 		{

@@ -37,7 +37,15 @@
 				<label for="healing">Healing Power</label>
 				<span>
 					<input id="healing" type="number" min="0" max="10000" value="0" onChange="refreshTooltip();">
+				</span>
+			</div>
+			<div class="character-info">
+				<label for="crit-chance">Critical effect chance</label>
 				<span>
+					<input id="crit-chance" type="number" min="0" max="100" value="0" onChange="refreshTooltip()"><span>%</span>
+				</span>
+			</div>
+		</div>
 			</div>
 		</div>
 		<div class="aq-tome-container">
@@ -55,12 +63,6 @@
 				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)" onClick="onClassClicked(this);"></a>
 				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
 			</div>
-		</div>
-		<div id="crit-chance-container" class="class-stat hidden">
-			<label for="crit-chance">Critical effect chance</label>
-			<span>
-				<input id="crit-chance" type="number" min="0" max="100" value="0" onChange="refreshTooltip()"><span>%</span>
-			<span>
 		</div>
 		<div id="spirit-container" class="class-stat hidden">
 			<label for="spirit">Amount of spirit</label>

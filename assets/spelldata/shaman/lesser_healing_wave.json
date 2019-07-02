@@ -3,6 +3,7 @@
 	"name":"Lesser Healing Wave",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"critable":true,
 	"ranks":[
 		{	"rank":1,
 			"level":20,

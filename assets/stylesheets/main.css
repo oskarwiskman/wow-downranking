@@ -155,6 +155,10 @@ body footer a {
 	display: block;
 }
 
+.character-info #crit-chance {
+	width: 60px;
+}
+
 input {
 	font-size: 22px;
 	width: 100px;

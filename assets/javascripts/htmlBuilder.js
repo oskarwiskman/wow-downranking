@@ -5,7 +5,7 @@ function buildBreakpointsTable(spellData){
 	let rows = "";
 	let lastRank = undefined;
 
-	for(let i = 0; i < 2000; i++){
+	for(let i = 0; i < 1500; i++){
 		currentRank = calculateMostEfficientRank(i, spellData);
 		if(bpMapFrom[currentRank] === undefined) {
 			bpMapFrom[currentRank] = i;

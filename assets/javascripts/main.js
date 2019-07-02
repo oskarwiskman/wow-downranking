@@ -12,18 +12,12 @@ function onClassClicked(elem){
 		target.removeClass('active');
 		$('#spell-selection').addClass('hidden');
 		showSpellAffectingTalentsFor();
-		hideCritChance();
 		hideSpirit();
 
 	} else {
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
 		let className = target.attr('id');
-		if(className === "paladin"){
-			showCritChance();
-		} else {
-			hideCritChance();
-		}
 		if(className === "priest"){
 			showSpirit();
 		} else {

@@ -3,6 +3,7 @@
 	"name":"Rejuvenation",
 	"type":"heal",
 	"description":"Heals the target for ${tickPower} over 12 sec.",
+	"critable":false,
 	"ranks":[
 		{	"rank":1,
 			"level":4,

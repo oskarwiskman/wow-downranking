@@ -3,6 +3,7 @@
 	"name":"Greater Heal",
 	"type":"heal",
 	"description":"Slow casting spell that heals a single target for ${powerMin} to ${powerMax}.",
+	"critable":true,
 	"ranks":[
 		{	"rank":1,
 			"cost":370,

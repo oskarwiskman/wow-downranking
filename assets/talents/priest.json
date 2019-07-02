@@ -2,6 +2,36 @@
 	"class":"priest",
 	"talents": [
 		{
+			"name":"mental_agility",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Reduces the mana cost of your instant cast spells by ${rankIncrement}%.",
+			"image":"mental_agility.jpg",
+			"affectedSpells": [
+				"Renew"
+			]
+		},
+		{
+			"name":"improved_renew",
+			"maxRank":3,
+			"rankIncrement":5,
+			"description":"Increases the amount healed by your Renew spell by ${rankIncrement}%.",
+			"image":"renew.jpg",
+			"affectedSpells": [
+				"Renew"
+			]
+		},
+		{
+			"name":"holy_specialization",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Increases the critical effect chance of your Holy spells by ${rankIncrement}%.",
+			"image":"holy_specialization.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		},
+		{
 			"name":"divine_fury",
 			"maxRank":5,
 			"rankIncrement":0.1,
