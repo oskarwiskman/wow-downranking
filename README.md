@@ -28,6 +28,11 @@ Shaman:
 
 ### Update log
 
+#### 2019-07-02 Crit for all classes, and more talents for Priest and Shaman
+* All classes can now input a critical effect chance, which will impact the calculations.
+* Added Priest talents Improved Renew, Holy Specialization and Mental Agility.
+* Added Shaman talent Tidal Mastery.
+
 #### 2019-07-01 More talents for Druid and Paladin. 
 * Added Druid talents Improved Rejuvenation and Improved Regrowth, and Paladin talent Holy Power.
 * Updated some link texts, and minor improvements to descriptive texts.
