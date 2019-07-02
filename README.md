@@ -28,7 +28,7 @@ Shaman:
 
 ### Update log
 
-#### 2019-07-01
+#### 2019-07-01 More talents for Druid and Paladin. 
 * Added Druid talents Improved Rejuvenation and Improved Regrowth, and Paladin talent Holy Power.
 * Updated some link texts, and minor improvements to descriptive texts.
 * Updated spacing for class and spell icons in the compare menu, to make room for the wider scrollbar on Windows.
