@@ -3,6 +3,12 @@
 	"name":"Flash Heal",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": "Ozgar",
+			"note": "<b class='blue'>Flash Heal</b> is your fastest heal, useful in emergencies or for quickly topping people off. I usually run with <b class='yellow'>Rank 1</b>, <b class='yellow'>Rank 3/4</b> (4 after BWL gear standard) and <b class='yellow'>Rank 7</b> on my bars, using them as needed."
+		}
+	],
 	"critable":true,
 	"ranks":[
 		{	"rank":1,

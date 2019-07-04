@@ -3,6 +3,12 @@
 	"name":"Regrowth",
 	"type":"heal",
 	"description":"Heals a friendly target for ${powerMin} to ${powerMax} and another ${tickPower} over 21 sec.",
+	"notes": [
+		{
+			"author": "Nobody",
+			"note": "No note yet."
+		}
+	],
 	"critable":true,
 	"directCoeff":0.325,
 	"overTimeCoeff":0.513,

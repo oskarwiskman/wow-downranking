@@ -3,6 +3,12 @@
 	"name":"Healing Touch",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": "Nobody",
+			"note": "No note yet."
+		}
+	],
 	"critable":true,
 	"ranks":[
 		{	"rank":1,

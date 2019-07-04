@@ -82,3 +82,18 @@ body .blocker {
 #details-modal .content {
     text-align: center;
 }
+
+.experts-notes {
+    text-align: left;
+}
+
+.experts-notes .note {
+    font-style: italic;
+}
+
+.experts-notes .cite {
+    text-align: right;
+    margin-right: 28px;
+    font-size: 15px;
+
+}

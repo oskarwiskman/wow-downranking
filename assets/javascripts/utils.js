@@ -259,13 +259,14 @@ function loadDetailsModalContent(){
 }
 
 function buildSpellDetailsContent(spellData, healingPower){
-	$('#details-modal').find('.background').find('.loader').addClass('hidden');
-	$('#details-modal').find('.content').show();
 	$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
-
+	$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
+	$(`#details-modal`).find('.experts-notes .cite .author').html(spellData.notes[0].author);
 	buildSpellTable(spellData, healingPower);
 	buildBreakpointsTable(spellData);
 	buildSpellCharts(spellData);
+	$('#details-modal').find('.background').find('.loader').addClass('hidden');
+	$('#details-modal').find('.content').show();
 }
 
 function getSliderValues(){
