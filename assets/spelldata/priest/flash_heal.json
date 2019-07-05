@@ -6,7 +6,7 @@
 	"notes": [
 		{
 			"author": "Ozgar",
-			"note": "<b class='blue'>Flash Heal</b> is your fastest heal, useful in emergencies or for quickly topping people off. I usually run with <b class='yellow'>Rank 1</b>, <b class='yellow'>Rank 3/4</b> (4 after BWL gear standard) and <b class='yellow'>Rank 7</b> on my bars, using them as needed."
+			"note": "<b class='blue'>Flash Heal</b> is your fastest heal, useful in emergencies or for quickly topping people off. I usually run with <b class='yellow'>Rank 1</b>, <b class='yellow'>Rank 4</b> and <b class='yellow'>Rank 7</b> on my bars, using the lower ranks for quickly adressing single raid members being hit by boss mechanics, and the <b class='yellow'>Max Rank</b> to handle massive incoming damage. You should treat this spell with respect though, since spamming it will likely run you out of mana very fast."
 		}
 	],
 	"critable":true,
