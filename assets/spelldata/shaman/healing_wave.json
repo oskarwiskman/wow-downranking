@@ -5,7 +5,10 @@
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
 	"notes": [
 		{
-			"author": "Nobody",
+			"author": {
+				"name": "Nobody",
+				"description": "Has done nothing."
+			},
 			"note": "No note yet."
 		}
 	],

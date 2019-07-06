@@ -20,6 +20,42 @@ a:hover {
 	text-decoration: none;
 }
 
+.druid {
+	color: #FF7D0A;
+}
+
+.hunter {
+	color: #ABD473;
+}
+
+.mage {
+	color: #40C7EB;
+}
+
+.paladin {
+	color: #F58CBA;
+}
+
+.priest {
+	color: #FFFFFF;
+}
+
+.rogue {
+	color: #FFF569;
+}
+
+.shaman {
+	color: #0070DE;
+}
+
+.warlock {
+	color: #8787ED;
+}
+
+.warrior {
+	color: #C79C6E;
+}
+
 .epic {
 	color: #a335ee;
 }
@@ -83,7 +119,6 @@ body {
 	font-family: "Friz Quadrata";
 	min-height:100%; 
 	padding:0; 
-	margin:0 0 0 30px; 
 	position:relative; 
 	background-size: cover;
 	text-align: center;

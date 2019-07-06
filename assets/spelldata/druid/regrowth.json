@@ -5,7 +5,10 @@
 	"description":"Heals a friendly target for ${powerMin} to ${powerMax} and another ${tickPower} over 21 sec.",
 	"notes": [
 		{
-			"author": "Nobody",
+			"author": {
+				"name": "Nobody",
+				"description": "Has done nothing."
+			},
 			"note": "No note yet."
 		}
 	],

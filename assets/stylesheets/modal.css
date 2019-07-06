@@ -87,13 +87,14 @@ body .blocker {
     text-align: left;
 }
 
-.experts-notes .note {
-    font-style: italic;
+.experts-notes .author {
+    font-size: 15px;
+    float: right;
+    line-height: 12px;
 }
 
-.experts-notes .cite {
-    text-align: right;
-    margin-right: 28px;
-    font-size: 15px;
-
+.experts-notes .author .desc {
+    font-size: 10px;
+    font-style: italic;
+    max-width: 200px;
 }

@@ -5,7 +5,10 @@
 	"description":"Heals the friendly target for ${powerMin} to ${powerMax}, then jumps to heal additional nearby targets. If cast on a party member, the heal will only jump to other party members. Each jump is 50% as effective as the previous target. Heals 3 total targets.",
 	"notes": [
 		{
-			"author": "Nobody",
+			"author": {
+				"name": "Nobody",
+				"description": "Has done nothing."
+			},
 			"note": "No note yet."
 		}
 	],

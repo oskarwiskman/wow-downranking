@@ -3,8 +3,15 @@
 	"name":"Holy Light",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
-	"notes": "No quote on this yet",
-	"author": "Nobody",
+	"notes": [
+		{
+			"author": {
+				"name": "Nobody",
+				"description": "Has done nothing."
+			},
+			"note": "No note yet."
+		}
+	],
 	"critable":true,
 	"ranks":[
 		{	"rank":1,
