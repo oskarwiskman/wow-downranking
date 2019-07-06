@@ -97,4 +97,5 @@ body .blocker {
     font-size: 10px;
     font-style: italic;
     max-width: 200px;
+    display: block;
 }

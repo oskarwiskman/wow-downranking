@@ -6,10 +6,10 @@
 	"notes": [
 		{
 			"author": {
-				"name": "Nobody",
-				"description": "Has done nothing."
+				"name": "Egregious",
+				"description": "Experienced Resto Shaman and author of <a href='https://classicwow.live/guides/18/the-egregious-guide-to-resto-shaman' title='Click to visit Egregious Guide to Classic Resto Shaman'>The Egregious Guide to Classic Resto Shaman</a>"
 			},
-			"note": "No note yet."
+			"note": "I keep <b class='yellow'>Rank 4</b> and <b class='yellow'>Rank 6</b> of <b class='blue'>Lesser Healing Wave</b> on my bars. The higher ranks of this spell addresses damage output of most encounters in MC, BWL very effectively, once you start utilizing a full arsenal of consumables and have graduated to AQ40, the lower ranks of these spells will become your go-tos."
 		}
 	],
 	"critable":true,
