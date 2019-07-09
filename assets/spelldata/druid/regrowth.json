@@ -6,10 +6,10 @@
 	"notes": [
 		{
 			"author": {
-				"name": "Nobody",
-				"description": "Has done nothing."
+				"name": "Truden",
+				"description": "Veteran Resto Druid, with years of experience with Classic Raiding"
 			},
-			"note": "No note yet."
+			"note": "<b class='blue'>Regrowth</b> is a very interesting spell since it applies both a direct heal and a HoT. It is a very inefficient spell mana wise and should only really be used during when fighting <a href='https://classic.wowhead.com/npc=13020/vaelastrasz-the-corrupt' title='Click to visit Vaelastrasz the Corrupt on classic.wowhead.com'>Vaelastrasz the Corrupt</a> in BWL, use <b class='yellow'>Max Rank</b>, and apply to as many raid members as possible, to utilize the HoT. </br>There is one exception and that is when you have <a href='https://classic.wowhead.com/spell=17078/improved-regrowth' title='Click to visit Improved Regrowth on classic.wowhead.com'>Improved Regrowth</a> and <a href='https://classic.wowhead.com/spell=16880/natures-grace' title='Click to visit Nature's Grace on classic.wowhead.com>Nature's Grace</a>, with these talents combined you will crit a lot when using Regrowth and the cast time will be 0.5 sec shorter. Sort of the Druid's version of <b class='blue'>Flash Heal</b>. Use <b class='yellow'>Rank 3 or 5</b> in this case. This is a very mana heavy way of healing, so I use it mostly when raids are on farm and when the fights are short."
 		}
 	],
 	"critable":true,

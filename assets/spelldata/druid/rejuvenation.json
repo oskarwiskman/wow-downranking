@@ -6,10 +6,10 @@
 	"notes": [
 		{
 			"author": {
-				"name": "Nobody",
-				"description": "Has done nothing."
+				"name": "Truden",
+				"description": "Veteran Resto Druid, with years of experience with Classic Raiding"
 			},
-			"note": "No note yet."
+			"note": "There is no point in downranking this spell, always use <b class='yellow'>Max Rank</b>. It is quite inefficient compared to other healing spells, however it is a good spell to apply while on the move or when max HpS is needed on the tank. It is usually not worth applying this spell to a raid member during a boss fight, since that raid member will probably be topped up by a direct heal, rendering the ticking HoT useless."
 		}
 	],
 	"critable":false,
