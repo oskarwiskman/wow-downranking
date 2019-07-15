@@ -28,6 +28,9 @@ Shaman:
 
 ### Update log
 
+#### 2019-07-15 Expert's notes
+* Add "Expert's Notes" for all spells, which gives a short description of how experienced players use each spell and what ranks they predominantly stick to.
+
 #### 2019-07-02 Crit for all classes, and more talents for Priest and Shaman
 * All classes can now input a critical effect chance, which will impact the calculations.
 * Added Priest talents Improved Renew, Holy Specialization and Mental Agility.
