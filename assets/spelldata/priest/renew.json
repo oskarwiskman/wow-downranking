@@ -3,6 +3,15 @@
 	"name":"Renew",
 	"type":"heal",
 	"description":"Heals the target of ${tickPower} over ${tickDuration} sec.",
+	"notes": [
+		{
+			"author": {
+				"name": "Ozgar",
+				"description": "Founder and creator of <a href='https://www.wowdownrank.com' title='Click to visit wowdownrank.com'>Ozgar's Downranking Guide & Tool</a>."
+			},
+			"note": "If I do use this spell, I use the <b class='yellow'>Rank 10</b> for topping people off while on the move. Generally Renew is rarely used, due to being quite expensive and having a high risk of overhealing, though some guilds use one <b class='priest'>Priest</b> with the <a href='https://classic.wowhead.com/spell=17191/improved-renew' title='Click to view Improved Renew on classic.wowhead.com' target='_blank'>Improved Renew</a> talent which they will keep up on the main tank, but unless you are that <b class='priest'>Priest</b>, this spell should not see much use.</br>There is one small exception though, if you are using <a class='epic' href='https://classic.wowhead.com/item=19288/darkmoon-card-blue-dragon' title='Click to view Darkmoon Card: Blue Dragon on classic.wowhead.com' target='_blank'>[Darkmoon Card: Blue Dragon]</a> and a good amount of Spirit, <b class='yellow'>Rank 1</b> can be cast on the whole raid to fish for the proc, since it is cheap and instant."
+		}
+	],
 	"critable":false,
 	"ranks":[
 		{	"rank":1,

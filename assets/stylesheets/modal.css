@@ -82,3 +82,20 @@ body .blocker {
 #details-modal .content {
     text-align: center;
 }
+
+.experts-notes {
+    text-align: left;
+}
+
+.experts-notes .author {
+    font-size: 15px;
+    float: right;
+    line-height: 12px;
+}
+
+.experts-notes .author .desc {
+    font-size: 10px;
+    font-style: italic;
+    max-width: 200px;
+    display: block;
+}

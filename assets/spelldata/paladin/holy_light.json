@@ -3,6 +3,15 @@
 	"name":"Holy Light",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "Ozgar",
+				"description": "Founder and creator of <a href='https://www.wowdownrank.com' title='Click to visit wowdownrank.com'>Ozgar's Downranking Guide & Tool</a>."
+			},
+			"note": "<b class='yellow'>Holy Light</b> is your big heal, which due to its long cast time scales amazingly well with increased healing power. You should usually stick to <b class='yellow'>Max Rank</b> with this spell, though lower ranks have their place in situations where you want to avoid over-healing."
+		}
+	],
 	"critable":true,
 	"ranks":[
 		{	"rank":1,

@@ -3,6 +3,15 @@
 	"name":"Healing Touch",
 	"type":"heal",
 	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "Truden",
+				"description": "Veteran Resto Druid, with years of experience with Classic Raiding"
+			},
+			"note": "<b class='blue'>Healing Touch</b> is a very mana efficient spell which scales incredibly well with Healing Power.  When your gear reaches BWL/MC standard you can start using <b class='yellow'>Rank 4</b>, before that <b class='yellow'>Rank 5 or 6</b> is probably preferred. <b class='yellow'>Rank 3</b> can also be used at BWL/AQ/Naxx level, however note that <b class='yellow'>Rank 3</b> is a faster heal, meaning it does not scale equally well with Healing Power as <b class='yellow'>Rank 4</b> and above. </br><b class='red'>Never use</b> <b class='yellow'>Rank 10</b> of this spell except as an 'oh shit' button combined with <a href='https://classic.wowhead.com/spell=17116/natures-swiftness' title='Click to visit Nature's Swiftness on classic.wowhead.com>Nature's Swiftness</a> for a fast mega heal."
+		}
+	],
 	"critable":true,
 	"ranks":[
 		{	"rank":1,
