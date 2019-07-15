@@ -6,10 +6,10 @@
 	"notes": [
 		{
 			"author": {
-				"name": "Nobody",
-				"description": "Has done nothing."
+				"name": "Ozgar",
+				"description": "Founder and creator of <a href='https://www.wowdownrank.com' title='Click to visit wowdownrank.com'>Ozgar's Downranking Guide & Tool</a>."
 			},
-			"note": "No note yet."
+			"note": "<b class='blue'>Flash of Light</b> is a <b class='paladin'>Paladins</b> main heal which you will be using most of the time. I recommend to have atleast <b class='yellow'>Rank 1</b> and <b class='yellow'>Rank 6</b> on your bars and use them as the situation requires. Because of the <b class='paladin'>Paladins</b> remarkable mana efficiency, you do not have to be as afraid of running out of mana while casting the less efficient spells, as other classes do."
 		}
 	],
 	"critable":true,
