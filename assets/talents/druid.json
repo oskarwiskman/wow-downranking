@@ -4,7 +4,7 @@
 		{
 			"name":"moonglow",
 			"maxRank":3,
-			"rankIncrement":1,
+			"rankIncrement":3,
 			"description":"Reduces the Mana cost of your Moonfire, Starfire, Wrath, Healing Touch, Regrowth and Rejuvenation spells by ${rankIncrement}%.",
 			"image":"moonglow.jpg",
 			"affectedSpells": [
