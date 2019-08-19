@@ -289,14 +289,14 @@ function getHealingPower(){
 	let healingPower = $('#healing').val();
 	if(!healingPower || healingPower < 0) healingPower = 0;
 	if(healingPower > 5000) healingPower = 5000;
-	return healingPower;
+	return parseInt(healingPower);
 }
 
 function getCritChance(){
 	let critChance = $('#crit-chance').val();
 	if(!critChance || critChance < 0) critChance = 0;
 	if(critChance > 100) critChance = 100;
-	return critChance;
+	return parseInt(critChance);
 }
 
 function toTitleCase(str) {
