@@ -125,17 +125,34 @@ body {
 }
 
 body footer {
-	font-size: 10px;
-	position: absolute;
-	bottom: 20px;
-	width: 260px;
-	text-align: left;
-	color: #E7BA00;
+    font-size: 1rem;
+    text-align: center;
+    color: #E7BA00;
+    position: absolute;
+    left: 0;
+    bottom: -35;
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.9);
+    padding: 1em;
 }
 
 body footer a {
 	text-decoration: none;
 	color: #7facf4;
+}
+
+body footer .author {
+	display: inline-block;
+	float: left;
+}
+
+body footer .credits {
+	display: inline-block;
+}
+
+body footer .paypal-container{
+	display: inline-block;
+	float: right;
 }
 
 #main-header {
