@@ -28,6 +28,10 @@ Shaman:
 
 ### Update log
 
+### 2019-08-19
+* Druid talent Moonglow now increments by the correct 3% per rank, instead of 1%.
+* Calculation now applies any extra Healing Power from talents to the base healing amount, instead of the effective amount (After Healing from gear).
+
 #### 2019-07-15 Expert's notes
 * Add "Expert's Notes" for all spells, which gives a short description of how experienced players use each spell and what ranks they predominantly stick to.
 
