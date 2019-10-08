@@ -70,6 +70,17 @@
 				"Regrowth"
 			]
 
+		},
+		{
+			"name":"nature-s_grace",
+			"maxRank":1,
+			"rankIncrement":0.5,
+			"description":"All spell criticals grace you with a blessing of nature, reducing the casting time of your next spell by 0.5 sec.",
+			"image":"natures_grace.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+
 		}
 	]
 }

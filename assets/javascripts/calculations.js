@@ -55,7 +55,7 @@ function calculatePower(healingPower, spellData, rank){
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
 
 	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
-	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(spellData.class, spellData.name, spellData.type);
+	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
 
 	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
@@ -246,6 +246,14 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 					return data.rankIncrement * rank;
 				}
 			}
+			talent = getTalentByName('nature-s_grace');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					return data.rankIncrement * rank * getEffectiveCritChance(className, spellName, spellType)/100;
+				}
+			}
 			return 0;
 		case "paladin":
 			return 0;
@@ -290,8 +298,8 @@ function getTalentExtraPower(className, spellName, spellType){
 	}
 }
 
-function getCritChanceCoefficient(className, spellName, spellType) {
-	let crit = parseInt(getCritChance());
+function getEffectiveCritChance(className, spellName, spellType){
+	let critChance = parseInt(getCritChance());
 	let talents = ['improved_regrowth', 'holy_specialization', 'holy_power', 'tidal_mastery']
 	let rank;
 	for(let i = 0; i < talents.length; i++){
@@ -300,12 +308,16 @@ function getCritChanceCoefficient(className, spellName, spellType) {
 			data = talent.data("talent");
 			if(className === talent.data("class-name") && isAffected(spellName, spellType, data)){
 				rank = talent.data("current-rank");
-				crit += data.rankIncrement * rank;
+				critChance += data.rankIncrement * rank;
 			}
 		}
 	}
-	crit = (1 + (1 + crit/100)) / 2;
-	return crit;
+	return critChance;
+}
+
+function getCritChanceCoefficient(critChance) {
+	critCoeff = (1 + (1 + critChance/100)) / 2;
+	return critCoeff;
 }
 
 function isAffected(spellName, spellType, data){

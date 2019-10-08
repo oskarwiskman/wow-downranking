@@ -304,7 +304,7 @@ function toTitleCase(str) {
 	for(let i = 0; i < split.length; i++){
 		split[i] = split[i].charAt(0).toUpperCase() + split[i].substr(1);
 	}
-	return split.join(' ');
+	return split.join(' ').replace("-", "'");
 }
 
 function refreshDetailsModal(){
