@@ -28,6 +28,9 @@ Shaman:
 
 ### Update log
 
+### 2019-10-08
+* Druid talent Nature's Graces added. Will apply an average cast time reduction to spells based on the spell's crit chance. As an example: If you have 30% base crit, and 5 points in Improved Regrowth, landing Regrowth at a total of 80% chance to land critically, Regrowth will have it's cast time reduced by 0.8 * 0.5 = 0.4 seconds.
+
 ### 2019-08-19
 * Druid talent Moonglow now increments by the correct 3% per rank, instead of 1%.
 * Calculation now applies any extra Healing Power from talents to the base healing amount, instead of the effective amount.
