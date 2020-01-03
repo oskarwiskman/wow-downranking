@@ -73,7 +73,7 @@ function calculatePowerPerSecond(healingPower, spellData, rank){
 			divider = rankData.baseCastTime;
 			break;
 	  	case "overTime":
-	  		divider = rankData.tickDuration / rankData.tickFrequency;
+	  		divider = rankData.tickDuration;
 	    	break;
 	  	case "hybrid":
 	  		divider = rankData.baseCastTime;
