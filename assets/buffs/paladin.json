@@ -1,0 +1,38 @@
+{
+	"class":"paladin",
+	"buffs": [
+		{ 	
+			"name":"Blessing of Light",
+			"key":"blessing_of_light",
+			"type":"buff",
+			"image":"blessing_of_light.jpg",
+			"description":"Places a Blessing on the friendly target, increasing the effects of Holy Light spells used on the target by up to ${holyLight} and the effect Flash of Light spells used on the target by up to ${flashOfLight}. Lasts 5 min. Players may only have one Blessing on them per Paladin at any one time.",
+			"ranks":[
+				{	"rank":1,
+					"level":40,
+					"cost":85,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":210,
+					"flashOfLight":60
+				},
+				{	"rank":2,
+					"level":50,
+					"cost":110,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":300,
+					"flashOfLight":85
+				},
+				{	"rank":3,
+					"level":60,
+					"cost":135,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":400,
+					"flashOfLight":115
+				}
+			]
+		}
+	]
+}

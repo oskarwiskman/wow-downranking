@@ -85,6 +85,18 @@ function updateTooltip(spellData, params){
 	showResult(params.result_container);
 }
 
+function toggleBuff(elem){
+	$(elem).toggleClass('active');
+	let footer = $(elem).find('.footer');
+	footer.toggleClass('toggled');
+	if(footer.hasClass('toggled')) {
+		footer.html("Click to remove buff");
+	} else {
+		footer.html("Click to add buff");
+	}
+	refreshTooltip();
+}
+
 function showSpellAffectingTalentsFor(className){
 	if(!className) {
 		$('#talent-selection').addClass('hidden');
@@ -100,6 +112,14 @@ function showSpellSelectionFor(className, callback, target){
 	} else {
 		buildSpellHtmlForClass(className, callback, container);
 		target.removeClass('hidden');
+	}
+}
+
+function showBuffSelectionFor(className){
+	if(!className) {
+		$('#buff-selection').addClass('hidden');
+	} else {
+		loadBuffData(className, buildBuffHtmlForClass);
 	}
 }
 
@@ -163,6 +183,10 @@ function getSelectedSpellName(){
 
 function getCharacterLevel(){
 	return 60;
+}
+
+function getBuffByName(buffName){
+	return $(`#buff-${buffName}`);
 }
 
 function getTalentByName(talentName){
@@ -332,6 +356,11 @@ function loadSpellData(className, spellName, callback, param){
 function loadTalentData(className, callback){
 	let talentPath = `/talents/${className}.json`
 	loadJSON(talentPath, callback);
+}
+
+function loadBuffData(className, callback){
+	let spellPath = `/buffs/${className}.json`;
+	loadJSON(spellPath, callback);
 }
 
 function loadJSON(path, callback, param) {

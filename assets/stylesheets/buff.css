@@ -1,0 +1,27 @@
+.buff-icon {
+	position: relative;
+}
+
+.buff-icon .buff-tooltip .footer{
+	color: #17FD17;
+}
+
+.buff-icon .buff-tooltip .footer.toggled{
+	color: #fd1717;
+}
+
+.buff-icon .buff-tooltip {
+	visibility: hidden;
+	position: absolute;
+    z-index: 50;
+    bottom: 46px;
+    left: 46px;
+}
+
+.buff-icon:hover .buff-tooltip {
+	visibility: visible;
+}
+
+.buff-icon.icon-medium:hover{
+	opacity: 0.9;
+}

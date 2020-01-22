@@ -35,6 +35,7 @@ function calculatePower(healingPower, spellData, rank){
 	let overTimeExtraPower = 0;
 	let coefficient;
 	healingPower += getTalentExtraPower(spellData.class, spellData.name, spellData.type);
+	healingPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	switch(getSpellType(rankData)){
 		case "direct":
 			directPower = (rankData.powerMax + rankData.powerMin) / 2;
@@ -294,6 +295,25 @@ function getTalentExtraPower(className, spellName, spellType){
 		return 0;
 	}
 	else {
+		return 0;
+	}
+}
+
+function getBuffExtraPower(className, spellName, spellType){
+	if(className === "paladin"){
+		let buff = getBuffByName('blessing_of_light');
+		if(buff.length > 0 && buff.hasClass('active')){
+			let data = buff.data('buff');
+			if(spellName === 'Holy Light'){
+				return data.ranks[2].holyLight;
+			}
+			if(spellName === 'Flash of Light'){
+				return data.ranks[2].flashOfLight;
+			}
+			return 0;
+		}
+		return 0;
+	} else {
 		return 0;
 	}
 }

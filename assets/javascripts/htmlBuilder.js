@@ -216,6 +216,49 @@ function buildTalentIcon(className, talentData, rank){
 			</div>`
 }
 
+function buildBuffHtmlForClass(buffData){
+	target = $("#buff-selection");
+	container = target.find(".navbar");
+	if(buffData.buffs.length){
+		let html = "";
+		target.removeClass("hidden");
+		for(let i = 0; i < buffData.buffs.length; i++){
+			html += buildBuffIcon(buffData.class, buffData.buffs[i]);
+		}
+		container.html(html);
+	} 
+	else {
+		target.addClass("hidden");
+	}
+}
+
+function buildBuffIcon(className, buff){
+	return `<div id="buff-${buff.key}" class="icon-medium buff-icon" data-buff='${JSON.stringify(buff)}' data-class-name="${className}" data-spell-name="${buff.key}" title="${buff.name}" alt="${buff.name}" style="background-image: url(/images/${buff.image})" onClick="toggleBuff(this)">
+				${buildBuffTooltip(buff)}
+			</div>`
+}
+
+function buildBuffTooltip(buff){
+	let rank = buff.ranks.length - 1;
+	let baseCastTime = buff.ranks[rank].baseCastTime === 0 ? 'Instant' : buff.ranks[rank].baseCastTime + " sec cast";
+	return 	`<span class="spell-tooltip buff-tooltip">
+				<div class="header">
+					<span class="name">${buff.name}</span> 
+					<span class="rank">Rank ${rank + 1}</span>
+				</div>
+				<div class="requirements">
+					<span class="cost">${buff.ranks[rank].cost} Mana</span>
+					<span class="range">${buff.ranks[rank].range} yd. range</span>
+				</div>
+				<div class="cast-time">${baseCastTime}</div>
+				<div class="level">Requires Level ${buff.ranks[rank].level}</div>
+				<p class="description">
+					${buildSpellDescription(buff, rank)}
+				</p>
+				<div class="footer">Click to add buff</div>
+			</span>`
+}
+
 
 
 

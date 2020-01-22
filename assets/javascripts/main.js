@@ -11,6 +11,7 @@ function onClassClicked(elem){
 	if(target.hasClass('active')){
 		target.removeClass('active');
 		$('#spell-selection').addClass('hidden');
+		$('#buff-selection').addClass('hidden');
 		showSpellAffectingTalentsFor();
 		hideSpirit();
 
@@ -25,6 +26,7 @@ function onClassClicked(elem){
 		}
 		showSpellAffectingTalentsFor(className);
 		showSpellSelectionFor(className, 'onSpellClicked(this)', $('#spell-selection'));
+		showBuffSelectionFor(className);
 	}
 }
 
