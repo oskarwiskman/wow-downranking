@@ -112,6 +112,10 @@ The duration and cast time limitations are then applied:
 
 ```[Direct coefficient] = ([Cast Time / 3.5) * [Direct part]```
 
+DISCLAIMER: Regrowth is actually not calculated in this way, and has it's own spell specific coefficients as with:
+```[Direct coefficient] = 0.325```
+```[Over-Time coefficient] = 0.513```
+
 ### Spells below level 20
 Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
 
