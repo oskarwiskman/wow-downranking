@@ -51,7 +51,7 @@ function calculatePower(healingPower, spellData, rank){
 	  		overTimeExtraPower = healingPower * spellData.overTimeCoeff;
 	    	break;
 	}
-	healingPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
+	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
 
