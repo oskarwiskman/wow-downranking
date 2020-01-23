@@ -35,7 +35,6 @@ function calculatePower(healingPower, spellData, rank){
 	let overTimeExtraPower = 0;
 	let coefficient;
 	healingPower += getTalentExtraPower(spellData.class, spellData.name, spellData.type);
-	healingPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	switch(getSpellType(rankData)){
 		case "direct":
 			directPower = (rankData.powerMax + rankData.powerMin) / 2;
@@ -52,6 +51,7 @@ function calculatePower(healingPower, spellData, rank){
 	  		overTimeExtraPower = healingPower * spellData.overTimeCoeff;
 	    	break;
 	}
+	healingPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
 
