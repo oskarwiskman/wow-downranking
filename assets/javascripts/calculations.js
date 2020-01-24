@@ -190,7 +190,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 			}
 			return costCoeff;
 		case "paladin":
-			let critChance = getCritChance();
+			let critChance = getEffectiveCritChance(className, spellName, spellType);
 			talent = getTalentByName('illumination');
 			if(talent.length > 0) {
 				data = talent.data("talent");
