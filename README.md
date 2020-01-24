@@ -28,6 +28,9 @@ Shaman:
 
 ### Update log
 
+### 2020-01-24
+* Added buff: Healing Way (3 stacks applied) for Shamans. Adds a 18% extra healing done to the target, this is applied after all other considerations. In other words, a cast that would normally heal the target for 1000 health, will heal 1180 with Healing Wave toggled.
+
 ### 2020-01-22
 * Add support for active buffs. The buff selection will appear if the class has any available buffs and buffs may be toggled on or off by clicking them. Hovering a buff will display a tooltip of the buff which is applied.
 * Added buff: Blessing of Light (Rank 3) for Paladins. Adds a 400 healing power bonus to Holy Light and 115 to Flash of Light. These are applied as extra healing power for these spells after caluclating the cast time penalties, but before applying the sub level 20 penalty. This means that all ranks trainable at level 20 or above will receive a flat bonus according to the tooltip, and sub level 20 spells will be penalized in accordance with that formula.
