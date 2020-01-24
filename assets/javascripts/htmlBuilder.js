@@ -241,15 +241,17 @@ function buildBuffIcon(className, buff){
 function buildBuffTooltip(buff){
 	let rank = buff.ranks.length - 1;
 	let baseCastTime = buff.ranks[rank].baseCastTime === 0 ? 'Instant' : buff.ranks[rank].baseCastTime + " sec cast";
+	let cost = buff.ranks[rank].cost;
+	let range = buff.ranks[rank].range;
 	return 	`<span class="spell-tooltip buff-tooltip">
 				<div class="header">
 					<span class="name">${buff.name}</span> 
 					<span class="rank">Rank ${rank + 1}</span>
 				</div>
-				<div class="requirements">
-					<span class="cost">${buff.ranks[rank].cost} Mana</span>
-					<span class="range">${buff.ranks[rank].range} yd. range</span>
-				</div>
+				<div class="requirements">` + 
+					(cost > -1 ? `<span class="cost">${cost} Mana</span>` : ``) + 
+					(range > -1 ? `<span class="range">${range} yd. range</span>` : ``) + 
+				`</div>
 				<div class="cast-time">${baseCastTime}</div>
 				<div class="level">Requires Level ${buff.ranks[rank].level}</div>
 				<p class="description">

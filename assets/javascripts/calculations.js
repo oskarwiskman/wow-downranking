@@ -57,9 +57,11 @@ function calculatePower(healingPower, spellData, rank){
 
 	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
+	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
 
 	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
+	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
 
 	return totalDirectPower + totalOverTimePower;
 }
@@ -292,11 +294,21 @@ function getTalentExtraPower(className, spellName, spellType){
 			let rank = talent.data("current-rank");
 			return (getSpirit() * ((data.rankIncrement * rank)/100))|0;
 		}
-		return 0;
 	}
-	else {
-		return 0;
+	return 0;
+}
+
+function getBuffExtraPowerFactor(className, spellName, spellType){
+	if(className === "shaman"){
+		let buff = getBuffByName('healing_way');
+		if(buff.length > 0 && buff.hasClass('active')){
+			let data = buff.data('buff');
+			if(spellName === 'Healing Wave'){
+				return 1 + data.ranks[2].effect * 3/100;
+			}
+		}
 	}
+	return 1;
 }
 
 function getBuffExtraPower(className, spellName, spellType){
@@ -310,12 +322,9 @@ function getBuffExtraPower(className, spellName, spellType){
 			if(spellName === 'Flash of Light'){
 				return data.ranks[2].flashOfLight;
 			}
-			return 0;
 		}
-		return 0;
-	} else {
-		return 0;
 	}
+	return 0;
 }
 
 function getEffectiveCritChance(className, spellName, spellType){
