@@ -26,19 +26,19 @@ Shaman:
 * Healing Wave
 * Lesser Healing Wave
 
-### Update log
+#### Update log
 
-### 2020-01-24
+#### 2020-01-24
 * Added buff: Healing Way (3 stacks applied) for Shamans. Adds a 18% extra healing done to the target, this is applied after all other considerations. In other words, a cast that would normally heal the target for 1000 health, will heal 1180 with Healing Wave toggled.
 
-### 2020-01-22
+#### 2020-01-22
 * Add support for active buffs. The buff selection will appear if the class has any available buffs and buffs may be toggled on or off by clicking them. Hovering a buff will display a tooltip of the buff which is applied.
 * Added buff: Blessing of Light (Rank 3) for Paladins. Adds a 400 healing power bonus to Holy Light and 115 to Flash of Light. These are applied as extra healing power for these spells after caluclating the cast time penalties, but before applying the sub level 20 penalty. This means that all ranks trainable at level 20 or above will receive a flat bonus according to the tooltip, and sub level 20 spells will be penalized in accordance with that formula.
 
-### 2019-10-08
+#### 2019-10-08
 * Druid talent Nature's Graces added. Will apply an average cast time reduction to spells based on the spell's crit chance. As an example: If you have 30% base crit, and 5 points in Improved Regrowth, landing Regrowth at a total of 80% chance to land critically, Regrowth will have it's cast time reduced by 0.8 * 0.5 = 0.4 seconds.
 
-### 2019-08-19
+#### 2019-08-19
 * Druid talent Moonglow now increments by the correct 3% per rank, instead of 1%.
 * Calculation now applies any extra Healing Power from talents to the base healing amount, instead of the effective amount.
 
