@@ -179,7 +179,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					costCoeff *= (1 - ((data.rankIncrement * rank) / 100));
+					costCoeff -= (data.rankIncrement * rank) / 100;
 				}
 			}
 			talent = getTalentByName('moonglow');
@@ -187,7 +187,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					costCoeff *= (1 - ((data.rankIncrement * rank) / 100));
+					costCoeff -= (data.rankIncrement * rank) / 100;
 				}
 			}
 			return costCoeff;
@@ -208,7 +208,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					costCoeff *=  (1 - ((data.rankIncrement * rank) / 100));
+					costCoeff -=  (data.rankIncrement * rank) / 100;
 				}
 			}
 			talent = getTalentByName('improved_healing');
@@ -216,7 +216,7 @@ function getTalentCostCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					costCoeff *=  (1 - ((data.rankIncrement * rank) / 100));
+					costCoeff -=  (data.rankIncrement * rank) / 100;
 				}
 			}
 			return costCoeff;
