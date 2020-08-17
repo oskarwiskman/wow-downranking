@@ -122,7 +122,8 @@
 			"powerMax":0,
 			"tickFrequency":3,
 			"tickDuration":15,
-			"tickPower":970
+			"tickPower":970,
+			"tablet":true
 		}
 	]
 }

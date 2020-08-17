@@ -19,8 +19,8 @@
 			"level":40,
 			"range":40,
 			"baseCastTime":3,
-			"powerMin":899,
-			"powerMax":1013,
+			"powerMin":924,
+			"powerMax":1039,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -30,8 +30,8 @@
 			"cost":455,
 			"range":40,
 			"baseCastTime":3,
-			"powerMin":1149,
-			"powerMax":1289,
+			"powerMin":1178,
+			"powerMax":1318,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -41,8 +41,8 @@
 			"cost":545,
 			"range":40,
 			"baseCastTime":3,
-			"powerMin":1437,
-			"powerMax":1609,
+			"powerMin":1470,
+			"powerMax":1642,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
@@ -52,8 +52,8 @@
 			"cost":655,
 			"range":40,
 			"baseCastTime":3,
-			"powerMin":1798,
-			"powerMax":2006,
+			"powerMin":1813,
+			"powerMax":2021,
 			"tickInterval":0,
 			"tickDuration":0,
 			"tickPower":0
