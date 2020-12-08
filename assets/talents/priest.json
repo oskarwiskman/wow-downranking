@@ -4,7 +4,7 @@
 		{
 			"name":"mental_agility",
 			"maxRank":5,
-			"rankIncrement":1,
+			"rankIncrement":2,
 			"description":"Reduces the mana cost of your instant cast spells by ${rankIncrement}%.",
 			"image":"mental_agility.jpg",
 			"affectedSpells": [
