@@ -124,6 +124,18 @@ body {
 	text-align: center;
 }
 
+body.tbc {
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/Outland.jpg') no-repeat 0 0;
+	background-color: #1d1d1d;
+	color: #ccc;
+	font-family: "Friz Quadrata";
+	min-height:100%; 
+	padding:0; 
+	position:relative; 
+	background-size: cover;
+	text-align: center;
+}
+
 body footer {
     font-size: 1rem;
     text-align: center;
@@ -155,12 +167,20 @@ body footer .paypal-container{
 	float: right;
 }
 
-#main-header {
+#main-logo {
     max-width: 450px;
+    margin: auto;
     margin-top: 40px;
+    display: block;
 }
 
-#secondary-header {
+#secondary-logo {
+    max-width: 450px;
+    margin: auto;
+    display: block;
+}
+
+#main-header {
 	margin-bottom: 5px;
 }
 

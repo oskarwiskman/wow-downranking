@@ -3,7 +3,11 @@ var fs = require('fs');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Ozgar's Downranking Guide & Tool" });
+  res.render('index', { title: "Ozgar's Downranking Guide & Tool - Classic World of Warcraft" });
+});
+
+router.get('/tbc', function(req, res, next) {
+  res.render('tbc_index', { title: "Ozgar's Downranking Guild & Tool - The Burning Crusade" });
 });
 
 router.get('/cookieinfo', function(req, res, next) {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Ozgar's Downranking Guide & Tool</title>
+		<title>Ozgar's Downranking Guild & Tool - The Burning Crusade</title>
 		<meta charset="UTF-8"> 
-		<meta name="description" content="Downranking Guide and Tool for World of Warcraft:Classic">
-		<meta name="keywords" content="WoW, World of Warcraft, Classic WoW, Downranking, Rank down, Tool, Guide">
+		<meta name="description" content="Downranking Guide and Tool for World of Warcraft: The Burning Crusade - Classic">
+		<meta name="keywords" content="WoW, World of Warcraft, Classic WoW, The Burning Crusade, TBC, Classic TBC, Downranking, Rank down, Tool, Guide">
 		<meta name="author" content="Ozgar">
 		<meta name="msapplication-TileColor" content="#1d1d1d">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -19,19 +19,19 @@
 		<link rel="stylesheet" type="text/css" href='/stylesheets/chart.css'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/classic/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/classic/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/classic/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/classic/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/classic/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/classic/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/classic/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/classic/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/classic/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/classic/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/classic/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/classic/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/classic/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/tbc/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/tbc/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/tbc/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/tbc/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/tbc/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/tbc/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/tbc/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/tbc/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/tbc/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/tbc/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/tbc/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/tbc/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/tbc/favicon-16x16.png">
 		<script src="/javascripts/jquery-3.4.1.min.js"></script>
 		<script src="/javascripts/compliance.js"></script>
 		<script src="/javascripts/rangeslider.min.js"></script>
@@ -45,13 +45,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 	</head>
-	<body>
+	<body class="tbc">
 		<div id="logo-container">
-			<img id="main-logo" src="/images/wow_logo.png" alt="World of Warcraft: Classic"></img>
+			<img id="main-logo" src="/images/tbc_logo.png" alt="World of Warcraft: The Burning Crusade"></img>
 			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
 		</div>
 		<% include expansion_selection.html %>
-		<h1 id="main-header">Ozgar's Downranking Guide & Tool</h1>
+		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
 			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
 		</span>
@@ -127,7 +127,6 @@
 		</div>
 		<div class="credits">Credits to:</br>
 			<a href="https://www.reddit.com/user/melderon/" target="_blank">u/melderon</a> for collaboration and data verification on Classic WoW Beta Servers</br>
-			<a href="https://www.reddit.com/user/slendydaddy/" target="_blank">u/slendydaddy</a> for the amazing high def background</br>
 			<a href="https://classic.wowhead.com/" target="_blank">ClassicWowhead</a> for additional spell data</br>
 		</div>
 		<div class="paypal-container">
