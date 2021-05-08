@@ -28,10 +28,10 @@
 
 		},
 		{
-			"name":"naturalist",
+			"name":"improved_healing_touch",
 			"maxRank":5,
 			"rankIncrement":0.1,
-			"description":"Reduces the cast time of your Healing Touch spell by ${rankIncrement} sec and increases the damage you deal with physical attacks in all forms by ${20*rankIncrement}%.",
+			"description":"Reduces the cast time of your Healing Touch spell by ${rankIncrement} sec.",
 			"image":"healing_touch.jpg",
 			"affectedSpells": [
 				"Healing Touch"
@@ -72,17 +72,6 @@
 
 		},
 		{
-			"name":"empowered_touch",
-			"maxRank":2,
-			"rankIncrement":10,
-			"description":"Your Healing Touch spell gains an additional ${rankIncrement}% of your bonus healing effects.",
-			"image":"empowered_touch.jpg",
-			"affectedSpells": [
-				"Healing Touch"
-			]
-
-		},
-		{
 			"name":"improved_regrowth",
 			"maxRank":5,
 			"rankIncrement":10,
@@ -92,28 +81,6 @@
 				"Regrowth"
 			]
 
-		},
-		{
-			"name":"natural_perfections",
-			"maxRank":3,
-			"rankIncrement":1,
-			"description":"Your critical strike chance with all spells is increased by ${rankIncrement}% and critical strikes against you give you the Natural Perfections effect redusing all damage taken by ${rankIncrement+1}%. Stacks up to 3 times. Lasts 8 sec.",
-			"image":"regrowth.jpg",
-			"affectedSpells": [
-				"heal"
-			]
-		},
-		{
-			"name":"empowered_rejuvination",
-			"maxRank":5,
-			"rankIncrement":4,
-			"description":"The bonus healing effects of your healing over time spells is increased by ${rankIncrement}%.",
-			"image":"empowered_rejuvination.jpg",
-			"affectedSpells": [
-				"Lifebloom",
-				"Rejuvenation",
-				"Regrowth"
-			]
 		}
 	]
 }

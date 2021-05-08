@@ -6,7 +6,7 @@
 			"key":"tree_of_life",
 			"type":"buff",
 			"image":"tree_of_life.jpg",
-			"description":"Shapeshift into the Tree of Life.  While in this form you increase healing received by 25% of your total Spirit for all party members within 45 yards, your movement speed is reduced by 20%, and you can only cast Swiftmend, Innervate, Nature's Swiftness, Rebirth, Barkskin, poison removing and healing over time spells, but the mana cost of these spells is reduced by 20%.</br></br>The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
+			"description":"Shapeshift into the Tree of Life.  While in this form you increase healing received by 25% of your total Spirit for all party members within 45 yards, your movement speed is reduced by 20%, and you can only cast Swiftmend, Innervate, Nature's Swiftness, Rebirth, Barkskin, poison removing and healing over time spells, but the mana cost of these spells is reduced by 20%. The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
 			"ranks":[
 				{	"rank":1,
 					"level":50,
