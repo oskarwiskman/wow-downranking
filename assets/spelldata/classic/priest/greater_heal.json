@@ -1,0 +1,74 @@
+{
+	"class":"priest",
+	"name":"Greater Heal",
+	"type":"heal",
+	"description":"Slow casting spell that heals a single target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "Ozgar",
+				"description": "Founder and creator of <a href='https://www.wowdownrank.com' title='Click to visit wowdownrank.com'>Ozgar's Downranking Guide & Tool</a>."
+			},
+			"note": "<b class='blue'>Greater Heal</b> is your most powerful single target heal, and appropriate for steady healing. I always keep <b class='yellow'>Rank 1</b>, <b class='yellow'>Rank 3</b> and <b class='yellow'>Max Rank</b> on my bars, using them depending on how much healing the situation demands. <b class='blue'>Greater Heal</b> will replace <b class='blue'>Heal</b> when your target is taking too much damage, and you need that extra throughput. <b class='blue'>Greater Heal</b> will become even more powerful once you get the 8 piece set bonus from <a class='epic' href='https://classic.wowhead.com/item-set=211/vestments-of-transcendence' title='Click to view Vestments of Transcendence on classic.wowhead.com'>[Vestments of Transcendence]</a>."
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"cost":370,
+			"level":40,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":924,
+			"powerMax":1039,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":46,
+			"cost":455,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1178,
+			"powerMax":1318,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":52,
+			"cost":545,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1470,
+			"powerMax":1642,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":58,
+			"cost":655,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1813,
+			"powerMax":2021,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":60,
+			"cost":710,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1966,
+			"powerMax":2194,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0,
+			"tablet":true
+		}
+	]
+}

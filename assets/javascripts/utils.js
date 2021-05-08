@@ -345,21 +345,21 @@ function addSpellDataToDOM(spellData, id) {
 }
 
 function getCachedSpellData(className, spellName) {
-	return cache[`/spelldata/${className}/${spellName}.json`];
+	return cache[`/spelldata/${expansion}/${className}/${spellName}.json`];
 }
 
 function loadSpellData(className, spellName, callback, param){
-	let spellPath = `/spelldata/${className}/${spellName}.json`;
+	let spellPath = `/spelldata/${expansion}/${className}/${spellName}.json`;
 	loadJSON(spellPath, callback, param);
 }
 
 function loadTalentData(className, callback){
-	let talentPath = `/talents/${className}.json`
+	let talentPath = `/talents/${expansion}/${className}.json`
 	loadJSON(talentPath, callback);
 }
 
 function loadBuffData(className, callback){
-	let spellPath = `/buffs/${className}.json`;
+	let spellPath = `/buffs/${expansion}/${className}.json`;
 	loadJSON(spellPath, callback);
 }
 

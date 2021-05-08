@@ -1,0 +1,73 @@
+{
+	"class":"shaman",
+	"name":"Chain Heal",
+	"type":"heal",
+	"description":"Heals the friendly target for ${powerMin} to ${powerMax}, then jumps to heal additional nearby targets. If cast on a party member, the heal will only jump to other party members. Each jump is 50% as effective as the previous target. Heals 3 total targets.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":40,
+			"cost":260,
+			"range":40,
+			"baseCastTime":2.5,
+			"powerMin":332,
+			"powerMax":381,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":46,
+			"cost":315,
+			"range":40,
+			"baseCastTime":2.5,
+			"powerMin":419,
+			"powerMax":479,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":54,
+			"cost":405,
+			"range":40,
+			"baseCastTime":2.5,
+			"powerMin":567,
+			"powerMax":646,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":61,
+			"cost":435,
+			"range":40,
+			"baseCastTime":2.5,
+			"powerMin":624,
+			"powerMax":710,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":68,
+			"cost":540,
+			"range":40,
+			"baseCastTime":2.5,
+			"powerMin":833,
+			"powerMax":950,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}

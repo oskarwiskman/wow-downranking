@@ -1,6 +1,9 @@
+let expansion = "";
+
 $(document).ready(function(){
     initRangeSliders();
     newRandomTip();
+    expansion = window.location.href.indexOf("tbc") > -1 ? "tbc" : "classic";
 });
 
 function onClassClicked(elem){

@@ -1,0 +1,95 @@
+{
+	"class":"paladin",
+	"name":"Flash of Light",
+	"type":"heal",
+	"description":"Heals friendly target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":20,
+			"cost":35,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":67,
+			"powerMax":77,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":26,
+			"cost":50,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":102,
+			"powerMax":117,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":34,
+			"cost":70,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":153,
+			"powerMax":171,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":42,
+			"cost":90,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":206,
+			"powerMax":231,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":50,
+			"cost":115,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":278,
+			"powerMax":310,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":6,
+			"level":58,
+			"cost":140,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":356,
+			"powerMax":396,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":7,
+			"level":66,
+			"cost":180,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":458,
+			"powerMax":513,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}

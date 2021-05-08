@@ -1,0 +1,86 @@
+{
+	"class":"druid",
+	"talents": [
+		{
+			"name":"moonglow",
+			"maxRank":3,
+			"rankIncrement":3,
+			"description":"Reduces the Mana cost of your Moonfire, Starfire, Wrath, Healing Touch, Regrowth and Rejuvenation spells by ${rankIncrement}%.",
+			"image":"moonglow.jpg",
+			"affectedSpells": [
+				"Moonfire",
+				"Starfire",
+				"Wrath",
+				"Healing Touch",
+				"Regrowth",
+				"Rejuvenation"
+			]
+		},
+		{
+			"name":"improved_healing_touch",
+			"maxRank":5,
+			"rankIncrement":0.1,
+			"description":"Reduces the cast time of your Healing Touch spell by ${rankIncrement} sec.",
+			"image":"healing_touch.jpg",
+			"affectedSpells": [
+				"Healing Touch"
+			]
+		},
+		{
+			"name":"tranquil_spirit",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Reduces the mana cost of your Healing Touch and Tranquility spells by ${rankIncrement}%.",
+			"image":"tranquil_spirit.jpg",
+			"affectedSpells": [
+				"Healing Touch",
+				"Tranquility"
+			]
+
+		},
+		{
+			"name":"improved_rejuvenation",
+			"maxRank":3,
+			"rankIncrement":5,
+			"description":"Increases the effect of your Rejuvenation spell by ${rankIncrement}%.",
+			"image":"rejuvenation.jpg",
+			"affectedSpells": [
+				"Rejuvenation"
+			]
+
+		},
+		{
+			"name":"gift_of_nature",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Increases the effect of all healing spells by ${rankIncrement}%.",
+			"image":"gift_of_nature.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+
+		},
+		{
+			"name":"improved_regrowth",
+			"maxRank":5,
+			"rankIncrement":10,
+			"description":"Increases the critical effect chance of your Regrowth spell by ${rankIncrement}%.",
+			"image":"regrowth.jpg",
+			"affectedSpells": [
+				"Regrowth"
+			]
+
+		},
+		{
+			"name":"nature-s_grace",
+			"maxRank":1,
+			"rankIncrement":0.5,
+			"description":"All spell criticals grace you with a blessing of nature, reducing the casting time of your next spell by 0.5 sec.",
+			"image":"natures_grace.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+
+		}
+	]
+}

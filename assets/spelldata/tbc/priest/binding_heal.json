@@ -1,0 +1,29 @@
+{
+	"class":"priest",
+	"name":"Binding Heal",
+	"type":"heal",
+	"description":"Heals a friendly target and the caster for ${powerMin} to ${powerMax}. Low threat.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":70,
+			"cost":705,
+			"range":40,
+			"baseCastTime":1.5,
+			"powerMin":1053,
+			"powerMax":1350,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}
