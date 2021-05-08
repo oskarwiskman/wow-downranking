@@ -22,7 +22,7 @@ function onClassClicked(elem){
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
 		let className = target.attr('id');
-		if(className === "priest"){
+		if(className === "priest" || className === "druid"){
 			showSpirit();
 		} else {
 			hideSpirit();

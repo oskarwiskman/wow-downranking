@@ -129,7 +129,7 @@ function buildTalentTooltip(talent, rank) {
 	let regExp = /\${([^}]+)}/g;
 	let matches = description.match(regExp);
 	let state = "";
-	let footer = "";
+	let footer = talent.description;
 	if(matches){
 		for(let i = 0; i < matches.length; i++){
 			let match = matches[i];
@@ -144,7 +144,7 @@ function buildTalentTooltip(talent, rank) {
 				state = "last";
 			} else {
 				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
-				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
+				footer = `</br>Next rank:</br><span class="next-rank">${footer.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
 			}
 		}
 	}
@@ -177,7 +177,7 @@ function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
 }
 
 function buildSpellHtmlForClass(className, onClick, container){
-	var path = `/spelldata/${className}/`
+	var path = `/spelldata/${expansion}/${className}/`
 	$.get(path, function(response){
 		var html = "";
 		$(response).each(function(){
