@@ -96,14 +96,17 @@ function calculatePowerTbc(healingPower, spellData, rank){
 	}
 	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
+	directExtraPower *= getDownrankPenalty(rankData.level);
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
+	overTimeExtraPower *= getDownrankPenalty(rankData.level);
 
-	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
-	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
+	let totalDirectPower = directPower + directExtraPower;
+	totalDirectPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
 	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
 
-	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
+	totalOverTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
 
 	return totalDirectPower + totalOverTimePower;
