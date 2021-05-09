@@ -16,17 +16,11 @@ function onClassClicked(elem){
 		$('#spell-selection').addClass('hidden');
 		$('#buff-selection').addClass('hidden');
 		showSpellAffectingTalentsFor();
-		hideSpirit();
 
 	} else {
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
 		let className = target.attr('id');
-		if(className === "priest" || className === "druid"){
-			showSpirit();
-		} else {
-			hideSpirit();
-		}
 		showSpellAffectingTalentsFor(className);
 		showSpellSelectionFor(className, 'onSpellClicked(this)', $('#spell-selection'));
 		showBuffSelectionFor(className);

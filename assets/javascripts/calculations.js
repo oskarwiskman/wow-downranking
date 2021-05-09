@@ -287,14 +287,6 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 
 
 function getTalentExtraPower(className, spellName, spellType){
-	if(className === "priest"){
-		let talent = getTalentByName('spiritual_guidance');
-		if(talent.length > 0) {
-			let data = talent.data("talent");
-			let rank = talent.data("current-rank");
-			return (getSpirit() * ((data.rankIncrement * rank)/100))|0;
-		}
-	}
 	return 0;
 }
 
