@@ -95,8 +95,10 @@ function calculatePowerTbc(healingPower, spellData, rank){
 	    	break;
 	}
 	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
+	directExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
 	directExtraPower *= getDownrankPenalty(rankData.level);
+	overTimeExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type, '_HoT');
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
 	overTimeExtraPower *= getDownrankPenalty(rankData.level);
 
@@ -213,6 +215,42 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 	return 1;
 }
 
+function getTalentExtraPowerCoefficient(className, spellName, spellType, specification=''){
+	let talent;
+	let data;
+	let rank;
+	let powerCoef = 1;
+	switch(className) {
+		case "druid":
+			talent = getTalentByName('empowered_touch');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			talent = getTalentByName('empowered_rejuvination');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data) || isAffected(spellName+specification, spellType, data)) {
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
+		case "paladin":
+			return 1;
+		case "priest":
+			return 1;
+		case "shaman":
+			return 1;
+		default:
+			return 1;
+	}
+	return 1;
+}
+
 function getTalentCostCoefficient(className, spellName, spellType){
 	let talent;
 	let data;
@@ -287,12 +325,12 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
-			talent = getTalentByName('improved_healing_touch');
+			talent = getTalentByName('naturalist');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return data.rankIncrement * rank;
+					return data.castReduction * rank;
 				}
 			}
 			talent = getTalentByName('nature-s_grace');
@@ -362,7 +400,7 @@ function getBuffExtraPower(className, spellName, spellType){
 
 function getEffectiveCritChance(className, spellName, spellType){
 	let critChance = getCritChance();
-	let talents = ['improved_regrowth', 'holy_specialization', 'holy_power', 'tidal_mastery']
+	let talents = ['improved_regrowth', 'natural_perfection', 'holy_specialization', 'holy_power', 'tidal_mastery']
 	let rank;
 	for(let i = 0; i < talents.length; i++){
 		talent = getTalentByName(talents[i]);
