@@ -259,10 +259,10 @@ input {
 }
 
 .table-container {
-
 }
 
 .table-container table {
+	overflow-x: auto;
 	margin-top: 20px;
     display: inline-block;
     max-width: 400px;

@@ -80,8 +80,14 @@ function buildSpellTable(spellData, healingPower) {
 							<th data-sort-mode="asc">Mana cost</th>
 							<th>HpME</th>
 							<th>HpS</th>
-							<th>HES</th>
-						</tr>
+							<th>HES</th>`;
+	if (getSpellType(spellData.ranks[0]) === 'hybrid') {
+		table +=		   `<th>Direct coefficient</th>
+							<th>Over time coefficient</th>`
+	} else {
+		table +=		   `<th>Coefficient</th>`
+	} 
+	table +=			`</tr>
 					</thead>
 					<tbody>
 						${rows}
@@ -97,17 +103,25 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let HpME = calculatePowerPerMana(healingPower, spellData, rank);
 	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
 	let HES = calculateHES(HpME, HpS);
-
-	return `<tr>
+	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*getDownrankPenalty(spellData.ranks[rank-1].level);
+	let directCoefficient = getDirectSpellCoeficient(spellData, rank) * levelPenaltyCoefficient * 100;
+	let overTimeCoefficient = getOverTimeCoeficient(spellData, rank) * levelPenaltyCoefficient * 100;
+	let row =`<tr>
 				<td data-sort-value="${rank}">${rank}</td>
 				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 1)}">${roundNumber(calculatePower(healingPower, spellData, rank), 1)}</td>
 				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 1)}">${roundNumber(calculateCost(healingPower, spellData, rank), 1)}</td>
 				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
 				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
-				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>
-			</tr>`
+				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>\n`;
+	if (directCoefficient > 0) {
+		row +=	`\n<td data-sort-value="${roundNumber(directCoefficient, 1)}">${roundNumber(directCoefficient, 1)}%</td>\n`
+	}
+	if (overTimeCoefficient > 0) {
+		row +=	`<td data-sort-value="${roundNumber(overTimeCoefficient, 1)}">${roundNumber(overTimeCoefficient, 1)}%</td>\n`;
+	}
+	row +=	 `</tr>`;
+	return row;
 }
-
 
 function buildSpellDescription(spell, rank) {
 	var description = spell.description;
