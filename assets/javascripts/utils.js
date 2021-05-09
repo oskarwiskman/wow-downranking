@@ -149,16 +149,15 @@ function showResult(id){
 	$(id).removeClass("hidden");
 }
 
-function hideCritChance(){
-	$('#crit-chance-container').addClass("hidden");
-}
-
-function showCritChance(){
-	$('#crit-chance-container').removeClass("hidden");
-}
-
 function getCritChance(){
-	return Math.max(0, Math.min(100, $('#crit-chance').val()));
+	let critChance = expansion === 'tbc' ? roundNumber(Math.max(0, Math.min(2210, $('#crit-rating').val()) / 22.1), 1) : Math.max(0, Math.min(2221, $('#crit-chance').val()));
+	if(!critChance || critChance < 0) critChance = 0;
+	if(critChance > 100) critChance = 100;
+	return parseInt(critChance);
+}
+
+function getHasteCoefficient(){
+	return expansion === 'tbc' ? 1-roundNumber(Math.max(0, Math.min(3000, $('#haste-rating').val()) / 15.8), 1)/100 : 1;
 }
 
 function getSelectedClassName(){
@@ -304,13 +303,6 @@ function getHealingPower(){
 	if(!healingPower || healingPower < 0) healingPower = 0;
 	if(healingPower > 5000) healingPower = 5000;
 	return parseInt(healingPower);
-}
-
-function getCritChance(){
-	let critChance = $('#crit-chance').val();
-	if(!critChance || critChance < 0) critChance = 0;
-	if(critChance > 100) critChance = 100;
-	return parseInt(critChance);
 }
 
 function toTitleCase(str) {

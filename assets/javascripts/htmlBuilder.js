@@ -108,8 +108,8 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let overTimeCoefficient = getOverTimeCoeficient(spellData, rank) * levelPenaltyCoefficient * 100;
 	let row =`<tr>
 				<td data-sort-value="${rank}">${rank}</td>
-				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 1)}">${roundNumber(calculatePower(healingPower, spellData, rank), 1)}</td>
-				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 1)}">${roundNumber(calculateCost(healingPower, spellData, rank), 1)}</td>
+				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 0)}">${roundNumber(calculatePower(healingPower, spellData, rank), 0)}</td>
+				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 0)}">${roundNumber(calculateCost(healingPower, spellData, rank), 0)}</td>
 				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
 				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
 				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>\n`;

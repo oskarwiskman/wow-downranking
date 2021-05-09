@@ -50,7 +50,10 @@
 			<img id="main-logo" src="/images/tbc_logo.png" alt="World of Warcraft: The Burning Crusade"></img>
 			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
 		</div>
-		<% include expansion_selection.html %>
+		<div id="expansion-selection">
+			<div class="navbar">
+				<a class="icon-medium" id="classic-wow" title="World of Warcraft: Classic" alt="Classic WoW" style="background-image: url(/images/classic_wow_icon.png)" href="/"></a>
+		</div>
 		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
 			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
@@ -64,9 +67,15 @@
 				</span>
 			</div>
 			<div class="character-info">
-				<label for="crit-chance">Critical effect chance</label>
+				<label for="crit-rating">Spell Critical Strike Rating</label>
 				<span>
-					<input id="crit-chance" type="number" min="0" max="100" value="0" onChange="refreshTooltip()"><span>%</span>
+					<input id="crit-rating" type="number" min="0" max="3000" value="0" onChange="refreshTooltip()"><span></span>
+				</span>
+			</div>
+			<div class="character-info">
+				<label for="haste-rating">Spell Haste Rating</label>
+				<span>
+					<input id="haste-rating" type="number" min="0" max="3000" value="0" onChange="refreshTooltip()"><span></span>
 				</span>
 			</div>
 		</div>
@@ -80,12 +89,6 @@
 				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)" onClick="onClassClicked(this);"></a>
 				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
 			</div>
-		</div>
-		<div id="spirit-container" class="class-stat hidden">
-			<label for="spirit">Amount of spirit</label>
-			<span>
-				<input id="spirit" type="number" min="0" value="0" onChange="refreshTooltip()">
-			<span>
 		</div>
 		<div id="talent-selection" class="hidden">
 			<h4 class="header">Fill out your talents</h4>
@@ -109,7 +112,7 @@
 			<span id="tip"></span>
 		</div>
 	</body>
-	<% include how_it_works_modal.html %>
+	<% include how_it_works_modal/tbc_main.html %>
 	<% include spell_details_modal.html %>
 	<% include compare_modal.html %>
 	<footer>

@@ -1,0 +1,24 @@
+<div id="info-modal" class="modal">
+	<div class="background"></div>
+	<div class="content">
+		<h1 class="title">How it works!</h1>
+		<h3>Introduction</h3>
+		<p id="introduction">
+			The summer of 2019, right before Classic was coming up I was feeling too exited to play any other game, and since I still had no key to the Beta, I decided to make better use of my time than drooling over Beta videos and streams. The result is a tool that will help players choose the most mana efficient healing spell ranks!</br></br>
+
+			Looking for <i style="color: #5dc12a">The Burning Crusade</i> version? It's <a href="/tbc">right here</a>!</br></br>
+
+			The rank selection is based on a <i>Healing Efficiency Score</i> (<b class="yellow">HES</b>), which is derived from the combination of <i>Healing per Mana Efficiency</i> (<b class="yellow">HPME</b>) and <i>Healing per Second</i> (<b class="yellow">HpS</b>). A detailed description can be found in the <a href="#calc">calculations section</a></br></br>
+		</p>
+
+		<% include donations.html %>
+
+		<p>If you want a more detailed explanation of how downranking works in Classic Wow, what to think about and how to apply it to your gaming, check out this video made by <a href="https://www.youtube.com/channel/UCGm8RmKIW0EF1RfmNFVr2-Q">Defcamp & Melderon</a>!</p>
+		<iframe width="522" height="290" src="https://www.youtube-nocookie.com/embed/HBDfRiB1Zlk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<% include using_the_tool.html %>
+		<% include calculations/classic_calculations.html %>
+		<span class="btn pull-right">
+			<a href="#" rel="modal:close">Close</a>
+		</span>
+	</div>
+</div>

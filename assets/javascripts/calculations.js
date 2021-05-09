@@ -12,7 +12,7 @@ function calculateMostEfficientRank(healingPower, spellData){
 		let PpM = calculatePowerPerMana(healingPower, spellData, rank);
 		let PpS = calculatePowerPerSecond(healingPower, spellData, rank);
 		let HES = calculateHES(PpM, PpS);
-		if(HES > bestHES){
+		if(HES > bestHES || (HES === bestHES && rank > bestRank)){
 			bestHES = HES;
 			bestRank = rank;
 		}
@@ -361,7 +361,7 @@ function getBuffExtraPower(className, spellName, spellType){
 }
 
 function getEffectiveCritChance(className, spellName, spellType){
-	let critChance = parseInt(getCritChance());
+	let critChance = getCritChance();
 	let talents = ['improved_regrowth', 'holy_specialization', 'holy_power', 'tidal_mastery']
 	let rank;
 	for(let i = 0; i < talents.length; i++){
@@ -374,7 +374,7 @@ function getEffectiveCritChance(className, spellName, spellType){
 			}
 		}
 	}
-	return critChance;
+	return Math.min(100, critChance);
 }
 
 function getCritChanceCoefficient(critChance) {

@@ -50,7 +50,11 @@
 			<img id="main-logo" src="/images/wow_logo.png" alt="World of Warcraft: Classic"></img>
 			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
 		</div>
-		<% include expansion_selection.html %>
+		<div id="expansion-selection">
+			<div class="navbar">
+				<a class="icon-medium" id="classic-tbc" title="The Burning Crusade: Classic" alt="Classic TBC" style="background-image: url(/images/classic_tbc_icon.png)" href="/tbc"></a>
+			</div>
+		</div>
 		<h1 id="main-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
 			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
@@ -110,7 +114,7 @@
 			<span id="tip"></span>
 		</div>
 	</body>
-	<% include how_it_works_modal.html %>
+	<% include how_it_works_modal/classic_main.html %>
 	<% include spell_details_modal.html %>
 	<% include compare_modal.html %>
 	<footer>
