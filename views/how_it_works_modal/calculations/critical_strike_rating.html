@@ -1,0 +1,13 @@
+<h4>Spell Critical Strike Rating</h4>
+<p>
+	Critical Strike Rating increases your chance to land critical hit, causing <b class="yellow">150%</b> of its normal healing effect. Direct spell effects are subjectable to critical hits, and over time effects are not.</br></br>
+
+	<b class="yellow">22.1</b> Spell Critical Strike Rating grants <b class="yellow">1%</b> Critical Stike Chance at level <b class="yellow">70</b>.
+
+	Since landing critical hits will highly increase your healing throughput, critical chance does have a small effect on the <b class="yellow">HES</b> due to the higher <b class="yellow">HpS</b>. In this tool, critical chance is applied to the direct part of spells, as a static factor:
+
+	<code>
+		[Critical effect chance] = [Critical Strike Rating] / 22.1 </br>
+		(1 + (1 + [Critical effect chance]/100)) / 2 = [Crit Coefficient]
+	</code>
+</p>
