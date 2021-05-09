@@ -403,11 +403,11 @@ function getSpellType(spell){
  * @param 	{Object}	spellData      	Data for the spell.
  * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above, unless custom direct coefficient is specified in the data 
+ * @return 	{double} 	directCoeff		Returns the penalty calculated by the formula above, unless custom direct coefficient is specified in the data 
  *										by adding the attribute directCoeff. If castTime larger than 7 returns 2.
  */
 function getDirectSpellCoeficient(spellData, rank){
-	if (spellData.directCoef) return spellData.directCoef;
+	if (spellData.directCoeff) return spellData.directCoeff;
 	castTime = spellData.ranks[rank-1].baseCastTime;
 	if(castTime > 7) castTime = 7;
 	if(castTime < 1.5) castTime = 1.5;
@@ -425,7 +425,7 @@ function getDirectSpellCoeficient(spellData, rank){
  *										by adding the attribute overTimeCoef. If duration larger than 15 returns 1.
  */
 function getOverTimeCoeficient(spellData, rank){
-	if (spellData.overTimeCoef) return spellData.overTimeCoef;
+	if (spellData.overTimeCoeff) return spellData.overTimeCoeff;
 	duration = spellData.ranks[rank-1].tickDuration;
 	if(duration > 15) return 1;
 	return duration/15;
@@ -462,14 +462,14 @@ function getHybridCoeficients(spellData, rank){
 	}
 
 	let overTimePortion = (duration / 15) / ((duration / 15) + (castTime / 3.5));
-	let overTimeCoef = (duration / 15) * overTimePortion;
+	let overTimeCoeff = (duration / 15) * overTimePortion;
 	
 	let directPortion =  1 - overTimePortion;
-	let directCoef = (castTime / 3.5) * directPortion;
+	let directCoeff = (castTime / 3.5) * directPortion;
 
 	return {
-		"direct": (spellData.directCoef ? spellData.directCoef : directCoef), 
-		"overTime": (spellData.overTimeCoef ? spellData.overTimeCoef : overTimeCoef)
+		"direct": (spellData.directCoeff ? spellData.directCoeff : directCoeff), 
+		"overTime": (spellData.overTimeCoeff ? spellData.overTimeCoeff : overTimeCoeff)
 	};
 }
 
