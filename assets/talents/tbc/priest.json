@@ -65,6 +65,19 @@
 			"affectedSpells": [
 				"heal"
 			]
+		},
+		{
+			"name":"empowered_healing",
+			"maxRank":5,
+			"ghIncrement":4,
+			"fhAndBhIncrement":2,
+			"description":"Your Greter Heal spell gains an additional ${ghIncrement} and your Flash Heal and Binding Heal gain an additional ${fhAndBhIncrement} of your bonus healing effects.",
+			"image":"greater_heal.jpg",
+			"affectedSpells": [
+				"Greater Heal",
+				"Flash Heal",
+				"Binding Heal"
+			]
 		}
 	]
 }

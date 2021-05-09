@@ -103,7 +103,7 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let HpME = calculatePowerPerMana(healingPower, spellData, rank);
 	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
 	let HES = calculateHES(HpME, HpS);
-	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*getDownrankPenalty(spellData.ranks[rank-1].level);
+	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*(expansion === 'tbc' ? getDownrankPenalty(spellData.ranks[rank-1].level) : 1);
 	let directCoefficient = getDirectSpellCoeficient(spellData, rank) * levelPenaltyCoefficient * 100;
 	let overTimeCoefficient = getOverTimeCoeficient(spellData, rank) * levelPenaltyCoefficient * 100;
 	let row =`<tr>

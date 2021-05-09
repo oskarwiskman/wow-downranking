@@ -12,6 +12,7 @@
 			"note": ""
 		}
 	],
+	"directCoeff":0.429,
 	"critable":true,
 	"ranks":[
 		{	"rank":1,

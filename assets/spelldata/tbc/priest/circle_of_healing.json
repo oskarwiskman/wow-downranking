@@ -1,0 +1,74 @@
+{
+	"class":"priest",
+	"name":"Circle of Healing",
+	"type":"heal",
+	"description":"Heals a friendly target and that target's party members within 15 yards of the target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"directCoeff":0.214,
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":50,
+			"cost":300,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":250,
+			"powerMax":274,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":56,
+			"cost":337,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":292,
+			"powerMax":323,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":60,
+			"cost":375,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":332,
+			"powerMax":367,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":65,
+			"cost":412,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":376,
+			"powerMax":415,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":70,
+			"cost":450,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":409,
+			"powerMax":451,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}
