@@ -40,6 +40,16 @@
 			"affectedSpells": [
 				"heal"
 			]
+		},
+		{
+			"name":"improved_chain_heal",
+			"maxRank":2,
+			"rankIncrement":10,
+			"description":"Increases the amount healed by your Chain Heal spell by ${rankIncrement}%.",
+			"image":"chain_heal.jpg",
+			"affectedSpells": [
+				"heal"
+			]
 		}
 	]
 }
