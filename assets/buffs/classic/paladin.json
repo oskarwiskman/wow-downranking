@@ -31,14 +31,6 @@
 					"baseCastTime":0,
 					"holyLight":400,
 					"flashOfLight":115
-				},
-				{	"rank":4,
-					"level":69,
-					"cost":180,
-					"range":30,
-					"baseCastTime":0,
-					"holyLight":580,
-					"flashOfLight":185
 				}
 			]
 		}

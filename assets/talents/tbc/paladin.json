@@ -33,6 +33,16 @@
 			"affectedSpells": [
 				"heal"
 			]
+		},
+		{
+			"name":"sanctified_light",
+			"maxRank":3,
+			"rankIncrement":2,
+			"description":"Increases the critical effect chance of your Holy Light spell by ${rankIncrement}%.",
+			"image":"sanctified_light.jpg",
+			"affectedSpells": [
+				"Holy Light"
+			]
 		}
 	]
 }
