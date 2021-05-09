@@ -26,29 +26,72 @@ function calculateHES(PpM, PpS){
 }
 
 function calculatePower(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
-	let rankData = spellData.ranks[index];
-	let nextRankLevel = index < spellData.ranks.length - 1 ? spellData.ranks[index+1].level : undefined;
+	return expansion === 'tbc' ? calculatePowerTbc(healingPower, spellData, rank) : calculatePowerClassic(healingPower, spellData, rank);
+}
+
+function calculatePowerClassic(healingPower, spellData, rank){
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankData = spellData.ranks[rankIndex];
+	let nextRankLevel = rankIndex < spellData.ranks.length - 1 ? spellData.ranks[rankIndex+1].level : undefined;
 	let directPower = 0;
 	let overTimePower = 0;
 	let directExtraPower = 0;
 	let overTimeExtraPower = 0;
-	let coefficient;
-	healingPower += getTalentExtraPower(spellData.class, spellData.name, spellData.type);
 	switch(getSpellType(rankData)){
 		case "direct":
 			directPower = (rankData.powerMax + rankData.powerMin) / 2;
-			directExtraPower = healingPower * getDirectSpellCoeficient(rankData.baseCastTime);
+			directExtraPower = healingPower * getDirectSpellCoeficient(spellData, rank);
 			break;
 	  	case "overTime":
 	  		overTimePower = rankData.tickPower;
-	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(rankData.tickDuration);
+	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(spellData, rank);
 	    	break;
 	  	case "hybrid":
 	  		directPower = (rankData.powerMax + rankData.powerMin) / 2;
   			overTimePower = rankData.tickPower;
-	  		directExtraPower = healingPower * spellData.directCoeff;
-	  		overTimeExtraPower = healingPower * spellData.overTimeCoeff;
+			let coefficient = getHybridCoeficients(spellData, rank);
+	  		directExtraPower = healingPower * coefficient["direct"];
+	  		overTimeExtraPower = healingPower * coefficient["overTime"];
+	    	break;
+	}
+	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
+	directExtraPower *= getSubLevel20Penalty(rankData.level);
+	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
+
+	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
+	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+
+	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	let totalOverTimePower = overTimePower + overTimeExtraPower;
+	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+
+	return totalDirectPower + totalOverTimePower;
+}
+
+function calculatePowerTbc(healingPower, spellData, rank){
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankData = spellData.ranks[rankIndex];
+	let nextRankLevel = rankIndex < spellData.ranks.length - 1 ? spellData.ranks[rankIndex+1].level : undefined;
+	let directPower = 0;
+	let overTimePower = 0;
+	let directExtraPower = 0;
+	let overTimeExtraPower = 0;
+	switch(getSpellType(rankData)){
+		case "direct":
+			directPower = (rankData.powerMax + rankData.powerMin) / 2;
+			directExtraPower = healingPower * getDirectSpellCoeficient(spellData, rank);
+			break;
+	  	case "overTime":
+	  		overTimePower = rankData.tickPower;
+	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(spellData, rank);
+	    	break;
+	  	case "hybrid":
+	  		directPower = (rankData.powerMax + rankData.powerMin) / 2;
+  			overTimePower = rankData.tickPower;
+			let coefficient = getHybridCoeficients(spellData, rank);
+	  		directExtraPower = healingPower * coefficient["direct"];
+	  		overTimeExtraPower = healingPower * coefficient["overTime"];
 	    	break;
 	}
 	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
@@ -67,9 +110,9 @@ function calculatePower(healingPower, spellData, rank){
 }
 
 function calculatePowerPerSecond(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
 	let power = calculatePower(healingPower, spellData, rank);
-	let rankData = spellData.ranks[index];
+	let rankData = spellData.ranks[rankIndex];
 	let divider;
 	switch(getSpellType(rankData)){
 		case "direct":
@@ -87,8 +130,8 @@ function calculatePowerPerSecond(healingPower, spellData, rank){
 }
 
 function calculateCost(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
-	let cost = spellData.ranks[index].cost;
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let cost = spellData.ranks[rankIndex].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
 	return cost;
 }
@@ -285,11 +328,6 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	}
 }
 
-
-function getTalentExtraPower(className, spellName, spellType){
-	return 0;
-}
-
 function getBuffExtraPowerFactor(className, spellName, spellType){
 	if(className === "shaman"){
 		let buff = getBuffByName('healing_way');
@@ -362,11 +400,15 @@ function getSpellType(spell){
  * The coeficients for direct spells are affected by the cast time.
  * The formula for this is: [Cast Time of Spell] / 3.5 = [Coefficient]
  * 
- * @param 	{double}	castTime      	Spell cast time in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above. If castTime larger than 7 returns 2.
+ * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above, unless custom direct coefficient is specified in the data 
+ *										by adding the attribute directCoeff. If castTime larger than 7 returns 2.
  */
-function getDirectSpellCoeficient(castTime){
+function getDirectSpellCoeficient(spellData, rank){
+	if (spellData.directCoef) return spellData.directCoef;
+	castTime = spellData.ranks[rank-1].baseCastTime;
 	if(castTime > 7) castTime = 7;
 	if(castTime < 1.5) castTime = 1.5;
 	return castTime/3.5;
@@ -376,11 +418,15 @@ function getDirectSpellCoeficient(castTime){
  * The coeficients for over time spells are affected by the duration.
  * The formula for this is: [Duration of Spell] / 15 = [Coefficient]
  * 
- * @param 	{int}		duration      	Spell duration in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{double} 	overTimeCoef	Returns the penalty calculated by the formula above. If duration larger than 15 returns 1.
+ * @return 	{double} 	overTimeCoef	Returns the penalty calculated by the formula above unless custom over time coefficient is specified in the data 
+ *										by adding the attribute overTimeCoef. If duration larger than 15 returns 1.
  */
-function getOverTimeCoeficient(duration){
+function getOverTimeCoeficient(spellData, rank){
+	if (spellData.overTimeCoef) return spellData.overTimeCoef;
+	duration = spellData.ranks[rank-1].tickDuration;
 	if(duration > 15) return 1;
 	return duration/15;
 }
@@ -395,12 +441,16 @@ function getOverTimeCoeficient(duration){
  *  [Over-Time coefficient]	=	([Duration] / 15) * [Over-Time portion]
  *  [Direct coefficient]	=	([Cast Time / 3.5) * [Direct portion]
  * 
- * @param 	{double}	castTime    		Spell cast time in seconds.
- * @param 	{double}	duration 			Spell duration in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{Array[2]} 	hybridCoeficients 	Array containing the respective coeficients, index 0 holds direct coeficient and 1 holds over time coeficient.
+ * @return 	{Object[2]} hybridCoeficients 	Object containing the respective coeficients calculated using the formula above, unless custom 
+ *											coefficients are specified in the data by adding the attribute directCoef and or overTimeCoef.
+ *											Attributes can be accessed as direct and overTime.
  */
-function getHybridCoeficients(castTime, duration){
+function getHybridCoeficients(spellData, rank){
+	let castTime = spellData.ranks[rank-1].baseCastTime;
+	let duration = spellData.ranks[rank-1].tickDuration;
 	if(castTime > 7){
 		castTime = 7;
 	}
@@ -418,8 +468,8 @@ function getHybridCoeficients(castTime, duration){
 	let directCoef = (castTime / 3.5) * directPortion;
 
 	return {
-		"direct": directCoef, 
-		"overTime": overTimeCoef
+		"direct": (spellData.directCoef ? spellData.directCoef : directCoef), 
+		"overTime": (spellData.overTimeCoef ? spellData.overTimeCoef : overTimeCoef)
 	};
 }
 
@@ -437,4 +487,16 @@ function getSubLevel20Penalty(spellLevel){
 	} else {
 		return 1;
 	}
+}
+
+/**
+ * Casting a spell that is lower than the maximum rank available at the current character level incurs a penalty to the coefficient of the spell. 
+ * The formula for this is: ([Spell Level] + 11) / [Character level] = [Penalty]
+ * 
+ * @param 	{integer}	spellLevel      	The character level required to learn the spell.
+ *
+ * @return 	{double} 	downrankPenalty 	Returns the penalty calculated by the formula above. If the result is above 1, it returns 1.
+ */
+function getDownrankPenalty(spellLevel){
+	return Math.min((spellLevel + 11) / 70, 1);
 }
