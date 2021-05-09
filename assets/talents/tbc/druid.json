@@ -20,12 +20,11 @@
 			"name":"nature-s_grace",
 			"maxRank":1,
 			"rankIncrement":0.5,
-			"description":"All spell criticals grace you with a blessing of nature, reducing the casting time of your next spell by 0.5 sec.",
+			"description":"All spell criticals grace you with a blessing of nature, reducing the casting time of your next spell by ${rankIncrement} sec.",
 			"image":"natures_grace.jpg",
 			"affectedSpells": [
 				"heal"
 			]
-
 		},
 		{
 			"name":"naturalist",
@@ -98,7 +97,7 @@
 			"name":"natural_perfection",
 			"maxRank":3,
 			"rankIncrement":1,
-			"description":"Your critical strike chance with all spells is increased by ${rankIncrement}% and critical strikes against you give you the Natural Perfections effect redusing all damage taken by ${rankIncrement+1}%. Stacks up to 3 times. Lasts 8 sec.",
+			"description":"Your critical strike chance with all spells is increased by ${rankIncrement}% and critical strikes against you give you the Natural Perfections effect redusing all damage taken by ${rankIncrement}%. Stacks up to 3 times. Lasts 8 sec.",
 			"image":"natural_perfection.jpg",
 			"affectedSpells": [
 				"heal"
