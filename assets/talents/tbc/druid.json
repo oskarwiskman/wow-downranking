@@ -110,9 +110,9 @@
 			"description":"The bonus healing effects of your healing over time spells is increased by ${rankIncrement}%.",
 			"image":"empowered_rejuvination.jpg",
 			"affectedSpells": [
-				"Lifebloom_HoT",
+				"Lifebloom",
 				"Rejuvenation",
-				"Regrowth_HoT"
+				"Regrowth"
 			]
 		}
 	]

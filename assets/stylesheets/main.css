@@ -286,6 +286,7 @@ input {
 	font-size: 18px;
 	line-height: 18px;
 	margin-bottom: 8px;
+	max-width: inherit;
 }
 
 .table-container table td {

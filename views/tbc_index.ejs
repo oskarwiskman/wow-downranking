@@ -90,6 +90,12 @@
 				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
 			</div>
 		</div>
+		<div id="spirit-container" class="class-stat hidden">
+			<label for="spirit">Amount of spirit</label>
+			<span>
+				<input id="spirit" type="number" min="0" max="5000" value="0" onChange="refreshTooltip()">
+			<span>
+		</div>
 		<div id="talent-selection" class="hidden">
 			<h4 class="header">Fill out your talents</h4>
 			<div class="navbar"></div>

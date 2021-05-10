@@ -13,8 +13,8 @@
 		}
 	],
 	"critable":true,
-	"directCoeff":0.286,
-	"overTimeCoeff":0.497,
+	"directCoeff":0.325,
+	"overTimeCoeff":0.513,
 	"ranks":[
 		{	"rank":1,
 			"level":12,

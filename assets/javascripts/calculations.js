@@ -60,11 +60,11 @@ function calculatePowerClassic(healingPower, spellData, rank){
 
 	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
-	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
-	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalOverTimePower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	return totalDirectPower + totalOverTimePower;
 }
@@ -98,18 +98,18 @@ function calculatePowerTbc(healingPower, spellData, rank){
 	directExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
 	directExtraPower *= getDownrankPenalty(rankData.level);
-	overTimeExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type, '_HoT');
+	overTimeExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
 	overTimeExtraPower *= getDownrankPenalty(rankData.level);
 
 	let totalDirectPower = directPower + directExtraPower;
 	totalDirectPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	totalDirectPower *= getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
-	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
 	totalOverTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
-	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalOverTimePower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	return totalDirectPower + totalOverTimePower;
 }
@@ -138,6 +138,7 @@ function calculateCost(healingPower, spellData, rank){
 	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
 	let cost = spellData.ranks[rankIndex].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
+	cost *= getBuffCostCoefficient(spellData.class, spellData.name, spellData.type);
 	return cost;
 }
 
@@ -215,7 +216,7 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 	return 1;
 }
 
-function getTalentExtraPowerCoefficient(className, spellName, spellType, specification=''){
+function getTalentExtraPowerCoefficient(className, spellName, spellType){
 	let talent;
 	let data;
 	let rank;
@@ -233,7 +234,7 @@ function getTalentExtraPowerCoefficient(className, spellName, spellType, specifi
 			talent = getTalentByName('empowered_rejuvination');
 			if(talent.length > 0) {
 				data = talent.data("talent");
-				if(isAffected(spellName, spellType, data) || isAffected(spellName+specification, spellType, data)) {
+				if(isAffected(spellName, spellType, data)) {
 					rank = talent.data("current-rank");
 					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
 				}
@@ -343,6 +344,14 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 			}
 			return 0;
 		case "paladin":
+			talent = getTalentByName('light-s_grace');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					return (roundNumber(data.rankIncrement * 3, 0))*0.5/100;
+				}
+			}
 			return 0;
 		case "priest":
 			talent = getTalentByName('divine_fury');
@@ -369,38 +378,72 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	}
 }
 
-function getBuffExtraPowerFactor(className, spellName, spellType){
-	if(className === "shaman"){
-		let buff = getBuffByName('healing_way');
-		if(buff.length > 0 && buff.hasClass('active')){
-			let data = buff.data('buff');
-			if(spellName === 'Healing Wave'){
-				return 1 + data.ranks[2].effect * 3/100;
+function getBuffPowerCoefficient(className, spellName, spellType){
+	let buff;
+	switch(className) {
+		case "shaman":
+			buff = getBuffByName('healing_way');
+			if(buff.length > 0 && buff.hasClass('active')){
+				let data = buff.data('buff');
+				if(spellName === 'Healing Wave'){
+					return 1 + data.ranks[2].effect * 3/100;
+				}
 			}
-		}
+			return 1;
+		default:
+			return 1;
+		
 	}
-	return 1;
 }
 
 function getBuffExtraPower(className, spellName, spellType){
-	if(className === "paladin"){
-		let buff = getBuffByName('blessing_of_light');
-		if(buff.length > 0 && buff.hasClass('active')){
-			let data = buff.data('buff');
-			if(spellName === 'Holy Light'){
-				return data.ranks[2].holyLight;
+	let buff;
+	let data;
+	switch(className) {
+		case "druid":
+			buff = getBuffByName('tree_of_life');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				return data.ranks[0].bonusFromSpirit / 100 * getSpirit();
 			}
-			if(spellName === 'Flash of Light'){
-				return data.ranks[2].flashOfLight;
+		case "paladin":
+			buff = getBuffByName('blessing_of_light');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				if(spellName === 'Holy Light'){
+					return data.ranks[2].holyLight;
+				}
+				if(spellName === 'Flash of Light'){
+					return data.ranks[2].flashOfLight;
+				}
 			}
-		}
+			return 0;
+		default:
+			return 0;
 	}
-	return 0;
+
+}
+
+
+function getBuffCostCoefficient(className, spellName, spellType){
+	let buff;
+	let data;
+	switch(className) {
+		case "druid":
+			buff = getBuffByName('tree_of_life');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				return (data.spellsAffectedByManaReduction.includes(spellName)) ? 1 - (data.ranks[0].costCoefficient / 100) : 1;
+			}
+		default:
+			return 1;
+	}
+
 }
 
 function getEffectiveCritChance(className, spellName, spellType){
 	let critChance = getCritChance();
-	let talents = ['improved_regrowth', 'natural_perfection', 'holy_specialization', 'holy_power', 'tidal_mastery']
+	let talents = ['improved_regrowth', 'natural_perfection', 'holy_specialization', 'holy_power', 'sanctified_light', 'tidal_mastery']
 	let rank;
 	for(let i = 0; i < talents.length; i++){
 		talent = getTalentByName(talents[i]);
@@ -449,6 +492,7 @@ function getSpellType(spell){
  */
 function getDirectSpellCoeficient(spellData, rank){
 	if (spellData.directCoeff) return spellData.directCoeff;
+	if (spellData.ranks[rank-1].powerMax === 0) return 0;
 	castTime = spellData.ranks[rank-1].baseCastTime;
 	if(castTime > 7) castTime = 7;
 	if(castTime < 1.5) castTime = 1.5;
@@ -467,6 +511,7 @@ function getDirectSpellCoeficient(spellData, rank){
  */
 function getOverTimeCoeficient(spellData, rank){
 	if (spellData.overTimeCoeff) return spellData.overTimeCoeff;
+	if (spellData.ranks[rank-1].tickPower === 0) return 0;
 	duration = spellData.ranks[rank-1].tickDuration;
 	if(duration > 15) return 1;
 	return duration/15;

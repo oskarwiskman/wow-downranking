@@ -160,6 +160,18 @@ function getHasteCoefficient(){
 	return expansion === 'tbc' ? 1-roundNumber(Math.max(0, Math.min(3000, $('#haste-rating').val()) / 15.8), 1)/100 : 1;
 }
 
+function hideSpirit(){
+	$('#spirit-container').addClass("hidden");
+}
+
+function showSpirit(){
+	$('#spirit-container').removeClass("hidden");
+}
+
+function getSpirit(){
+	return Math.min(Math.max(0, $('#spirit').val()), 5000);
+}
+
 function getSelectedClassName(){
 	return $('.wow-spell.active').data('class-name');
 }
@@ -263,13 +275,13 @@ function loadDetailsModalContent(){
 	let className = getSelectedClassName();
 	let spellName = getSelectedSpellName();
 	if(className && spellName){
-		$('#details-modal').find('.background').find('.loader').removeClass('hidden');
-		$('#details-modal').find('.content').hide();
 		loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
 	}
 }
 
 function buildSpellDetailsContent(spellData, healingPower){
+	$('#details-modal').find('.content').hide();
+	$('#details-modal').find('.background').find('.loader').removeClass('hidden');
 	$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
 	$(`#details-modal`).find('.content-title').find('.text').html(` details at level ${expansion == 'tbc' ? '70' : '60'}`);
 	$(`#details-modal`).find('.experts-notes h3').html(spellData.notes[0].note ? "Veteran's notes" : '');

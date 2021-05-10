@@ -43,36 +43,6 @@
 			]
 		},
 		{ 	
-			"name":"Light's Grace",
-			"key":"lights_grace",
-			"type":"buff",
-			"image":"lights_grace.jpg",
-			"description":"Gives your Holy Light spell a ${chance}% to reduce the cast time of your next Holy Light spell by 0.5 sec. This effect lasts 15 sec.",
-			"ranks":[
-				{	"rank":1,
-					"level":4,
-					"cost":-1,
-					"range":-1,
-					"baseCastTime":0,
-					"chance":33
-				},
-				{	"rank":2,
-					"level":41,
-					"cost":-1,
-					"range":-1,
-					"baseCastTime":0,
-					"chance":66
-				},
-				{	"rank":3,
-					"level":42,
-					"cost":-1,
-					"range":-1,
-					"baseCastTime":0,
-					"chance":100
-				}
-			]
-		},
-		{ 	
 			"name":"Divine Illumination",
 			"key":"divine_illumination",
 			"type":"buff",
