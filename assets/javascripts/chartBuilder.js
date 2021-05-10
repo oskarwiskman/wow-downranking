@@ -48,6 +48,8 @@ function buildRadarChart(chart, target, datasets) {
 function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
     if (chart) {
+        clearData(chart);
+        setData(chart, labels, datasets);
         return chart;
     } else {
         chart = new Chart(ctx, {
@@ -99,6 +101,20 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     }
    
     return chart;
+}
+
+function clearData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+function setData(chart, labels, datasets) {
+    chart.data.labels = labels;
+    chart.data.datasets = datasets;
+    chart.update();
 }
 
 function buildSpellCharts(spellData){
