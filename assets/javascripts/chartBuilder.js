@@ -48,31 +48,33 @@ function buildRadarChart(chart, target, datasets) {
 function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
     if (chart) {
-        chart.destroy();
-    }
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: datasets
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            title: {
-                display: true,
-                text: title,
-                fontColor: '#E7BA00',
-                fontSize: 18,
-                fontFamily: 'Friz Quadrata'
+        clearData(chart);
+        setData(chart, labels, datasets);
+        return chart;
+    } else {
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
             },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: title,
+                    fontColor: '#E7BA00',
+                    fontSize: 18,
+                    fontFamily: 'Friz Quadrata'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                }
             },
             scales: {
                 xAxes: [{
@@ -95,8 +97,23 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
                 }]
             }
         }
-    });
+        });
+    }
     return chart;
+}
+
+function clearData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+function setData(chart, labels, datasets) {
+    chart.data.labels = labels;
+    chart.data.datasets = datasets;
+    chart.update();
 }
 
 function buildSpellCharts(spellData){
