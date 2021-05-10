@@ -49,53 +49,55 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
     if (chart) {
         chart.destroy();
-    }
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: datasets
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            title: {
-                display: true,
-                text: title,
-                fontColor: '#E7BA00',
-                fontSize: 18,
-                fontFamily: 'Friz Quadrata'
+    } else {
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
             },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
-                xAxes: [{
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
                     display: true,
-                    scaleLabel: {
+                    text: title,
+                    fontColor: '#E7BA00',
+                    fontSize: 18,
+                    fontFamily: 'Friz Quadrata'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
                         display: true,
-                        labelString: xLabel,
-                        fontColor: '#7facf4',
-                        fontFamily: 'Friz Quadrata'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
+                        scaleLabel: {
+                            display: true,
+                            labelString: xLabel,
+                            fontColor: '#7facf4',
+                            fontFamily: 'Friz Quadrata'
+                        }
+                    }],
+                    yAxes: [{
                         display: true,
-                        labelString: yLabel,
-                        fontColor: '#7facf4',
-                        fontFamily: 'Friz Quadrata'
-                    }
-                }]
+                        scaleLabel: {
+                            display: true,
+                            labelString: yLabel,
+                            fontColor: '#7facf4',
+                            fontFamily: 'Friz Quadrata'
+                        }
+                    }]
+                }
             }
-        }
-    });
+        });
+    }
+   
     return chart;
 }
 
