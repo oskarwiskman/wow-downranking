@@ -1,0 +1,85 @@
+{
+	"class":"priest",
+	"name":"Prayer of Healing",
+	"type":"heal",
+	"description":"A powerful prayer heals party members within 30 yards for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"directCoeff":0.286,
+	"ranks":[
+		{	"rank":1,
+			"level":30,
+			"cost":410,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":312,
+			"powerMax":333,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":40,
+			"cost":560,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":458,
+			"powerMax":487,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":50,
+			"cost":770,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":675,
+			"powerMax":713,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":60,
+			"cost":1030,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":960,
+			"powerMax":1013,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":60,
+			"cost":1070,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":1019,
+			"powerMax":1076,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":6,
+			"level":70,
+			"cost":1255,
+			"range":30,
+			"baseCastTime":3,
+			"powerMin":1251,
+			"powerMax":1322,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}
