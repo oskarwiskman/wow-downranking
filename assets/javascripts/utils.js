@@ -101,6 +101,7 @@ function showSpellAffectingTalentsFor(className){
 	if(!className) {
 		$('#talent-selection').addClass('hidden');
 	} else {
+		$('#talent-selection').addClass('hidden');
 		loadTalentData(className, buildTalentHtmlForClass);
 	}
 }
@@ -282,17 +283,19 @@ function loadDetailsModalContent(){
 function buildSpellDetailsContent(spellData, healingPower){
 	$('#details-modal').find('.content').hide();
 	$('#details-modal').find('.background').find('.loader').removeClass('hidden');
-	$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
-	$(`#details-modal`).find('.content-title').find('.text').html(` details at level ${expansion == 'tbc' ? '70' : '60'}`);
-	$(`#details-modal`).find('.experts-notes h3').html(spellData.notes[0].note ? "Veteran's notes" : '');
-	$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
-	$(`#details-modal`).find('.experts-notes .author .name').html(spellData.notes[0].author.name);
-	$(`#details-modal`).find('.experts-notes .author .desc').html(spellData.notes[0].author.description);
-	buildSpellTable(spellData, healingPower);
-	buildBreakpointsTable(spellData);
-	buildSpellCharts(spellData);
-	$('#details-modal').find('.background').find('.loader').addClass('hidden');
-	$('#details-modal').find('.content').show();
+	setTimeout(function() {
+		$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
+		$(`#details-modal`).find('.content-title').find('.text').html(` details at level ${expansion == 'tbc' ? '70' : '60'}`);
+		$(`#details-modal`).find('.experts-notes h3').html(spellData.notes[0].note ? "Veteran's notes" : '');
+		$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
+		$(`#details-modal`).find('.experts-notes .author .name').html(spellData.notes[0].author.name);
+		$(`#details-modal`).find('.experts-notes .author .desc').html(spellData.notes[0].author.description);
+		buildSpellTable(spellData, healingPower);
+		buildBreakpointsTable(spellData);
+		buildSpellCharts(spellData);
+		$('#details-modal').find('.background').find('.loader').addClass('hidden');
+		$('#details-modal').find('.content').show();
+	}, 10);
 }
 
 function getSliderValues(){
@@ -376,11 +379,11 @@ function loadJSON(path, callback, param) {
 	        'dataType': "json",
 	        'success': !!callback ? 
 	        	function(data) {
-	        		cache[path] = data;
-	        		callback(data, param) 
+        			cache[path] = data;
+        			callback(data, param);
 	        	} : 
 	        	function (data) {
-	        		cache[path] = data;
+        			cache[path] = data;
 	        	}
 	    });
 	})();

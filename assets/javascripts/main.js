@@ -15,7 +15,7 @@ function onClassClicked(elem){
 		target.removeClass('active');
 		$('#spell-selection').addClass('hidden');
 		$('#buff-selection').addClass('hidden');
-		showSpellAffectingTalentsFor();
+		$('#talent-selection').addClass('hidden');
 		hideSpirit();
 
 	} else {

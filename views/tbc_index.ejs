@@ -53,6 +53,7 @@
 		<div id="expansion-selection">
 			<div class="navbar">
 				<a class="icon-medium" id="classic-wow" title="World of Warcraft: Classic" alt="Classic WoW" style="background-image: url(/images/classic_wow_icon.png)" href="/"></a>
+			</div>
 		</div>
 		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
@@ -81,41 +82,20 @@
 		</div>
 			</div>
 		</div>
-		<div id="class-selection">
-			<h4 class="header">Pick a class</h4>
-			<div class="navbar">
-				<a class="wow-class icon-medium" id="druid" title="Druid" alt="Druid" style="background-image: url(/images/class_druid.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="paladin" title="Paladin" alt="Paladin" style="background-image: url(/images/class_paladin.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
+		<% include index_common/class_selection.html %>
+		<div id="spell-specification-loader" class="loader loader-small hidden"></div>
+		<div id="spell-specification-content">
+			<% include index_common/talent_selection.html %>
+			<div id="spirit-container" class="class-stat hidden">
+				<label for="spirit">Amount of spirit</label>
+				<span>
+					<input id="spirit" type="number" min="0" max="5000" value="0" onChange="refreshTooltip()">
+				<span>
 			</div>
-		</div>
-		<div id="spirit-container" class="class-stat hidden">
-			<label for="spirit">Amount of spirit</label>
-			<span>
-				<input id="spirit" type="number" min="0" max="5000" value="0" onChange="refreshTooltip()">
-			<span>
-		</div>
-		<div id="talent-selection" class="hidden">
-			<h4 class="header">Fill out your talents</h4>
-			<div class="navbar"></div>
-		</div>
-		<div id="buff-selection" class="hidden">
-			<h4 class="header">Select active buffs</h4>
-			<div class="navbar"></div>
-		</div>
-		<div id="spell-selection" class="hidden">
-			<h4 class="header">Pick a spell</h4>
-			<div class="navbar">
-			</div>
-		</div>
-		<div id="result" class="hidden">
-			<h4 class="header">Recommended rank with the highest <a href="#" onClick="openModal('info-modal')" title="Click to show how HES is calculated">Healing Efficiency Score</a></h4>
-			<div id="tooltip"></div>
-		</div>
-		<div id="tip-container">
-			<span id="tip-title">Tip:</span>
-			<span id="tip"></span>
+			<% include index_common/buff_selection.html %>
+			<% include index_common/spell_selection.html %>
+			<% include index_common/result.html %>
+			<% include index_common/tip.html %>
 		</div>
 	</body>
 	<% include how_it_works_modal/tbc_main.html %>
