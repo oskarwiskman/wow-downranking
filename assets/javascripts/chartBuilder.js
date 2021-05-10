@@ -48,7 +48,7 @@ function buildRadarChart(chart, target, datasets) {
 function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
     var ctx = document.getElementById(target).getContext('2d');
     if (chart) {
-        chart.destroy();
+        return chart;
     } else {
         chart = new Chart(ctx, {
             type: 'line',
