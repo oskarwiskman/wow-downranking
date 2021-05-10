@@ -74,29 +74,29 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
                     hover: {
                         mode: 'nearest',
                         intersect: true
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: xLabel,
+                            fontColor: '#7facf4',
+                            fontFamily: 'Friz Quadrata'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: yLabel,
+                            fontColor: '#7facf4',
+                            fontFamily: 'Friz Quadrata'
+                        }
+                    }]
                 }
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: xLabel,
-                        fontColor: '#7facf4',
-                        fontFamily: 'Friz Quadrata'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: yLabel,
-                        fontColor: '#7facf4',
-                        fontFamily: 'Friz Quadrata'
-                    }
-                }]
             }
-        }
         });
     }
     return chart;
