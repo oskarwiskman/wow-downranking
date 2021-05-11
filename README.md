@@ -38,7 +38,7 @@ Shaman:
 * Add support for active buffs. The buff selection will appear if the class has any available buffs and buffs may be toggled on or off by clicking them. Hovering a buff will display a tooltip of the buff which is applied.
 * Added buff: Blessing of Light (Rank 3) for Paladins. Adds a 400 healing power bonus to Holy Light and 115 to Flash of Light. These are applied as extra healing power for these spells after caluclating the cast time penalties, but before applying the sub level 20 penalty. This means that all ranks trainable at level 20 or above will receive a flat bonus according to the tooltip, and sub level 20 spells will be penalized in accordance with that formula.
 
-#### For older entries see full log here:
+#### For older entries see full log here: [Complete update log](update_log.md)
 
 ## Spell Coefficient
 The Spell Coefficient (SC) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SC is calculated depends on the spell mechanics, there are some general rules for how to calculate the SC, in addition to this a few spells have unique SCs due to balance.
