@@ -206,10 +206,18 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 + ((data.rankIncrement * rank) / 100);
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}
-			return 1;
+			talent = getTalentByName('improved_chain_heal');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
 		default:
 			return 1;
 	}

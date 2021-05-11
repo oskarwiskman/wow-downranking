@@ -1,13 +1,22 @@
 <h4>Spell Haste Rating</h4>
 <p>
-	Spell Haste Rating increases your casting speed and the rate at which Over-Time effects occur.</br></br>
+	Spell Haste Rating reduces the casting speed of spells and also reduces your global cooldown. The global cooldown can never go below 1 sec.</br></br>
 
-	<b class="yellow">15.8</b> Spell Haste Rating grants <b class="yellow">1%</b> haste at level <b class="yellow">70</b>.
+	<b class="yellow">15.8 Spell Haste Rating</b> grants <b class="yellow">1% haste</b> at <b class="yellow">level 70</b>.
 
-	Casting faster directly increases your throughput, and can in the case of Over-Time effects like <b class="yellow">HoTs</b> also increase your mana efficiency since they might grant extra ticks for the same mana. For direct spells, haste will only increase the <b class="yellow">HPS</b>, but for Over-Time spells the prospect of additional tics is considered.
+	Casting faster does not affect the mana efficiency since all ranks scale the same way, but since it increases your throughput I have included it here for experimental and educational reasons.
 
 	<code>
-		[Cast time reduction] = [Haste Rating] / 15.8 </br>
-		1 - ([Cast time reduction] / 100) = [Cast time coefficient]
+		[Spell Haste Rating] / 15.8 = [Cast time reduction]</br>
+		1 - ([Cast time reduction] / 100) = [Cast time coefficient]</br>
+		[Cast time coefficient] * [Base cast time] = [Hasted cast time]
+	</code>
+
+	As an example lets take <b class="yellow">Healing Wave</b> that has a base <b class="yellow">3 sec cast time</b> at <b class="yellow">150 Spell Haste Rating</b> which gives a hasted cast time of <b class="yellow">2.71 sec</b>.
+
+	<code>
+		150 / 15.8 ≈ 9.49%</br>
+		1 - (9.49 / 100) ≈ 0.91</br>
+		0.91 * 3 ≈ <i class="yellow">2.71 sec</i>
 	</code>
 </p>

@@ -9,7 +9,7 @@
 <p>
 	Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
 
-	<code>[Effective Coefficient] = [Basic Coefficient] * (1 - [Sub Level 20 Penalty]</code>
+	<code>[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Coefficient]</code>
 
 	Thus the actual power of the spell is:
 
@@ -45,8 +45,8 @@
 	<code>
 		[Base Power] = ([Base min Power] + [Base max Power]) / 2 = (129 + 155) / 2 = 142</br>
 		[Basic Coefficient] = [Cast Time] / [Reference Cast Time] = 2.5 / 3.5 = 0.714</br>
-		[Sub Level 20 Penalty] = 1 - ((20 - [Spell level]) * 0.0375) = 1 - ((20 - 12) * 0.0375) = 0.7</br>
-		[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Penalty] = 0.5</br>
+		[Sub Level 20 Coefficient] = 1 - ((20 - [Spell level]) * 0.0375) = 1 - ((20 - 12) * 0.0375) = 0.7</br>
+		[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Coefficient] = 0.5</br>
 		[Crit Coefficient] = (1 + (1 + 10/100)) / 2 = 1.05
 	</code>
 	Which results in the actual power being:

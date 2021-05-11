@@ -9,20 +9,38 @@
 
 <h4>Putting it all together</h4>
 <p>
-	Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
+	The parts needed to calculate the Actual Power of a spell are:
+	<code>
+		[Base Power] - Whatever the spell says.</br>
+		[Bonus Power] - Your extra healing power.</br>
+		[Buff Bonus Power] - Bonus power from buffs such as Tree of Life or Blessing of Light</br>
+		[Talent Bonus Power Coefficient] - Bonus power multiplier from talents such as Empowered Touch.</br>
+		[Base Coefficient] - The one based on cast time / spell duration.</br>
+		[Sub Level 20 Coefficient] - Affecing spells that can be learnt under lvl 20.</br>
+		[Downrank Coefficient] - Affecting spells that became available more than 11 levels ago.</br>
+		[Talent Power Coefficient] - Multiplier from talents.</br>
+		[Buff Power Coefficient] - Multiplier from buffs such as Healing Way.</br>
+		[Crit Power Coefficient] - Average extra healing done due to crits.</br>
+	</code>
 
-	<code>[Effective Coefficient] = [Basic Coefficient] * (1 - [Sub Level 20 Penalty]</code>
+	Now when we have all the parts we can calculate the Effective Coefficient for the spell as:
 
-	Thus the actual power of the spell is:
+	<code><b class="red">[Effective Coefficient]</b> = [Base Coefficient] * [Sub Level 20 Coefficient] * [Downrank Coefficient]</code>
 
-	<code>[Actual Power] = [Base power] + [+Power] * [Effective Coefficient]</code>
+	And we can calculate the Effective Bonus Power as:
+
+	<code><b class="yellow">[Effective Bonus Power]</b> = ([Bonus power] + [Buff Bonus Power]) * [Talent Bonus Power Coefficient] * [Effective Coefficient]</code>
+
+	This gives us a final Effective Power as:
+
+	<code><b class="green">[Effective Power]</b> = ([Base Power] + [Effective Bonus Power]) * [Talent Power Coefficient] * [Buff Power Coefficient] * [Crit Power Coefficient]</code>
 
 	The result of the function above is what is used when calculating <b class="yellow">HpME</b>, <b class="yellow">HpS</b> and finally <b class="yellow">HES</b>.
 
 	The <b class="yellow">HpME</b> and <b class="yellow">HpS</b> are quite straight forward, and calculated as:
 	<code>
-		HpME = [Actual Power] / [Mana Cost]</br>
-		HpS = [Actual Power] / [Cast time]
+		HpME = [Effective Power] / [Mana Cost]</br>
+		HpS = [Effective Power] / [Cast time]
 	</code>
 
 	From these two we calculate the Healing Efficiency Score <b class="yellow">HES</b> as:
@@ -31,30 +49,38 @@
 		HES = HpME^x * ln(HpS)^y 
 	</code>
 
-	with x and y changing depending on the slider.
+	with x and y changing depending on the slider.</br></br>
 
 	A few notes on this process:
 	<ul>
-		<li>All cast times are considered before any spell haste or casting time talents are applied.</li>
-		<li>All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.</li>
-		<li>All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.</li>
+		<li>All base cast times are considered before any spell haste or casting time talents are applied.</li>
+		<li>All talents or buffs that increase the bonus healing are multiplicitively applied to your Healing Power, before adding them to your total healing. (Ex. Druid Talents <a href="https://tbc.wowhead.com/spell=33880/empowered-touch" title='Click to view Empowered Touch on tbc.wowhead.com' target='_blank'>Empowered Touch</a> and <a href="https://tbc.wowhead.com/spell=33890/empowered-rejuvenation" title='Click to view Empowered Rejuvenation on tbc.wowhead.com' target='_blank'>Empowered Rejuvenation</a>).</li>
+		<li>All talents or buffs that increase the total healing of a spell are multiplicitively applied after all other additions have been made (Ex. <a href="https://tbc.wowhead.com/spell=16213/purification" title='Click to view Purification on tbc.wowhead.com' target='_blank'>Purification</a> for Shamans or <a href="https://tbc.wowhead.com/spell=15356/spiritual-healing" title='Click to view Spiritual Healing on tbc.wowhead.com' target='_blank'>Spiritual Healing</a> for Priests).</li>
 	</ul>
 </p>
 <h4>Calculation example</h4>
 <p>
-	As an example I will demonstrate how to determine the power of <b class="yellow">Rank 3 Healing Wave</b> with <b class="yellow">500 Healing Power</b>, and a <b class="yellow">10% Critical effect chance</b>.
+	As an example I will demonstrate how to determine the power of <b class="yellow">Rank 7 Healing Wave</b> with <b class="yellow">1100 Healing Power</b>, and a <b class="yellow">260 Spell Critical Strike Rating chance</b> at level 70 with 5/5 talent points in <a href="https://tbc.wowhead.com/spell=16213/purification" title='Click to view Purification on tbc.wowhead.com' target='_blank'>Purification</a> and 3 stacks of <a href="https://tbc.wowhead.com/spell=29202/healing-way" title='Click to view Healing Way on tbc.wowhead.com' target='_blank'>Healing Way</a> on the target.
 
 	<code>
-		[Base Power] = ([Base min Power] + [Base max Power]) / 2 = (129 + 155) / 2 = 142</br>
-		[Basic Coefficient] = [Cast Time] / [Reference Cast Time] = 2.5 / 3.5 = 0.714</br>
-		[Sub Level 20 Penalty] = 1 - ((20 - [Spell level]) * 0.0375) = 1 - ((20 - 12) * 0.0375) = 0.7</br>
-		[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Penalty] = 0.5</br>
-		[Crit Coefficient] = (1 + (1 + 10/100)) / 2 = 1.05
+		[Base Power] = (759+874)/2 = 816.5</br>
+		[Bonus Power] = 1100</br>
+		[Buff Bonus Power] = 0</br>
+		[Talent Bonus Power Coefficient] = 1</br>
+		[Base Coefficient] = 3 / 3.5 = 0.857</br>
+		[Sub Level 20 Coefficient] = 1</br>
+		[Downrank Coefficient] = (40 + 11) / 70 ≈ 0.73</br>
+		[Talent Power Coefficient] = 1.1</br>
+		[Buff Power Coefficient] = 1.18</br>
+		[Crit Power Coefficient] = 260 Crit rating is ≈ 11.8% crit chance so Crit coefficient is 1.08</br>
 	</code>
-	Which results in the actual power being:
+	Which results in the Effective Power being calculated as:
 	<code>
-		[Actual Power] = ([Base Power] + ([Extra Power] * [Effective Coefficient])) * [Crit Coefficient]</br>
-	= (142 + (500 * 0.5)) * 1.05</br>
-	= 392 * 1.05 = <i class="yellow">412</i></br>
+		<b class="red">[Effective Coefficient]</b> = 0.857 * 1 * 0.73 ≈ <b class="red">0.63</b></br>
+		<b class="yellow">[Effective Bonus Power]</b> = (1100 + 0) * 1 * <b class="red">0.63</b> = <b class="yellow">630</b></br>
+		<b class="green">[Effective Power]</b> =  (816.5 + <b class="yellow">630</b>) * 1.1 * 1.18 * 1.08 ≈ <b class="green">2028</b>**</br>
 	</code>
+	<i>** NOTE: This result differs a little from the calculation presented if the same values are given to the tool. This is because the tool uses a lot more decimal points during calculations, and only rounds at the very end.</i></br></br>
+
+	CONGRATS! You made it to the end! Now go play...
 </p>
