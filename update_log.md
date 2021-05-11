@@ -4,7 +4,7 @@
 * Fix issue that the line Graphs in the Spell details modal would only load on the very first open on mobile.
 
 #### 2021-05-08
-* Priest talent Mental Agility now correctly gives 2% mana reduction per talent point instead of 1%.
+* Priest talent Mental Agility now correctly gives 2% mana reduction per talent point instead of 1% thanks to [ZergRael](https://github.com/ZergRael).
 
 #### 2020-06-29
 * Druid talents Tranquil Spirit and Moonglow now stack additively as in game, instead of multiplicatively. So having both talents will reduce mana cost of Healing Touch by 19%. Thanks to u/Vogster for spotting this error.
