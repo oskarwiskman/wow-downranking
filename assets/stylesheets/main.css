@@ -95,6 +95,14 @@ a:hover {
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+.loader.loader-small {
+	width: 50px;
+    height: 50px;
+    border: 8px solid;
+    border-top: 8px solid #E7BA00;
 }
 
 @keyframes spin {
@@ -114,6 +122,18 @@ a:hover {
 
 body {
 	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/KalimdorV2.png') no-repeat 0 0;
+	background-color: #1d1d1d;
+	color: #ccc;
+	font-family: "Friz Quadrata";
+	min-height:100%; 
+	padding:0; 
+	position:relative; 
+	background-size: cover;
+	text-align: center;
+}
+
+body.tbc {
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/Outland.jpg') no-repeat 0 0;
 	background-color: #1d1d1d;
 	color: #ccc;
 	font-family: "Friz Quadrata";
@@ -155,12 +175,20 @@ body footer .paypal-container{
 	float: right;
 }
 
-#main-header {
+#main-logo {
     max-width: 450px;
+    margin: auto;
     margin-top: 40px;
+    display: block;
 }
 
-#secondary-header {
+#secondary-logo {
+    max-width: 450px;
+    margin: auto;
+    display: block;
+}
+
+#main-header {
 	margin-bottom: 5px;
 }
 
@@ -239,10 +267,10 @@ input {
 }
 
 .table-container {
-
 }
 
 .table-container table {
+	overflow-x: auto;
 	margin-top: 20px;
     display: inline-block;
     max-width: 400px;
@@ -266,6 +294,7 @@ input {
 	font-size: 18px;
 	line-height: 18px;
 	margin-bottom: 8px;
+	max-width: inherit;
 }
 
 .table-container table td {
