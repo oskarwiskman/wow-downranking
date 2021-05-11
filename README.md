@@ -28,17 +28,16 @@ Shaman:
 
 #### Update log
 
+#### 2021-05-10
+* Fix issue that the line Graphs in the Spell details modal would only load on the very first open on mobile.
+
+#### 2021-05-08
+* Priest talent Mental Agility now correctly gives 2% mana reduction per talent point instead of 1% thanks to [ZergRael](https://github.com/ZergRael).
+
 #### 2020-06-29
 * Druid talents Tranquil Spirit and Moonglow now stack additively as in game, instead of multiplicatively. So having both talents will reduce mana cost of Healing Touch by 19%. Thanks to u/Vogster for spotting this error.
 
-#### 2020-01-24
-* Added buff: Healing Way (3 stacks applied) for Shamans. Adds a 18% extra healing done to the target, this is applied after all other considerations. In other words, a cast that would normally heal the target for 1000 health, will heal 1180 with Healing Wave toggled.
-
-#### 2020-01-22
-* Add support for active buffs. The buff selection will appear if the class has any available buffs and buffs may be toggled on or off by clicking them. Hovering a buff will display a tooltip of the buff which is applied.
-* Added buff: Blessing of Light (Rank 3) for Paladins. Adds a 400 healing power bonus to Holy Light and 115 to Flash of Light. These are applied as extra healing power for these spells after caluclating the cast time penalties, but before applying the sub level 20 penalty. This means that all ranks trainable at level 20 or above will receive a flat bonus according to the tooltip, and sub level 20 spells will be penalized in accordance with that formula.
-
-#### For older entries see full log here:
+#### For older entries see full log here: [Complete update log](update_log.md)
 
 ## Spell Coefficient
 The Spell Coefficient (SC) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SC is calculated depends on the spell mechanics, there are some general rules for how to calculate the SC, in addition to this a few spells have unique SCs due to balance.
