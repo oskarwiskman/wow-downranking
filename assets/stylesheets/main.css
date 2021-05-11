@@ -189,7 +189,8 @@ body footer .paypal-container{
 }
 
 #main-header {
-	margin-bottom: 5px;
+    max-width: 450px;
+    margin-top: 40px;
 }
 
 .icon-medium {
