@@ -1,0 +1,12 @@
+<h4>Downranking penalty</h4>
+<p>
+	Casting a spell of another rank than the currently available maximum rank at your level incurs a penalty to the coefficient of the spell based on your character level and the level at which the rank of the spell you are using was trainable. This was introduced in The Burning Crusade as an addition to the sub level 20 penalty in order to drastically reduce the power of downranking.
+
+	The formula for this is:
+
+	<code><i class="green">[Downrank Coefficient]</i> = (Minimum([Required level for the spell] + 11) / [Character Level], 1)</code>
+
+	<b class="red">DISCLAIMER:</b> The actual formula has never been released by Blizzard and is therefore unknown. The formula above has been derived by testing spells in game in order to attempt to reverse engineering it. This causes some controvercy to what the actual formula is and another formula that often shows up is:
+	<code><i class="red">[Downrank Coefficient]</i> = (Minimum([Level of next rank - 1] + 5) / [Character Level])</code>
+	I have chosen to go with the former formula, since the actual numerical descrepencies between the two are minor and the former seems to hold up better when testing on healing spells.
+</p>

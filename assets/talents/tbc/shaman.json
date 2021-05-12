@@ -1,0 +1,55 @@
+{
+	"class":"shaman",
+	"talents": [
+		{
+			"name":"improved_healing_wave",
+			"maxRank":5,
+			"rankIncrement":0.1,
+			"description":"Reduces the casting time of your Healing Wave spell by ${rankIncrement} sec.",
+			"image":"healing_wave.jpg",
+			"affectedSpells": [
+				"Healing Wave"
+			]
+		},
+		{
+			"name":"tidal_focus",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Reduces the Mana cost of your healing spells by ${rankIncrement}%.",
+			"image":"tidal_focus.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		},
+		{
+			"name":"tidal_mastery",
+			"maxRank":5,
+			"rankIncrement":1,
+			"description":"Increases the critical effect chance of your healing and lightning spells by ${rankIncrement}%.",
+			"image":"tidal_mastery.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		},
+		{
+			"name":"purification",
+			"maxRank":5,
+			"rankIncrement":2,
+			"description":"Increases the effectiveness of your healing spells by ${rankIncrement}%.",
+			"image":"purification.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		},
+		{
+			"name":"improved_chain_heal",
+			"maxRank":2,
+			"rankIncrement":10,
+			"description":"Increases the amount healed by your Chain Heal spell by ${rankIncrement}%.",
+			"image":"chain_heal.jpg",
+			"affectedSpells": [
+				"heal"
+			]
+		}
+	]
+}

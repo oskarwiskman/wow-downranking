@@ -1,0 +1,95 @@
+{
+	"class":"priest",
+	"name":"Greater Heal",
+	"type":"heal",
+	"description":"Slow casting spell that heals a single target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"cost":370,
+			"level":40,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":924,
+			"powerMax":1039,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":46,
+			"cost":455,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1178,
+			"powerMax":1318,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":52,
+			"cost":545,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1470,
+			"powerMax":1642,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":58,
+			"cost":655,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":1835,
+			"powerMax":2044,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":5,
+			"level":60,
+			"cost":710,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":2006,
+			"powerMax":2235,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":6,
+			"level":63,
+			"cost":750,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":2107,
+			"powerMax":2444,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":7,
+			"level":68,
+			"cost":825,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":2414,
+			"powerMax":2803,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}

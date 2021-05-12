@@ -25,3 +25,7 @@
 .buff-icon.icon-medium:hover{
 	opacity: 0.9;
 }
+
+.buff-icon:not(:first-child) {
+	margin-left: 4px;
+}

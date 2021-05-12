@@ -64,6 +64,10 @@ a:hover {
 	color: #17FD17;
 }
 
+.tbc-green {
+	color: #5dc12a;
+}
+
 .yellow {
 	color: #E7BA00;
 }
@@ -189,8 +193,7 @@ body footer .paypal-container{
 }
 
 #main-header {
-    max-width: 450px;
-    margin-top: 40px;
+	margin-bottom: 5px;
 }
 
 .icon-medium {

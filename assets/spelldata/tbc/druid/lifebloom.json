@@ -1,0 +1,31 @@
+{
+	"class":"druid",
+	"name":"Lifebloom",
+	"type":"heal",
+	"description":"Heals the target for ${tickPower} over 7 sec.  When Lifebloom completes its duration or is dispelled, the target instantly heals themself for ${powerMax}.  This effect can stack up to 3 times on the same target.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"directCoeff":0.34,
+	"overTimeCoeff":0.5194,
+	"ranks":[
+		{	"rank":1,
+			"level":64,
+			"cost":220,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":600,
+			"powerMax":600,
+			"tickFrequency":7,
+			"tickDuration":7,
+			"tickPower":273
+		}
+	]
+}

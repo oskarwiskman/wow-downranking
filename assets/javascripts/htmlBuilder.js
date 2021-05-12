@@ -80,13 +80,28 @@ function buildSpellTable(spellData, healingPower) {
 							<th data-sort-mode="asc">Mana cost</th>
 							<th>HpME</th>
 							<th>HpS</th>
-							<th>HES</th>
-						</tr>
+							<th>HES</th>`;
+	if (getSpellType(spellData.ranks[0]) === 'hybrid') {
+		table +=		   `<th>Direct coefficient</th>
+							<th>Over time coefficient</th>
+							<th>Base Direct Coefficient</th>
+							<th>Base Over time Coefficient</th>
+							<th>Level Coefficient</th>
+							<th>Talent&Buff Coefficient</th>
+							<th>Bonus Healing Coefficient</th>`;
+	} else {
+		table +=		   `<th>Coefficient</th>
+							<th>Base Coefficient</th>
+							<th>Level Coefficient</th>
+							<th>Talent&Buff Coefficient</th>
+							<th>Bonus Healing Coefficient</th>`;
+	} 
+	table +=			`</tr>
 					</thead>
 					<tbody>
 						${rows}
 					</tbody>
-				</table>`
+				</table>`;
 
 	$('#spell-table').html(table);
     $('#spell-table table.sortable').tablesort();
@@ -97,17 +112,46 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let HpME = calculatePowerPerMana(healingPower, spellData, rank);
 	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
 	let HES = calculateHES(HpME, HpS);
-
-	return `<tr>
+	let directBaseCoefficient = getDirectSpellCoeficient(spellData, rank);
+	let overTimeBaseCoefficient = getOverTimeCoeficient(spellData, rank);
+	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*(expansion === 'tbc' ? getDownrankPenalty(spellData.ranks[rank-1].level) : 1);
+	let talentAndBuffCoefficient = getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type) * getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	let bonusHealingCoefficient = getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	let directCoefficient = directBaseCoefficient * levelPenaltyCoefficient * talentAndBuffCoefficient;
+	let overTimeCoefficient =  overTimeBaseCoefficient * levelPenaltyCoefficient * talentAndBuffCoefficient;
+	let row =`<tr>
 				<td data-sort-value="${rank}">${rank}</td>
-				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 1)}">${roundNumber(calculatePower(healingPower, spellData, rank), 1)}</td>
-				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 1)}">${roundNumber(calculateCost(healingPower, spellData, rank), 1)}</td>
+				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 0)}">${roundNumber(calculatePower(healingPower, spellData, rank), 0)}</td>
+				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 0)}">${roundNumber(calculateCost(healingPower, spellData, rank), 0)}</td>
 				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
 				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
-				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>
-			</tr>`
+				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>\n`;
+	if (directCoefficient > 0 && overTimeCoefficient > 0) {
+		row +=	`<td data-sort-value="${roundNumber(directCoefficient * 100, 1)}">${roundNumber(directCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(overTimeCoefficient * 100, 1)}">${roundNumber(overTimeCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(directBaseCoefficient * 100, 1)}">${roundNumber(directBaseCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(overTimeBaseCoefficient * 100, 1)}">${roundNumber(overTimeBaseCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>\n
+				`;
+	} else {
+		let coefficent = directCoefficient;
+		let baseCoefficent = directBaseCoefficient;
+		if (directCoefficient === 0) {
+			coefficent = overTimeCoefficient;
+			baseCoefficent = overTimeBaseCoefficient;
+		}
+		row +=	`<td data-sort-value="${roundNumber(coefficent * 100, 1)}">${roundNumber(coefficent * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(baseCoefficent * 100, 1)}">${roundNumber(baseCoefficent * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>\n
+				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>\n
+				`;
+	}
+	row +=	 `</tr>`;
+	return row;
 }
-
 
 function buildSpellDescription(spell, rank) {
 	var description = spell.description;
@@ -129,22 +173,22 @@ function buildTalentTooltip(talent, rank) {
 	let regExp = /\${([^}]+)}/g;
 	let matches = description.match(regExp);
 	let state = "";
-	let footer = "";
+	let footer = talent.description;
 	if(matches){
 		for(let i = 0; i < matches.length; i++){
 			let match = matches[i];
 			let attribute = match.substring(2, matches[i].length -1);
 			if(rank === 0){
-				description = description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1));
+				description = description.replace(match, roundNumber(talent[attribute] * (rank + 1), 0));
 				footer = "Click to learn";
 				state = "first";
 			} else if (rank === talent.maxRank){
-				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 0));
 				footer = "Click to unlearn"
 				state = "last";
 			} else {
-				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
-				footer = `</br>Next rank:</br><span class="next-rank">${talent.description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 0));
+				footer = `</br>Next rank:</br><span class="next-rank">${footer.replace(match, roundNumber(talent[attribute] * (rank + 1), 0))}</span>`
 			}
 		}
 	}
@@ -177,7 +221,7 @@ function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
 }
 
 function buildSpellHtmlForClass(className, onClick, container){
-	var path = `/spelldata/${className}/`
+	var path = `/spelldata/${expansion}/${className}/`
 	$.get(path, function(response){
 		var html = "";
 		$(response).each(function(){
@@ -245,7 +289,7 @@ function buildBuffTooltip(buff){
 	let range = buff.ranks[rank].range;
 	return 	`<span class="spell-tooltip buff-tooltip">
 				<div class="header">
-					<span class="name">${buff.name}</span> 
+					<span class="name">${toTitleCase(buff.name)}</span> 
 					<span class="rank">Rank ${rank + 1}</span>
 				</div>
 				<div class="requirements">` + 

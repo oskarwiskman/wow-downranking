@@ -1,0 +1,62 @@
+{
+	"class":"priest",
+	"name":"Heal",
+	"type":"heal",
+	"description":"Heal your target for ${powerMin} to ${powerMax}.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":16,
+			"cost":155,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":307,
+			"powerMax":353,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":22,
+			"cost":205,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":445,
+			"powerMax":507,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":28,
+			"cost":255,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":586,
+			"powerMax":662,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":4,
+			"level":34,
+			"cost":305,
+			"range":40,
+			"baseCastTime":3,
+			"powerMin":734,
+			"powerMax":827,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}

@@ -19,19 +19,19 @@
 		<link rel="stylesheet" type="text/css" href='/stylesheets/chart.css'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/classic/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/classic/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/classic/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/classic/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/classic/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/classic/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/classic/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/classic/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/classic/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/classic/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/classic/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/classic/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/classic/favicon-16x16.png">
 		<script src="/javascripts/jquery-3.4.1.min.js"></script>
 		<script src="/javascripts/compliance.js"></script>
 		<script src="/javascripts/rangeslider.min.js"></script>
@@ -46,8 +46,16 @@
 		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 	</head>
 	<body>
-		<img id="main-header" src="/images/classic-wow-logo.png" alt="World of Warcraft: Classic"></img>
-		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
+		<div id="logo-container">
+			<img id="main-logo" src="/images/wow_logo.png" alt="World of Warcraft: Classic"></img>
+			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
+		</div>
+		<div id="expansion-selection">
+			<div class="navbar">
+				<a class="icon-medium" id="classic-tbc" title="The Burning Crusade: Classic" alt="Classic TBC" style="background-image: url(/images/classic_tbc_icon.png)" href="/tbc"></a>
+			</div>
+		</div>
+		<h1 id="main-header">Ozgar's Downranking Guide & Tool</h1>
 		<span class="btn">
 			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
 		</span>
@@ -70,49 +78,22 @@
 		</div>
 		<div class="aq-tome-container">
 				<label class="checkbox-container" title="Check this if you want the suggestion to consider AQ20 spell tablets.">Ahn'Qiraj released?
-					<input id="aq-tome" type="checkbox" name="tome" value="tome" onChange="refreshTooltip()">
+					<input id="aq-tome" type="checkbox" name="tome" checked="true" value="tome" onChange="refreshTooltip()">
 					<span class="checkmark-background"></span>
 					<span class="checkmark"></span>
 				</label>
 		</div>
-		<div id="class-selection">
-			<h4 class="header">Pick a class</h4>
-			<div class="navbar">
-				<a class="wow-class icon-medium" id="druid" title="Druid" alt="Druid" style="background-image: url(/images/class_druid.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="paladin" title="Paladin" alt="Paladin" style="background-image: url(/images/class_paladin.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="priest" title="Priest" alt="Priest" style="background-image: url(/images/class_priest.jpg)" onClick="onClassClicked(this);"></a>
-				<a class="wow-class icon-medium" id="shaman" title="Shaman" alt="Shaman" style="background-image: url(/images/class_shaman.jpg)" onClick="onClassClicked(this);"></a>
-			</div>
-		</div>
-		<div id="spirit-container" class="class-stat hidden">
-			<label for="spirit">Amount of spirit</label>
-			<span>
-				<input id="spirit" type="number" min="0" value="0" onChange="refreshTooltip()">
-			<span>
-		</div>
-		<div id="talent-selection" class="hidden">
-			<h4 class="header">Fill out your talents</h4>
-			<div class="navbar"></div>
-		</div>
-		<div id="buff-selection" class="hidden">
-			<h4 class="header">Select active buffs</h4>
-			<div class="navbar"></div>
-		</div>
-		<div id="spell-selection" class="hidden">
-			<h4 class="header">Pick a spell</h4>
-			<div class="navbar">
-			</div>
-		</div>
-		<div id="result" class="hidden">
-			<h4 class="header">Recommended rank with the highest <a href="#" onClick="openModal('info-modal')" title="Click to show how HES is calculated">Healing Efficiency Score</a></h4>
-			<div id="tooltip"></div>
-		</div>
-		<div id="tip-container">
-			<span id="tip-title">Tip:</span>
-			<span id="tip"></span>
+		<% include index_common/class_selection.html %>
+		<div id="spell-specification-loader" class="loader loader-small hidden"></div>
+		<div id="spell-specification-content">
+			<% include index_common/talent_selection.html %>
+			<% include index_common/buff_selection.html %>
+			<% include index_common/spell_selection.html %>
+			<% include index_common/result.html %>
+			<% include index_common/tip.html %>
 		</div>
 	</body>
-	<% include how_it_works_modal.html %>
+	<% include how_it_works_modal/classic_main.html %>
 	<% include spell_details_modal.html %>
 	<% include compare_modal.html %>
 	<footer>

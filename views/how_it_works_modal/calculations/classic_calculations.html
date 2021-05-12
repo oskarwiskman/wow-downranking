@@ -1,0 +1,58 @@
+<h3 id="calc">Calculations</h3>
+<% include intro.html %>
+<% include direct_and_over_time_spells.html %>
+<% include hybrid_spells.html %>
+<% include sub_20_penalty.html %>
+<% include critical_effect_chance.html %>
+
+<h4>Putting it all together</h4>
+<p>
+	Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
+
+	<code>[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Coefficient]</code>
+
+	Thus the actual power of the spell is:
+
+	<code>[Actual Power] = [Base power] + [+Power] * [Effective Coefficient]</code>
+
+	The result of the function above is what is used when calculating <b class="yellow">HpME</b>, <b class="yellow">HpS</b> and finally <b class="yellow">HES</b>.
+
+	The <b class="yellow">HpME</b> and <b class="yellow">HpS</b> are quite straight forward, and calculated as:
+	<code>
+		HpME = [Actual Power] / [Mana Cost]</br>
+		HpS = [Actual Power] / [Cast time]
+	</code>
+
+	From these two we calculate the Healing Efficiency Score <b class="yellow">HES</b> as:
+
+	<code>
+		HES = HpME^x * ln(HpS)^y 
+	</code>
+
+	with x and y changing depending on the slider.
+
+	A few notes on this process:
+	<ul>
+		<li>All cast times are considered before any spell haste or casting time talents are applied.</li>
+		<li>All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.</li>
+		<li>All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.</li>
+	</ul>
+</p>
+<h4>Calculation example</h4>
+<p>
+	As an example I will demonstrate how to determine the power of <b class="yellow">Rank 3 Healing Wave</b> with <b class="yellow">500 Healing Power</b>, and a <b class="yellow">10% Critical effect chance</b>.
+
+	<code>
+		[Base Power] = ([Base min Power] + [Base max Power]) / 2 = (129 + 155) / 2 = 142</br>
+		[Basic Coefficient] = [Cast Time] / [Reference Cast Time] = 2.5 / 3.5 = 0.714</br>
+		[Sub Level 20 Coefficient] = 1 - ((20 - [Spell level]) * 0.0375) = 1 - ((20 - 12) * 0.0375) = 0.7</br>
+		[Effective Coefficient] = [Basic Coefficient] * [Sub Level 20 Coefficient] = 0.5</br>
+		[Crit Coefficient] = (1 + (1 + 10/100)) / 2 = 1.05
+	</code>
+	Which results in the actual power being:
+	<code>
+		[Actual Power] = ([Base Power] + ([Extra Power] * [Effective Coefficient])) * [Crit Coefficient]</br>
+	= (142 + (500 * 0.5)) * 1.05</br>
+	= 392 * 1.05 = <i class="yellow">412</i></br>
+	</code>
+</p>

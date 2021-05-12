@@ -1,0 +1,90 @@
+{
+	"class":"paladin",
+	"buffs": [
+		{ 	
+			"name":"Blessing of Light",
+			"key":"blessing_of_light",
+			"type":"buff",
+			"image":"blessing_of_light.jpg",
+			"description":"Places a Blessing on the friendly target, increasing the effects of Holy Light spells used on the target by up to ${holyLight} and the effect Flash of Light spells used on the target by up to ${flashOfLight}. Lasts 5 min. Players may only have one Blessing on them per Paladin at any one time.",
+			"ranks":[
+				{	"rank":1,
+					"level":40,
+					"cost":85,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":210,
+					"flashOfLight":60
+				},
+				{	"rank":2,
+					"level":50,
+					"cost":110,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":300,
+					"flashOfLight":85
+				},
+				{	"rank":3,
+					"level":60,
+					"cost":135,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":400,
+					"flashOfLight":115
+				},
+				{	"rank":4,
+					"level":69,
+					"cost":180,
+					"range":30,
+					"baseCastTime":0,
+					"holyLight":580,
+					"flashOfLight":185
+				}
+			]
+		},
+		{ 	
+			"name":"Divine Illumination",
+			"key":"divine_illumination",
+			"type":"buff",
+			"image":"divine_illumination.jpg",
+			"description":"Reduces the mana cost of all spells by ${reduction}% for ${seconds} sec.",
+			"ranks":[
+				{	"rank":1,
+					"level":50,
+					"cost":-1,
+					"range":-1,
+					"baseCastTime":0,
+					"reduction":50,
+					"seconds":15
+				}
+			]
+		},
+		{ 	
+			"name":"Light-s Grace",
+			"key":"lights_grace",
+			"type":"buff",
+			"image":"lights_grace.jpg",
+			"description":"Gives your Holy Light spell a ${chance}% to reduce the cast time of your next Holy Light spell by ${reduction} sec. This effect lasts ${duration} sec.",
+			"ranks":[
+				{	"rank":3,
+					"level":40,
+					"chance":33,
+					"reduction":0.5,
+					"duration":15
+				},
+				{	"rank":3,
+					"level":41,
+					"chance":66,
+					"reduction":0.5,
+					"duration":15
+				},
+				{	"rank":3,
+					"level":42,
+					"chance":100,
+					"reduction":0.5,
+					"duration":15
+				}
+			]
+		}
+	]
+}

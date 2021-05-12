@@ -12,7 +12,7 @@ function calculateMostEfficientRank(healingPower, spellData){
 		let PpM = calculatePowerPerMana(healingPower, spellData, rank);
 		let PpS = calculatePowerPerSecond(healingPower, spellData, rank);
 		let HES = calculateHES(PpM, PpS);
-		if(HES > bestHES){
+		if(HES > bestHES || (HES === bestHES && rank > bestRank)){
 			bestHES = HES;
 			bestRank = rank;
 		}
@@ -26,29 +26,32 @@ function calculateHES(PpM, PpS){
 }
 
 function calculatePower(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
-	let rankData = spellData.ranks[index];
-	let nextRankLevel = index < spellData.ranks.length - 1 ? spellData.ranks[index+1].level : undefined;
+	return expansion === 'tbc' ? calculatePowerTbc(healingPower, spellData, rank) : calculatePowerClassic(healingPower, spellData, rank);
+}
+
+function calculatePowerClassic(healingPower, spellData, rank){
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankData = spellData.ranks[rankIndex];
+	let nextRankLevel = rankIndex < spellData.ranks.length - 1 ? spellData.ranks[rankIndex+1].level : undefined;
 	let directPower = 0;
 	let overTimePower = 0;
 	let directExtraPower = 0;
 	let overTimeExtraPower = 0;
-	let coefficient;
-	healingPower += getTalentExtraPower(spellData.class, spellData.name, spellData.type);
 	switch(getSpellType(rankData)){
 		case "direct":
 			directPower = (rankData.powerMax + rankData.powerMin) / 2;
-			directExtraPower = healingPower * getDirectSpellCoeficient(rankData.baseCastTime);
+			directExtraPower = healingPower * getDirectSpellCoeficient(spellData, rank);
 			break;
 	  	case "overTime":
 	  		overTimePower = rankData.tickPower;
-	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(rankData.tickDuration);
+	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(spellData, rank);
 	    	break;
 	  	case "hybrid":
 	  		directPower = (rankData.powerMax + rankData.powerMin) / 2;
   			overTimePower = rankData.tickPower;
-	  		directExtraPower = healingPower * spellData.directCoeff;
-	  		overTimeExtraPower = healingPower * spellData.overTimeCoeff;
+			let coefficient = getHybridCoeficients(spellData, rank);
+	  		directExtraPower = healingPower * coefficient["direct"];
+	  		overTimeExtraPower = healingPower * coefficient["overTime"];
 	    	break;
 	}
 	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
@@ -57,39 +60,85 @@ function calculatePower(healingPower, spellData, rank){
 
 	directPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalDirectPower = (directPower + directExtraPower) * getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
-	totalDirectPower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	overTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let totalOverTimePower = overTimePower + overTimeExtraPower;
-	totalOverTimePower *= getBuffExtraPowerFactor(spellData.class, spellData.name, spellData.type);
+	totalOverTimePower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
+
+	return totalDirectPower + totalOverTimePower;
+}
+
+function calculatePowerTbc(healingPower, spellData, rank){
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankData = spellData.ranks[rankIndex];
+	let nextRankLevel = rankIndex < spellData.ranks.length - 1 ? spellData.ranks[rankIndex+1].level : undefined;
+	let directPower = 0;
+	let overTimePower = 0;
+	let directExtraPower = 0;
+	let overTimeExtraPower = 0;
+	switch(getSpellType(rankData)){
+		case "direct":
+			directPower = (rankData.powerMax + rankData.powerMin) / 2;
+			directExtraPower = healingPower * getDirectSpellCoeficient(spellData, rank);
+			break;
+	  	case "overTime":
+	  		overTimePower = rankData.tickPower;
+	  		overTimeExtraPower = healingPower * getOverTimeCoeficient(spellData, rank);
+	    	break;
+	  	case "hybrid":
+	  		directPower = (rankData.powerMax + rankData.powerMin) / 2;
+  			overTimePower = rankData.tickPower;
+			let coefficient = getHybridCoeficients(spellData, rank);
+	  		directExtraPower = healingPower * coefficient["direct"];
+	  		overTimeExtraPower = healingPower * coefficient["overTime"];
+	    	break;
+	}
+	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
+	directExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	directExtraPower *= getSubLevel20Penalty(rankData.level);
+	directExtraPower *= getDownrankPenalty(rankData.level);
+	overTimeExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
+	overTimeExtraPower *= getDownrankPenalty(rankData.level);
+
+	let totalDirectPower = directPower + directExtraPower;
+	totalDirectPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	totalDirectPower *= getCritChanceCoefficient(getEffectiveCritChance(spellData.class, spellData.name, spellData.type));
+	totalDirectPower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
+
+	let totalOverTimePower = overTimePower + overTimeExtraPower;
+	totalOverTimePower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
+	totalOverTimePower *= getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 
 	return totalDirectPower + totalOverTimePower;
 }
 
 function calculatePowerPerSecond(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
 	let power = calculatePower(healingPower, spellData, rank);
-	let rankData = spellData.ranks[index];
+	let rankData = spellData.ranks[rankIndex];
 	let divider;
 	switch(getSpellType(rankData)){
 		case "direct":
-			divider = rankData.baseCastTime;
+		case "hybrid":
+			divider = Math.max(1.5, rankData.baseCastTime);
+			divider -= getTalentCastTimeReduction(spellData.class, spellData.name, spellData.type);
+			divider -= getBuffCastTimeReduction(spellData.class, spellData.name, spellData.type);
+			divider *= getHasteCoefficient();
 			break;
 	  	case "overTime":
 	  		divider = rankData.tickDuration;
 	    	break;
-	  	case "hybrid":
-	  		divider = rankData.baseCastTime;
-	  		break;
 	}
-	divider -= getTalentCastTimeReduction(spellData.class, spellData.name, spellData.type);
-	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
+	return power / Math.max(expansion === 'tbc' ? 1 : 1.5, divider); // Assuming a minimum of 1 global cooldown for TBC and 1.5 sec for Classic.
 }
 
 function calculateCost(healingPower, spellData, rank){
-	let index = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
-	let cost = spellData.ranks[index].cost;
+	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
+	let cost = spellData.ranks[rankIndex].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
+	cost *= getBuffCostCoefficient(spellData.class, spellData.name, spellData.type);
 	return cost;
 }
 
@@ -157,9 +206,53 @@ function getTalentPowerCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 + ((data.rankIncrement * rank) / 100);
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
 				}
 			}
+			talent = getTalentByName('improved_chain_heal');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *= (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
+		default:
+			return 1;
+	}
+	return 1;
+}
+
+function getTalentExtraPowerCoefficient(className, spellName, spellType){
+	let talent;
+	let data;
+	let rank;
+	let powerCoef = 1;
+	switch(className) {
+		case "druid":
+			talent = getTalentByName('empowered_touch');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			talent = getTalentByName('empowered_rejuvination');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)) {
+					rank = talent.data("current-rank");
+					powerCoef *=  (1 + ((data.rankIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
+		case "paladin":
+			return 1;
+		case "priest":
+			return 1;
+		case "shaman":
 			return 1;
 		default:
 			return 1;
@@ -241,12 +334,12 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
-			talent = getTalentByName('improved_healing_touch');
+			talent = getTalentByName('naturalist');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return data.rankIncrement * rank;
+					return data.castReduction * rank;
 				}
 			}
 			talent = getTalentByName('nature-s_grace');
@@ -259,6 +352,14 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 			}
 			return 0;
 		case "paladin":
+			talent = getTalentByName('light-s_grace');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				if(isAffected(spellName, spellType, data)){
+					rank = talent.data("current-rank");
+					return (roundNumber(data.rankIncrement * 3, 0))*0.5/100;
+				}
+			}
 			return 0;
 		case "priest":
 			talent = getTalentByName('divine_fury');
@@ -285,51 +386,90 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	}
 }
 
-
-function getTalentExtraPower(className, spellName, spellType){
-	if(className === "priest"){
-		let talent = getTalentByName('spiritual_guidance');
-		if(talent.length > 0) {
-			let data = talent.data("talent");
-			let rank = talent.data("current-rank");
-			return (getSpirit() * ((data.rankIncrement * rank)/100))|0;
-		}
-	}
-	return 0;
-}
-
-function getBuffExtraPowerFactor(className, spellName, spellType){
-	if(className === "shaman"){
-		let buff = getBuffByName('healing_way');
-		if(buff.length > 0 && buff.hasClass('active')){
-			let data = buff.data('buff');
-			if(spellName === 'Healing Wave'){
-				return 1 + data.ranks[2].effect * 3/100;
+function getBuffPowerCoefficient(className, spellName, spellType){
+	let buff;
+	switch(className) {
+		case "shaman":
+			buff = getBuffByName('healing_way');
+			if(buff.length > 0 && buff.hasClass('active')){
+				let data = buff.data('buff');
+				if(spellName === 'Healing Wave'){
+					return 1 + data.ranks[2].effect * 3/100;
+				}
 			}
-		}
+			return 1;
+		default:
+			return 1;
+		
 	}
-	return 1;
 }
 
 function getBuffExtraPower(className, spellName, spellType){
-	if(className === "paladin"){
-		let buff = getBuffByName('blessing_of_light');
-		if(buff.length > 0 && buff.hasClass('active')){
-			let data = buff.data('buff');
-			if(spellName === 'Holy Light'){
-				return data.ranks[2].holyLight;
+	let buff;
+	let data;
+	switch(className) {
+		case "druid":
+			buff = getBuffByName('tree_of_life');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				return data.ranks[0].bonusFromSpirit / 100 * getSpirit();
 			}
-			if(spellName === 'Flash of Light'){
-				return data.ranks[2].flashOfLight;
+		case "paladin":
+			buff = getBuffByName('blessing_of_light');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				if(spellName === 'Holy Light'){
+					return data.ranks[2].holyLight;
+				}
+				if(spellName === 'Flash of Light'){
+					return data.ranks[2].flashOfLight;
+				}
 			}
-		}
+			return 0;
+		default:
+			return 0;
 	}
-	return 0;
+
+}
+
+
+function getBuffCostCoefficient(className, spellName, spellType){
+	let buff;
+	let data;
+	switch(className) {
+		case "druid":
+			buff = getBuffByName('tree_of_life');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				return (data.spellsAffectedByManaReduction.includes(spellName)) ? 1 - (data.ranks[0].costCoefficient / 100) : 1;
+			}
+		default:
+			return 1;
+	}
+
+}
+
+function getBuffCastTimeReduction(className, spellName, spellType) {
+	let buff;
+	let data;
+	switch(className) {
+		case "paladin":
+			buff = getBuffByName('lights_grace');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				if(spellName === 'Holy Light'){
+					return data.ranks[2].reduction;
+				}
+			}
+			return 0;
+		default:
+			return 0;
+	}
 }
 
 function getEffectiveCritChance(className, spellName, spellType){
-	let critChance = parseInt(getCritChance());
-	let talents = ['improved_regrowth', 'holy_specialization', 'holy_power', 'tidal_mastery']
+	let critChance = getCritChance();
+	let talents = ['improved_regrowth', 'natural_perfection', 'holy_specialization', 'holy_power', 'sanctified_light', 'tidal_mastery']
 	let rank;
 	for(let i = 0; i < talents.length; i++){
 		talent = getTalentByName(talents[i]);
@@ -341,7 +481,7 @@ function getEffectiveCritChance(className, spellName, spellType){
 			}
 		}
 	}
-	return critChance;
+	return Math.min(100, critChance);
 }
 
 function getCritChanceCoefficient(critChance) {
@@ -370,11 +510,16 @@ function getSpellType(spell){
  * The coeficients for direct spells are affected by the cast time.
  * The formula for this is: [Cast Time of Spell] / 3.5 = [Coefficient]
  * 
- * @param 	{double}	castTime      	Spell cast time in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{double} 	directCoef		Returns the penalty calculated by the formula above. If castTime larger than 7 returns 2.
+ * @return 	{double} 	directCoeff		Returns the penalty calculated by the formula above, unless custom direct coefficient is specified in the data 
+ *										by adding the attribute directCoeff. If castTime larger than 7 returns 2.
  */
-function getDirectSpellCoeficient(castTime){
+function getDirectSpellCoeficient(spellData, rank){
+	if (spellData.directCoeff) return spellData.directCoeff;
+	if (spellData.ranks[rank-1].powerMax === 0) return 0;
+	castTime = spellData.ranks[rank-1].baseCastTime;
 	if(castTime > 7) castTime = 7;
 	if(castTime < 1.5) castTime = 1.5;
 	return castTime/3.5;
@@ -384,11 +529,16 @@ function getDirectSpellCoeficient(castTime){
  * The coeficients for over time spells are affected by the duration.
  * The formula for this is: [Duration of Spell] / 15 = [Coefficient]
  * 
- * @param 	{int}		duration      	Spell duration in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{double} 	overTimeCoef	Returns the penalty calculated by the formula above. If duration larger than 15 returns 1.
+ * @return 	{double} 	overTimeCoef	Returns the penalty calculated by the formula above unless custom over time coefficient is specified in the data 
+ *										by adding the attribute overTimeCoef. If duration larger than 15 returns 1.
  */
-function getOverTimeCoeficient(duration){
+function getOverTimeCoeficient(spellData, rank){
+	if (spellData.overTimeCoeff) return spellData.overTimeCoeff;
+	if (spellData.ranks[rank-1].tickPower === 0) return 0;
+	duration = spellData.ranks[rank-1].tickDuration;
 	if(duration > 15) return 1;
 	return duration/15;
 }
@@ -403,12 +553,16 @@ function getOverTimeCoeficient(duration){
  *  [Over-Time coefficient]	=	([Duration] / 15) * [Over-Time portion]
  *  [Direct coefficient]	=	([Cast Time / 3.5) * [Direct portion]
  * 
- * @param 	{double}	castTime    		Spell cast time in seconds.
- * @param 	{double}	duration 			Spell duration in seconds.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		Spell rank.
  *
- * @return 	{Array[2]} 	hybridCoeficients 	Array containing the respective coeficients, index 0 holds direct coeficient and 1 holds over time coeficient.
+ * @return 	{Object[2]} hybridCoeficients 	Object containing the respective coeficients calculated using the formula above, unless custom 
+ *											coefficients are specified in the data by adding the attribute directCoef and or overTimeCoef.
+ *											Attributes can be accessed as direct and overTime.
  */
-function getHybridCoeficients(castTime, duration){
+function getHybridCoeficients(spellData, rank){
+	let castTime = spellData.ranks[rank-1].baseCastTime;
+	let duration = spellData.ranks[rank-1].tickDuration;
 	if(castTime > 7){
 		castTime = 7;
 	}
@@ -420,14 +574,14 @@ function getHybridCoeficients(castTime, duration){
 	}
 
 	let overTimePortion = (duration / 15) / ((duration / 15) + (castTime / 3.5));
-	let overTimeCoef = (duration / 15) * overTimePortion;
+	let overTimeCoeff = (duration / 15) * overTimePortion;
 	
 	let directPortion =  1 - overTimePortion;
-	let directCoef = (castTime / 3.5) * directPortion;
+	let directCoeff = (castTime / 3.5) * directPortion;
 
 	return {
-		"direct": directCoef, 
-		"overTime": overTimeCoef
+		"direct": (spellData.directCoeff ? spellData.directCoeff : directCoeff), 
+		"overTime": (spellData.overTimeCoeff ? spellData.overTimeCoeff : overTimeCoeff)
 	};
 }
 
@@ -445,4 +599,16 @@ function getSubLevel20Penalty(spellLevel){
 	} else {
 		return 1;
 	}
+}
+
+/**
+ * Casting a spell that is lower than the maximum rank available at the current character level incurs a penalty to the coefficient of the spell. 
+ * The formula for this is: ([Spell Level] + 11) / [Character level] = [Penalty]
+ * 
+ * @param 	{integer}	spellLevel      	The character level required to learn the spell.
+ *
+ * @return 	{double} 	downrankPenalty 	Returns the penalty calculated by the formula above. If the result is above 1, it returns 1.
+ */
+function getDownrankPenalty(spellLevel){
+	return Math.min((spellLevel + 11) / 70, 1);
 }

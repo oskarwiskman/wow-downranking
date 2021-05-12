@@ -101,6 +101,7 @@ function showSpellAffectingTalentsFor(className){
 	if(!className) {
 		$('#talent-selection').addClass('hidden');
 	} else {
+		$('#talent-selection').addClass('hidden');
 		loadTalentData(className, buildTalentHtmlForClass);
 	}
 }
@@ -149,16 +150,15 @@ function showResult(id){
 	$(id).removeClass("hidden");
 }
 
-function hideCritChance(){
-	$('#crit-chance-container').addClass("hidden");
-}
-
-function showCritChance(){
-	$('#crit-chance-container').removeClass("hidden");
-}
-
 function getCritChance(){
-	return Math.max(0, Math.min(100, $('#crit-chance').val()));
+	let critChance = expansion === 'tbc' ? roundNumber(Math.max(0, Math.min(2210, $('#crit-rating').val()) / 22.1), 1) : Math.max(0, Math.min(2221, $('#crit-chance').val()));
+	if(!critChance || critChance < 0) critChance = 0;
+	if(critChance > 100) critChance = 100;
+	return parseInt(critChance);
+}
+
+function getHasteCoefficient(){
+	return expansion === 'tbc' ? 1-roundNumber(Math.max(0, Math.min(3000, $('#haste-rating').val()) / 15.8), 1)/100 : 1;
 }
 
 function hideSpirit(){
@@ -170,7 +170,7 @@ function showSpirit(){
 }
 
 function getSpirit(){
-	return Math.max(0, $('#spirit').val());
+	return Math.min(Math.max(0, $('#spirit').val()), 5000);
 }
 
 function getSelectedClassName(){
@@ -276,22 +276,26 @@ function loadDetailsModalContent(){
 	let className = getSelectedClassName();
 	let spellName = getSelectedSpellName();
 	if(className && spellName){
-		$('#details-modal').find('.background').find('.loader').removeClass('hidden');
-		$('#details-modal').find('.content').hide();
 		loadSpellData(className, spellName, buildSpellDetailsContent, getHealingPower());
 	}
 }
 
 function buildSpellDetailsContent(spellData, healingPower){
-	$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
-	$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
-	$(`#details-modal`).find('.experts-notes .author .name').html(spellData.notes[0].author.name);
-	$(`#details-modal`).find('.experts-notes .author .desc').html(spellData.notes[0].author.description);
-	buildSpellTable(spellData, healingPower);
-	buildBreakpointsTable(spellData);
-	buildSpellCharts(spellData);
-	$('#details-modal').find('.background').find('.loader').addClass('hidden');
-	$('#details-modal').find('.content').show();
+	$('#details-modal').find('.content').hide();
+	$('#details-modal').find('.background').find('.loader').removeClass('hidden');
+	setTimeout(function() {
+		$(`#details-modal`).find('.content-title').find('.name').html(toTitleCase(spellData.name));
+		$(`#details-modal`).find('.content-title').find('.text').html(` details at level ${expansion == 'tbc' ? '70' : '60'}`);
+		$(`#details-modal`).find('.experts-notes h3').html(spellData.notes[0].note ? "Veteran's notes" : '');
+		$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
+		$(`#details-modal`).find('.experts-notes .author .name').html(spellData.notes[0].author.name);
+		$(`#details-modal`).find('.experts-notes .author .desc').html(spellData.notes[0].author.description);
+		buildSpellTable(spellData, healingPower);
+		buildBreakpointsTable(spellData);
+		buildSpellCharts(spellData);
+		$('#details-modal').find('.background').find('.loader').addClass('hidden');
+		$('#details-modal').find('.content').show();
+	}, 10);
 }
 
 function getSliderValues(){
@@ -316,13 +320,6 @@ function getHealingPower(){
 	return parseInt(healingPower);
 }
 
-function getCritChance(){
-	let critChance = $('#crit-chance').val();
-	if(!critChance || critChance < 0) critChance = 0;
-	if(critChance > 100) critChance = 100;
-	return parseInt(critChance);
-}
-
 function toTitleCase(str) {
 	let split = str.split('_');
 	for(let i = 0; i < split.length; i++){
@@ -345,21 +342,21 @@ function addSpellDataToDOM(spellData, id) {
 }
 
 function getCachedSpellData(className, spellName) {
-	return cache[`/spelldata/${className}/${spellName}.json`];
+	return cache[`/spelldata/${expansion}/${className}/${spellName}.json`];
 }
 
 function loadSpellData(className, spellName, callback, param){
-	let spellPath = `/spelldata/${className}/${spellName}.json`;
+	let spellPath = `/spelldata/${expansion}/${className}/${spellName}.json`;
 	loadJSON(spellPath, callback, param);
 }
 
 function loadTalentData(className, callback){
-	let talentPath = `/talents/${className}.json`
+	let talentPath = `/talents/${expansion}/${className}.json`
 	loadJSON(talentPath, callback);
 }
 
 function loadBuffData(className, callback){
-	let spellPath = `/buffs/${className}.json`;
+	let spellPath = `/buffs/${expansion}/${className}.json`;
 	loadJSON(spellPath, callback);
 }
 
@@ -382,11 +379,11 @@ function loadJSON(path, callback, param) {
 	        'dataType': "json",
 	        'success': !!callback ? 
 	        	function(data) {
-	        		cache[path] = data;
-	        		callback(data, param) 
+        			cache[path] = data;
+        			callback(data, param);
 	        	} : 
 	        	function (data) {
-	        		cache[path] = data;
+        			cache[path] = data;
 	        	}
 	    });
 	})();
