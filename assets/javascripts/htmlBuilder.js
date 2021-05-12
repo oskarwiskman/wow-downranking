@@ -289,7 +289,7 @@ function buildBuffTooltip(buff){
 	let range = buff.ranks[rank].range;
 	return 	`<span class="spell-tooltip buff-tooltip">
 				<div class="header">
-					<span class="name">${buff.name}</span> 
+					<span class="name">${toTitleCase(buff.name)}</span> 
 					<span class="rank">Rank ${rank + 1}</span>
 				</div>
 				<div class="requirements">` + 

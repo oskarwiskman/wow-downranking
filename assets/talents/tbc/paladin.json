@@ -43,16 +43,6 @@
 			"affectedSpells": [
 				"Holy Light"
 			]
-		},
-		{ 	
-			"name":"light-s_grace",
-			"maxRank":3,
-			"rankIncrement":33.24,
-			"description":"Gives your Holy Light spell a ${rankIncrement}% to reduce the cast time of your next Holy Light spell by 0.5 sec. This effect lasts 15 sec.",
-			"image":"lights_grace.jpg",
-			"affectedSpells": [
-				"Holy Light"
-			]
 		}
 	]
 }

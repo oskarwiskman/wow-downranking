@@ -58,6 +58,33 @@
 					"seconds":15
 				}
 			]
+		},
+		{ 	
+			"name":"Light-s Grace",
+			"key":"lights_grace",
+			"type":"buff",
+			"image":"lights_grace.jpg",
+			"description":"Gives your Holy Light spell a ${chance}% to reduce the cast time of your next Holy Light spell by ${reduction} sec. This effect lasts ${duration} sec.",
+			"ranks":[
+				{	"rank":3,
+					"level":40,
+					"chance":33,
+					"reduction":0.5,
+					"duration":15
+				},
+				{	"rank":3,
+					"level":41,
+					"chance":66,
+					"reduction":0.5,
+					"duration":15
+				},
+				{	"rank":3,
+					"level":42,
+					"chance":100,
+					"reduction":0.5,
+					"duration":15
+				}
+			]
 		}
 	]
 }
