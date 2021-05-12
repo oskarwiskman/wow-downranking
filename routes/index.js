@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/tbc', function(req, res, next) {
-  res.render('tbc_index', { title: "Ozgar's Downranking Guild & Tool - The Burning Crusade" });
+  res.render('tbc_index', { title: "Ozgar's Downranking Guide & Tool - The Burning Crusade" });
 });
 
 router.get('/cookieinfo', function(req, res, next) {
