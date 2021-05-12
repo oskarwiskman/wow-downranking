@@ -121,17 +121,17 @@ function calculatePowerPerSecond(healingPower, spellData, rank){
 	let divider;
 	switch(getSpellType(rankData)){
 		case "direct":
-			divider = rankData.baseCastTime;
+		case "hybrid":
+			divider = Math.max(1.5, rankData.baseCastTime);
+			divider -= getTalentCastTimeReduction(spellData.class, spellData.name, spellData.type);
+			divider -= getBuffCastTimeReduction(spellData.class, spellData.name, spellData.type);
+			divider *= getHasteCoefficient();
 			break;
 	  	case "overTime":
 	  		divider = rankData.tickDuration;
 	    	break;
-	  	case "hybrid":
-	  		divider = rankData.baseCastTime;
-	  		break;
 	}
-	divider -= getTalentCastTimeReduction(spellData.class, spellData.name, spellData.type);
-	return power / Math.max(1.5, divider); // Assuming 1.5 global cooldown.
+	return power / Math.max(expansion === 'tbc' ? 1 : 1.5, divider); // Assuming a minimum of 1 global cooldown for TBC and 1.5 sec for Classic.
 }
 
 function calculateCost(healingPower, spellData, rank){
@@ -447,6 +447,24 @@ function getBuffCostCoefficient(className, spellName, spellType){
 			return 1;
 	}
 
+}
+
+function getBuffCastTimeReduction(className, spellName, spellType) {
+	let buff;
+	let data;
+	switch(className) {
+		case "paladin":
+			buff = getBuffByName('lights_grace');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				if(spellName === 'Holy Light'){
+					return data.ranks[2].reduction;
+				}
+			}
+			return 0;
+		default:
+			return 0;
+	}
 }
 
 function getEffectiveCritChance(className, spellName, spellType){
