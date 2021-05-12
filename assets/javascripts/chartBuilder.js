@@ -99,10 +99,6 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
             }
         });
     }
-<<<<<<< HEAD
-=======
-   
->>>>>>> tbc-patch
     return chart;
 }
 
