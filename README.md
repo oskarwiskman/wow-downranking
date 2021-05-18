@@ -1,32 +1,67 @@
 # World of Warcraft - Downranking tips
-Downranking tool for classic World of Warcraft, will help you decide which spell rank has the highest heal per mana based on your +Healing and level. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS wouldn't give accurate results.
+Downranking tool for World of Warcraft: Classic and World of Warcraft - The Burning Crusade: Classic, that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
 
-The website is hosted by Heroku and can be found here https://www.wowdownrank.com/
+The website is hosted by Heroku and can be found here https://www.wowdownrank.com/ or https://www.wowdownrank.com/tbc for the Burning Crusade version.
 
 Currently supported spells:
 
-Druid:
-* Rejuvenation
-* Regrowth
-* Healing Touch
+#### Classic
 
-Paladin:
-* Flash of Light
-* Holy Light
-* Holy Shock
+* Druid:
+  * Rejuvenation
+  * Regrowth
+  * Healing Touch
 
-Priest:
-* Flash Heal
-* Greater Heal
-* Heal
-* Renew
+* Paladin:
+  * Flash of Light
+  * Holy Light
+  * Holy Shock
 
-Shaman:
-* Chain Heal
-* Healing Wave
-* Lesser Healing Wave
+* Priest:
+  * Flash Heal
+  * Greater Heal
+  * Heal
+  * Renew
+
+* Shaman:
+  * Chain Heal
+  * Healing Wave
+  * Lesser Healing Wave
+
+#### The Burning Crusade
+
+* Druid:
+  * Rejuvenation
+  * Regrowth
+  * Healing Touch
+  * Lifebloom
+
+* Paladin:
+  * Flash of Light
+  * Holy Light
+  * Holy Shock
+
+* Priest:
+  * Flash Heal
+  * Greater Heal
+  * Heal
+  * Renew
+  * Binding Heal
+  * Circle of Healing
+  * Prayer of Healing
+
+* Shaman:
+  * Chain Heal
+  * Healing Wave
+  * Lesser Healing Wave
+  * Earth Shield
 
 #### Update log
+
+#### 2021-05-18
+* Changed formula for Downranking penalty to be ([Level of next spell] - 1 + 5) / [Character Level] since this proved more accurate on the TBC Beta.
+* Added Shaman spell Earth Shock. 
+* Fix text issue with Paladin buff Light's Grace.
 
 #### 2021-05-10
 * Fix issue that the line Graphs in the Spell details modal would only load on the very first open on mobile.
@@ -34,69 +69,10 @@ Shaman:
 #### 2021-05-08
 * Priest talent Mental Agility now correctly gives 2% mana reduction per talent point instead of 1% thanks to [ZergRael](https://github.com/ZergRael).
 
-#### 2020-06-29
-* Druid talents Tranquil Spirit and Moonglow now stack additively as in game, instead of multiplicatively. So having both talents will reduce mana cost of Healing Touch by 19%. Thanks to u/Vogster for spotting this error.
-
 #### For older entries see full log here: [Complete update log](update_log.md)
 
-## Spell Coefficient
-The Spell Coefficient (SC) is the factor that the +Healing or Spell damage is multiplied with in order to determine the final power of the spell. The way the SC is calculated depends on the spell mechanics, there are some general rules for how to calculate the SC, in addition to this a few spells have unique SCs due to balance.
-
-The sections below will describe how this tool calculates Spell Coefficients, should you encounter any errors your are welcome to report a bug, or create a pull request. However, unless a reliable source is provided the requests will be rejected.
-
-[DISCLAIMER]: Due to being a healer myself, I have focused on healing spells to start with. In addition to this, since not all spells make any sense to downrank these have not been included, but might be added later if there is an interest.
-
-### Direct spells and Over-Time spells
-These two are the most straigt forward, since they are comprised of a single dividing factor.
-
-Direct spells are spells that only have a direct impact such as Smite, Shadowbolt, Flash Heal or Healing Touch. The coefficient is calculated by:
-
-```[Direct spell coefficient] = [Cast Time of Spell] / 3.5```
-
-Over-Time spells includes both Damage over time (DoTs) and Healing over Time (HoTs), such as Rejuvenation or Curse of Agony. The added damage or healing is divided equally among each tick of the spell and the standard formula is:
-
-```[Over-Time spell coefficient] = [Duration of Spell] / 15```
-
-
-### Hybrid spells
-Hybrid spells is a little bit more complicated, these are spells with both a direct effect and a Over-Time portion, such as Regrowth, or Fire Ball. The standard formula for hybrid spells is:
-
-```[Over-Time part] = ([Duration] / 15) / (([Duration] / 15) + ([Cast Time] / 3.5))```
-
-```[Direct part] = 1 - [Over-Time portion]```
-
-The duration and cast time limitations are then applied:
-
-```[Over-Time coefficient] = ([Duration] / 15) * [Over-Time part]```
-
-```[Direct coefficient] = ([Cast Time / 3.5) * [Direct part]```
-
-DISCLAIMER: Regrowth is actually not calculated in this way, and has it's own spell specific coefficients as with:
-```[Direct coefficient] = 0.325```
-```[Over-Time coefficient] = 0.513```
-
-### Spells below level 20
-Casting a spell that is below level 20 incurs a significant penalty to the coefficient of the spell. The formula for this is:
-
-```((20 - [Spell Level]) * .0375 = [Sub Level 20 Penalty]```
-
-### Putting it all together
-Now when we have all the parts we can calculate the final effective coefficient for the spell which is defined by:
-
-```[Effective Coefficient] = [Basic Coefficient] * (1 - [Sub Level 20 Penalty]```
-
-Thus the final power of the spell is ```[Base power] + [+Power] * [Effective Coefficient]```
-
-The result of the function above is what is used when calculating HpME, HpS and finally HEM.
-
-A few notes on this process:
-
-* All cast times are considered before any spell haste or casting time talents are applied.
-* All talents or buffs that increase the damage or healing from spells are applied after the coefficient calculations.
-* All DoT/HoT durations are considered before any duration buffs or talents are applied. Keep in mind that these talents simply add extra ticks of damage or healing for the same amount that the spell would do otherwise.
-
 # Sources
-All the spell data used in the project has been gathered from Classic WoW Beta Servers and [ClassicWowHead](https://classic.wowhead.com/). Calculation formulas from have been derived from several sources and verified in the Classic WoW Beta.
+All the spell data used in the project has been gathered from Classic WoW Beta Servers, [ClassicWowHead](https://classic.wowhead.com/), TBC Beta Servers as well as [TBCWowHead](https://tbc.wowhead.com/). Calculation formulas from have been derived from several sources and verified in the Beta versions of both expansions.
 
 # Contributions
 As stated above I am happy to receive constructive feedback, in order to make this tool better.

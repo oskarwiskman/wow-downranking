@@ -1,5 +1,10 @@
 #### Update log
 
+#### 2021-05-18
+* Changed formula for Downranking penalty to be ([Level of next spell] - 1 + 5) / [Character Level] since this proved more accurate on the TBC Beta.
+* Added Shaman spell Earth Shock. 
+* Fix text issue with Paladin buff Light's Grace.
+
 #### 2021-05-10
 * Fix issue that the line Graphs in the Spell details modal would only load on the very first open on mobile.
 
