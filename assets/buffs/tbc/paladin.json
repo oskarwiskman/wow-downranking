@@ -70,18 +70,21 @@
 					"level":40,
 					"chance":33,
 					"reduction":0.5,
+					"baseCastTime":0,
 					"duration":15
 				},
 				{	"rank":3,
 					"level":41,
 					"chance":66,
 					"reduction":0.5,
+					"baseCastTime":0,
 					"duration":15
 				},
 				{	"rank":3,
 					"level":42,
 					"chance":100,
 					"reduction":0.5,
+					"baseCastTime":0,
 					"duration":15
 				}
 			]
