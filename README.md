@@ -8,14 +8,14 @@ Currently supported spells:
 #### Classic
 
 * Druid:
- * Rejuvenation
- * Regrowth
- * Healing Touch
+  * Rejuvenation
+  * Regrowth
+  * Healing Touch
 
 * Paladin:
- * Flash of Light
- * Holy Light
- * Holy Shock
+  * Flash of Light
+  * Holy Light
+  * Holy Shock
 
 * Priest:
  * Flash Heal
