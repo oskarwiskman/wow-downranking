@@ -7,10 +7,10 @@ Currently supported spells:
 
 #### Classic
 
-- Druid:
-* Rejuvenation
-* Regrowth
-* Healing Touch
+* Druid:
+  * Rejuvenation
+  * Regrowth
+  * Healing Touch
 
 Paladin:
 * Flash of Light
