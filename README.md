@@ -7,8 +7,8 @@ Currently supported spells:
 
 #### Classic
 
-Druid:
-* Rejuvenation
+* Druid:
+** Rejuvenation
 * Regrowth
 * Healing Touch
 
