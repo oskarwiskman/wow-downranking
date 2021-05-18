@@ -288,6 +288,11 @@ function buildSpellDetailsContent(spellData, healingPower){
 		$(`#details-modal`).find('.content-title').find('.text').html(` details at level ${expansion == 'tbc' ? '70' : '60'}`);
 		$(`#details-modal`).find('.experts-notes h3').html(spellData.notes[0].note ? "Veteran's notes" : '');
 		$(`#details-modal`).find('.experts-notes .note').html(spellData.notes[0].note);
+		if(!spellData.notes[0].author.name) {
+			$(`#details-modal`).find('.experts-notes .author').hide();
+		} else {
+			$(`#details-modal`).find('.experts-notes .author').show();
+		}
 		$(`#details-modal`).find('.experts-notes .author .name').html(spellData.notes[0].author.name);
 		$(`#details-modal`).find('.experts-notes .author .desc').html(spellData.notes[0].author.description);
 		buildSpellTable(spellData, healingPower);
