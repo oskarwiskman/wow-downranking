@@ -97,10 +97,10 @@ function calculatePowerTbc(healingPower, spellData, rank){
 	directExtraPower += getBuffExtraPower(spellData.class, spellData.name, spellData.type)
 	directExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	directExtraPower *= getSubLevel20Penalty(rankData.level);
-	directExtraPower *= getDownrankPenalty(rankData.level);
+	directExtraPower *= getDownrankPenalty(spellData, rank);
 	overTimeExtraPower *= getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	overTimeExtraPower *= getSubLevel20Penalty(rankData.level);
-	overTimeExtraPower *= getDownrankPenalty(rankData.level);
+	overTimeExtraPower *= getDownrankPenalty(spellData, rank);
 
 	let totalDirectPower = directPower + directExtraPower;
 	totalDirectPower *= getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type);
@@ -603,12 +603,18 @@ function getSubLevel20Penalty(spellLevel){
 
 /**
  * Casting a spell that is lower than the maximum rank available at the current character level incurs a penalty to the coefficient of the spell. 
- * The formula for this is: ([Spell Level] + 11) / [Character level] = [Penalty]
+ * The formula for this is:  (Minimum([Level of next rank - 1] + 5) / [Character Level], 1) = [Downrank Coefficient]
  * 
- * @param 	{integer}	spellLevel      	The character level required to learn the spell.
+ * @param 	{Object}	spellData      	Data for the spell.
+ * @param 	{int}		rank      		The rank to find the Downrank Coefficient for.
  *
  * @return 	{double} 	downrankPenalty 	Returns the penalty calculated by the formula above. If the result is above 1, it returns 1.
  */
-function getDownrankPenalty(spellLevel){
-	return Math.min((spellLevel + 11) / 70, 1);
+function getDownrankPenalty(spellData, rank){
+	// Directly passing rank in here will give the next rank, since the index starts at 0. 
+	// If there is no next rank, the max rank is being used and there is no penalty.
+	if (spellData.ranks[rank]) {
+		return Math.min((spellData.ranks[rank].level - 1 + 5) / getCharacterLevel(), 1);
+	}
+	return 1;
 }

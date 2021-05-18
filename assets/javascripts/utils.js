@@ -182,7 +182,7 @@ function getSelectedSpellName(){
 }
 
 function getCharacterLevel(){
-	return 60;
+	return expansion === 'tbc' ? 70 : 60;
 }
 
 function getBuffByName(buffName){

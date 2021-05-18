@@ -114,7 +114,7 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let HES = calculateHES(HpME, HpS);
 	let directBaseCoefficient = getDirectSpellCoeficient(spellData, rank);
 	let overTimeBaseCoefficient = getOverTimeCoeficient(spellData, rank);
-	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*(expansion === 'tbc' ? getDownrankPenalty(spellData.ranks[rank-1].level) : 1);
+	let levelPenaltyCoefficient = getSubLevel20Penalty(spellData.ranks[rank-1].level)*(expansion === 'tbc' ? getDownrankPenalty(spellData, rank) : 1);
 	let talentAndBuffCoefficient = getTalentPowerCoefficient(spellData.class, spellData.name, spellData.type) * getBuffPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let bonusHealingCoefficient = getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let directCoefficient = directBaseCoefficient * levelPenaltyCoefficient * talentAndBuffCoefficient;

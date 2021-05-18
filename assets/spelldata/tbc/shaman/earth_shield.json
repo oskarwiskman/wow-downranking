@@ -1,0 +1,52 @@
+{
+	"class":"shaman",
+	"name":"Earth Shield",
+	"type":"heal",
+	"description":"Protects the target with an earthen shield, giving a ${chanceToIgnore}% chance of ignoring spell interruption when damaged and causing attacks to heal the shielded target for ${powerMax}.  This effect can only occur once every few seconds. 6 charges. Lasts 10 min. Earth Shield can only be placed on one target at a time and only one Elemental Shield can be active on a target at a time.",
+	"notes": [
+		{
+			"author": {
+				"name": "",
+				"description": ""
+			},
+			"note": ""
+		}
+	],
+	"directCoeff":0.286,
+	"critable":true,
+	"ranks":[
+		{	"rank":1,
+			"level":50,
+			"cost":300,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":150,
+			"powerMax":150,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":2,
+			"level":60,
+			"cost":375,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":205,
+			"powerMax":205,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		},
+		{	"rank":3,
+			"level":70,
+			"cost":450,
+			"range":40,
+			"baseCastTime":0,
+			"powerMin":270,
+			"powerMax":270,
+			"tickInterval":0,
+			"tickDuration":0,
+			"tickPower":0
+		}
+	]
+}
