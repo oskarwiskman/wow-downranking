@@ -5,7 +5,7 @@ The website is hosted by Heroku and can be found here https://www.wowdownrank.co
 
 Currently supported spells:
 
-####Classic
+#### Classic
 
 Druid:
 * Rejuvenation
@@ -28,7 +28,7 @@ Shaman:
 * Healing Wave
 * Lesser Healing Wave
 
-####The Burning Crusade
+#### The Burning Crusade
 
 Druid:
 * Rejuvenation
