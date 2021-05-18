@@ -8,53 +8,53 @@ Currently supported spells:
 #### Classic
 
 * Druid:
-  * Rejuvenation
-  * Regrowth
-  * Healing Touch
+ * Rejuvenation
+ * Regrowth
+ * Healing Touch
 
-Paladin:
-* Flash of Light
-* Holy Light
-* Holy Shock
+* Paladin:
+ * Flash of Light
+ * Holy Light
+ * Holy Shock
 
-Priest:
-* Flash Heal
-* Greater Heal
-* Heal
-* Renew
+* Priest:
+ * Flash Heal
+ * Greater Heal
+ * Heal
+ * Renew
 
-Shaman:
-* Chain Heal
-* Healing Wave
-* Lesser Healing Wave
+* Shaman:
+ * Chain Heal
+ * Healing Wave
+ * Lesser Healing Wave
 
 #### The Burning Crusade
 
-Druid:
-* Rejuvenation
-* Regrowth
-* Healing Touch
-* Lifebloom
+* Druid:
+ * Rejuvenation
+ * Regrowth
+ * Healing Touch
+ * Lifebloom
 
-Paladin:
-* Flash of Light
-* Holy Light
-* Holy Shock
+* Paladin:
+ * Flash of Light
+ * Holy Light
+ * Holy Shock
 
-Priest:
-* Flash Heal
-* Greater Heal
-* Heal
-* Renew
-* Binding Heal
-* Circle of Healing
-* Prayer of Healing
+* Priest:
+ * Flash Heal
+ * Greater Heal
+ * Heal
+ * Renew
+ * Binding Heal
+ * Circle of Healing
+ * Prayer of Healing
 
-Shaman:
-* Chain Heal
-* Healing Wave
-* Lesser Healing Wave
-* Earth Shield
+* Shaman:
+ * Chain Heal
+ * Healing Wave
+ * Lesser Healing Wave
+ * Earth Shield
 
 #### Update log
 
