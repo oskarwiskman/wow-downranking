@@ -4,7 +4,7 @@
 <% include hybrid_spells.html %>
 <% include sub_20_penalty.html %>
 <% include downrank_penalty.html %>
-<% include critical_strike_rating.html %>
+<% include critical_effect_chance.html %>
 <% include haste_rating.html %>
 
 <h4>Putting it all together</h4>
@@ -60,7 +60,7 @@
 </p>
 <h4>Calculation example</h4>
 <p>
-	As an example I will demonstrate how to determine the power of <b class="yellow">Rank 7 Healing Wave</b> with <b class="yellow">1100 Healing Power</b>, and a <b class="yellow">260 Spell Critical Strike Rating chance</b> at level 70 with 5/5 talent points in <a href="https://tbc.wowhead.com/spell=16213/purification" title='Click to view Purification on tbc.wowhead.com' target='_blank'>Purification</a> and 3 stacks of <a href="https://tbc.wowhead.com/spell=29202/healing-way" title='Click to view Healing Way on tbc.wowhead.com' target='_blank'>Healing Way</a> on the target.
+	As an example I will demonstrate how to determine the power of <b class="yellow">Rank 7 Healing Wave</b> with <b class="yellow">1100 Healing Power</b>, and a <b class="yellow">16% Spell Critical Effect Chance</b> at level 70 with 5/5 talent points in <a href="https://tbc.wowhead.com/spell=16213/purification" title='Click to view Purification on tbc.wowhead.com' target='_blank'>Purification</a> and 3 stacks of <a href="https://tbc.wowhead.com/spell=29202/healing-way" title='Click to view Healing Way on tbc.wowhead.com' target='_blank'>Healing Way</a> on the target.
 
 	<code>
 		[Base Power] = (759+874)/2 = 816.5</br>
@@ -72,15 +72,14 @@
 		[Downrank Coefficient] = (48 - 1 + 5) / 70 ≈ 0.74</br>
 		[Talent Power Coefficient] = 1.1</br>
 		[Buff Power Coefficient] = 1.18</br>
-		[Crit Power Coefficient] = 260 Crit rating is ≈ 11.8% crit chance so Crit coefficient is 1.08</br>
+		[Crit Power Coefficient] = (1 + (1 + 0.16))/2 = 1.08</br>
 	</code>
 	Which results in the Effective Power being calculated as:
 	<code>
-		<b class="red">[Effective Coefficient]</b> = 0.857 * 1 * 0.74 ≈ <b class="red">0.63</b></br>
-		<b class="yellow">[Effective Bonus Power]</b> = (1100 + 0) * 1 * <b class="red">0.63</b> = <b class="yellow">630</b></br>
-		<b class="green">[Effective Power]</b> =  (816.5 + <b class="yellow">630</b>) * 1.1 * 1.18 * 1.08 ≈ <b class="green">2028</b>**</br>
+		<b class="red">[Effective Coefficient]</b> = 0.857 * 1 * 0.74 ≈ <b class="red">0.635</b></br>
+		<b class="yellow">[Effective Bonus Power]</b> = (1100 + 0) * 1 * <b class="red">0.635</b> ≈ <b class="yellow">700</b></br>
+		<b class="green">[Effective Power]</b> =  (816.5 + <b class="yellow">700</b>) * 1.1 * 1.18 * 1.08 ≈ <b class="green">2126</b>**</br>
 	</code>
-	<i>** NOTE: This result differs a little from the calculation presented if the same values are given to the tool. This is because the tool uses a lot more decimal points during calculations, and only rounds at the very end.</i></br></br>
 
 	CONGRATS! You made it to the end! Now go play...
 </p>

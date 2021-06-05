@@ -151,9 +151,7 @@ function showResult(id){
 }
 
 function getCritChance(){
-	let critChance = expansion === 'tbc' ? roundNumber(Math.max(0, Math.min(2210, $('#crit-rating').val()) / 22.1), 1) : Math.max(0, Math.min(2221, $('#crit-chance').val()));
-	if(!critChance || critChance < 0) critChance = 0;
-	if(critChance > 100) critChance = 100;
+	let critChance = Math.max(0, Math.min(100, $('#crit-chance').val()));
 	return parseInt(critChance);
 }
 
