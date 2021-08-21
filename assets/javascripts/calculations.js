@@ -251,7 +251,18 @@ function getTalentExtraPowerCoefficient(className, spellName, spellType){
 		case "paladin":
 			return 1;
 		case "priest":
-			return 1;
+			talent = getTalentByName('empowered_healing');
+			if(talent.length > 0) {
+				data = talent.data("talent");
+				rank = talent.data("current-rank");
+				if(spellName === "Greater Heal"){
+					powerCoef *=  (1 + ((data.ghIncrement * rank) / 100));
+				}
+				if(spellName === "Flash Heal" || spellName === "Binding Heal"){
+					powerCoef *=  (1 + ((data.fhAndBhIncrement * rank) / 100));
+				}
+			}
+			return powerCoef;
 		case "shaman":
 			return 1;
 		default:
