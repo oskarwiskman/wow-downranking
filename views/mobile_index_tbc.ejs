@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ozgar's Downranking Guild & Tool - The Burning Crusade</title>
+		<meta charset="UTF-8"> 
+		<meta name="description" content="Downranking Guide and Tool for World of Warcraft: The Burning Crusade - Classic">
+		<meta name="keywords" content="WoW, World of Warcraft, Classic WoW, The Burning Crusade, TBC, Classic TBC, Downranking, Rank down, Tool, Guide">
+		<meta name="author" content="Ozgar">
+		<meta name="msapplication-TileColor" content="#1d1d1d">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#1d1d1d">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href='/stylesheets/main.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/checkbox.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/spelltooltip.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/talent.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/buff.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/modal.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/rangeslider.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/chart.css'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/tbc/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/tbc/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/tbc/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/tbc/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/tbc/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/tbc/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/tbc/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/tbc/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/tbc/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/tbc/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/tbc/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/tbc/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/tbc/favicon-16x16.png">
+		<script src="/javascripts/jquery-3.4.1.min.js"></script>
+		<script src="/javascripts/compliance.js"></script>
+		<script src="/javascripts/rangeslider.min.js"></script>
+		<script src="/javascripts/chart.js"></script>
+		<script src="/javascripts/htmlBuilder.js"></script>
+		<script src="/javascripts/utils.js"></script>
+		<script src="/javascripts/calculations.js"></script>
+		<script src="/javascripts/main.js"></script>
+		<script src="/javascripts/chartBuilder.js"></script>
+		<script src="/javascripts/jquery.tablesort.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+	</head>
+	<body class="tbc mobile">
+		<div id="logo-container">
+			<img id="main-logo" src="/images/tbc_logo.png" alt="World of Warcraft: The Burning Crusade"></img>
+			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
+		</div>
+		<div id="expansion-selection">
+			<div class="navbar">
+				<a class="icon-medium" id="classic-wow" title="World of Warcraft: Classic" alt="Classic WoW" style="background-image: url(/images/classic_wow_icon.png)" href="/"></a>
+			</div>
+		</div>
+		<h1 id="main-header">Ozgar's Downranking Guide & Tool</h1>
+		<span class="btn">
+			<a href="#" onClick="openModal('info-modal')" title="Click to show how downranking works in this tool">How it works!</a>
+		</span>
+
+		<div id="character-info-container">
+			<div class="character-info">
+				<label for="healing">Healing Power</label>
+				<span>
+					<input id="healing" type="number" min="0" max="10000" value="0" onChange="refreshTooltip();">
+				</span>
+			</div>
+			<div class="character-info">
+				<label for="crit-chance">Critical effect chance</label>
+				<span>
+					<input id="crit-chance" type="number" min="0" max="100" value="0" onChange="refreshTooltip()"><span>%</span>
+				</span>
+			</div>
+			<div class="character-info">
+				<label for="haste-rating">Spell Haste Rating</label>
+				<span>
+					<input id="haste-rating" type="number" min="0" max="3000" value="0" onChange="refreshTooltip()"><span></span>
+				</span>
+			</div>
+		</div>
+			</div>
+		</div>
+		<% include index_common/class_selection.html %>
+		<div id="spell-specification-loader" class="loader loader-small hidden"></div>
+		<div id="spell-specification-content">
+			<% include index_common/talent_selection.html %>
+			<div id="spirit-container" class="class-stat hidden">
+				<label for="spirit">Amount of spirit</label>
+				<span>
+					<input id="spirit" type="number" min="0" max="5000" value="0" onChange="refreshTooltip()">
+				<span>
+			</div>
+			<% include index_common/buff_selection.html %>
+			<% include index_common/spell_selection.html %>
+			<% include index_common/result.html %>
+		</div>
+		<% include index_common/tip.html %>
+	</body>
+	<% include how_it_works_modal/tbc_main.html %>
+	<% include spell_details_modal.html %>
+	<% include compare_modal.html %>
+	<footer>
+		<div>
+			<div class="author">
+				Creator: Oskar Holmberg </br>
+				My <a href="https://github.com/oskarholmberg" target="_blank">GitHub</a> account</br>
+				Reddit tag: <a href="https://www.reddit.com/user/Oggzor" target="_blank">u/Oggzor</a>
+			</div>
+			<div class="paypal-container">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="hosted_button_id" value="2NHDAHNTTQ3PQ" />
+					<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+				</form>
+			</div>
+		</div>
+			<div class="credits">Credits to:</br>
+				<a href="https://www.reddit.com/user/melderon/" target="_blank">u/melderon</a> for collaboration and data verification on Classic WoW Beta Servers</br>
+				<a href="https://tbc.wowhead.com/" target="_blank">Wowhead TBC</a> for additional spell data</br>
+			</div>
+	</footer>
+</html>
+<!DOCTYPE html>

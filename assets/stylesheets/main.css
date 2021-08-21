@@ -8,10 +8,6 @@
        url('../Friz Quadrata.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-html {
-	height: 100%;
-}
-
 a { 
 	color: #7facf4;
 }
@@ -100,11 +96,18 @@ a:hover {
   height: 120px;
   animation: spin 2s linear infinite;
   display: inline-block;
+  position: absolute;
+  left: 50%;
+  margin-left: -60px;
+  top: 50%;
+  margin-top: -60px;
 }
 
 .loader.loader-small {
 	width: 50px;
     height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
     border: 8px solid;
     border-top: 8px solid #E7BA00;
 }
@@ -152,12 +155,17 @@ body footer {
     font-size: 1rem;
     text-align: center;
     color: #E7BA00;
-    position: absolute;
+    position: relative;
+    right: 0;
+    bottom: 0;
     left: 0;
-    bottom: -35px;
     width: 100%;
     background-color: rgba(34, 34, 34, 0.9);
     padding: 1em;
+}
+
+body.mobile footer {
+	
 }
 
 body footer a {
@@ -186,14 +194,26 @@ body footer .paypal-container{
     display: block;
 }
 
+body.mobile #main-logo {
+	max-width: 90%;
+}
+
 #secondary-logo {
     max-width: 450px;
     margin: auto;
     display: block;
 }
 
+body.mobile #secondary-logo {
+	max-width: 70%;
+}
+
 #main-header {
 	margin-bottom: 5px;
+}
+
+body.mobile #main-header {
+	font-size: 1.5em;
 }
 
 .icon-medium {
@@ -277,7 +297,7 @@ input {
 	overflow-x: auto;
 	margin-top: 20px;
     display: inline-block;
-    max-width: 400px;
+    max-width: 100%;
     padding: 10px 12px;
     background-color: #111;
     opacity: 0.8;
@@ -400,6 +420,11 @@ input {
 .chart-container {
 	min-height: 400px;
     min-width: 400px;
+}
+
+body.mobile .chart-container {
+	min-height: 300px;
+    min-width: 300px;
 }
 
  #compare-container {

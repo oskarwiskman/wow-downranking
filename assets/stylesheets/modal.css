@@ -1,3 +1,9 @@
+@media (orientation: landscape) {
+  body.mobile .modal {
+    max-height: 85vh !important;
+  }
+}
+
 body .modal {
     background: url(../images/window_border.png) no-repeat;
     background-size: 100%;
@@ -7,8 +13,43 @@ body .modal {
 }
 
 body .blocker {
-	background-color: none;
 	background-color: rgba(0,0,0,0);
+}
+
+body.mobile .blocker {
+    padding: 0;
+    padding-top: 2em;
+    max-width: 100vw;
+}
+
+body.mobile .blocker::before {
+    display: none;
+}
+
+body.mobile .modal {
+    max-width: 100%;
+    max-height: 95vh;
+    padding: 0;
+    background: none;
+    border: 2px solid #636261;
+}
+
+body.mobile .modal .background {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+
+.modal .youtube-iframe {
+    width: 100%;
+    height: 290px; 
+}
+
+body.mobile .modal .youtube-iframe {
+    width: 100%;
+    height: 167px; 
 }
 
 .modal .background {
@@ -28,8 +69,15 @@ body .blocker {
     width: 100%;
     height: 794px;
     padding: 20px;
-    margin: 5px 0 0 0;
     overflow: auto;
+}
+
+body.mobile .modal .content {
+    height: 100%;
+}
+
+body.mobile .modal .content h1.title {
+    margin-top: -25px;
 }
 
 .modal .content h1.title {
@@ -38,10 +86,12 @@ body .blocker {
     width: 200px;
     height: 50px;
     margin: 0;
+    margin-left: -100px;
+    margin-top: -10px;
     display: block;
     position: absolute;
-    top: -12px;
-    left: 200px;
+    top: 0;
+    left: 50%;
     background: url(../images/menu_title.png) no-repeat;
     background-size: 100% 100%;
     text-align: center;

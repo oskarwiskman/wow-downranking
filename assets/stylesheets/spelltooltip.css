@@ -6,6 +6,10 @@
 	margin-left: 4px;
 }
 
+.compare-result .spell-tooltip {
+	max-width: 100%;
+}
+
 .spell-tooltip {
 	font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
 	box-shadow: 1px 1px #555;
