@@ -78,6 +78,7 @@ function buildSpellTable(spellData, healingPower) {
 							<th data-sort-mode="no">Rank</th>
 							<th>Healing</th>
 							<th data-sort-mode="asc">Mana cost</th>
+							<th data-sort-mode="no">Cast time</th>
 							<th>HpME</th>
 							<th>HpS</th>
 							<th>HES</th>`;
@@ -109,8 +110,11 @@ function buildSpellTable(spellData, healingPower) {
 }
 
 function buildSpellTableRow(healingPower, spellData, rank) {
-	let HpME = calculatePowerPerMana(healingPower, spellData, rank);
-	let HpS = calculatePowerPerSecond(healingPower, spellData, rank);
+	let power = calculatePower(healingPower, spellData, rank);
+	let cost = calculateCost(spellData, rank);
+	let castTime = calculateCastTime(spellData, rank);
+	let HpME = power/cost;
+	let HpS = power/castTime;
 	let HES = calculateHES(HpME, HpS);
 	let directBaseCoefficient = getDirectSpellCoeficient(spellData, rank);
 	let overTimeBaseCoefficient = getOverTimeCoeficient(spellData, rank);
@@ -119,21 +123,23 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 	let bonusHealingCoefficient = getTalentExtraPowerCoefficient(spellData.class, spellData.name, spellData.type);
 	let directCoefficient = directBaseCoefficient * levelPenaltyCoefficient * talentAndBuffCoefficient;
 	let overTimeCoefficient =  overTimeBaseCoefficient * levelPenaltyCoefficient * talentAndBuffCoefficient;
+	let isChainHeal = spellData.name === 'Chain Heal';
 	let row =`<tr>
-				<td data-sort-value="${rank}">${rank}</td>
-				<td data-sort-value="${roundNumber(calculatePower(healingPower, spellData, rank), 0)}">${roundNumber(calculatePower(healingPower, spellData, rank), 0)}</td>
-				<td data-sort-value="${roundNumber(calculateCost(healingPower, spellData, rank), 0)}">${roundNumber(calculateCost(healingPower, spellData, rank), 0)}</td>
+				<td data-sort-value="${rank}">${rank}${isChainHeal ? ' (1 target)' : ''}</td>
+				<td data-sort-value="${roundNumber(power, 0)}">${roundNumber(power, 0)}</td>
+				<td data-sort-value="${roundNumber(cost, 0)}">${roundNumber(cost, 0)}</td>
+				<td data-sort-value="${roundNumber(castTime, 1)}" style="white-space: nowrap;">${roundNumber(castTime, 1)} sec</td>
 				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
 				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
-				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>\n`;
+				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>`;
 	if (directCoefficient > 0 && overTimeCoefficient > 0) {
-		row +=	`<td data-sort-value="${roundNumber(directCoefficient * 100, 1)}">${roundNumber(directCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(overTimeCoefficient * 100, 1)}">${roundNumber(overTimeCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(directBaseCoefficient * 100, 1)}">${roundNumber(directBaseCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(overTimeBaseCoefficient * 100, 1)}">${roundNumber(overTimeBaseCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>\n
+		row +=	`<td data-sort-value="${roundNumber(directCoefficient * 100, 1)}">${roundNumber(directCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(overTimeCoefficient * 100, 1)}">${roundNumber(overTimeCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(directBaseCoefficient * 100, 1)}">${roundNumber(directBaseCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(overTimeBaseCoefficient * 100, 1)}">${roundNumber(overTimeBaseCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>
 				`;
 	} else {
 		let coefficent = directCoefficient;
@@ -142,15 +148,50 @@ function buildSpellTableRow(healingPower, spellData, rank) {
 			coefficent = overTimeCoefficient;
 			baseCoefficent = overTimeBaseCoefficient;
 		}
-		row +=	`<td data-sort-value="${roundNumber(coefficent * 100, 1)}">${roundNumber(coefficent * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(baseCoefficent * 100, 1)}">${roundNumber(baseCoefficent * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>\n
-				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>\n
+		row +=	`<td data-sort-value="${roundNumber(coefficent * 100, 1)}">${roundNumber(coefficent * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(baseCoefficent * 100, 1)}">${roundNumber(baseCoefficent * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>
 				`;
 	}
 	row +=	 `</tr>`;
+	if (isChainHeal) {
+		row += buildChainHealRow(2, rank, power, cost, castTime, directCoefficient, directBaseCoefficient, levelPenaltyCoefficient, talentAndBuffCoefficient, bonusHealingCoefficient);
+		row += buildChainHealRow(3, rank, power, cost, castTime, directCoefficient, directBaseCoefficient, levelPenaltyCoefficient, talentAndBuffCoefficient, bonusHealingCoefficient);
+	}
 	return row;
+}
+
+function buildChainHealRow(targetNr, rank, power, cost, castTime, coefficent, baseCoefficent, levelPenaltyCoefficient, talentAndBuffCoefficient, bonusHealingCoefficient) {
+	let buff = getBuffByName('improved_chain_heal');
+	let target2active = targetNr > 1 ? 1 : 0;
+	let target3active = targetNr > 2 ? 1 : 0;
+	let chFactor = 1;
+	if(buff.length > 0 && buff.hasClass('active')){
+		data = buff.data('buff');
+		if (targetNr > 1) {
+			chFactor += data.ranks[0].effect/100;
+		}
+	}
+	power = power + target2active * power * 0.5 * chFactor + target3active * power * 0.25 * chFactor;
+	HpME = power/cost;
+	HpS = power/castTime;
+	HES = calculateHES(HpME, HpS);
+	return `<tr>
+				<td data-sort-value="${rank}" style="white-space: nowrap;">${rank}${' ('+targetNr+' targets)'}</td>
+				<td data-sort-value="${roundNumber(power, 0)}">${roundNumber(power, 0)}</td>
+				<td data-sort-value="${roundNumber(cost, 0)}">${roundNumber(cost, 0)}</td>
+				<td data-sort-value="${roundNumber(castTime, 1)}" style="white-space: nowrap;">${roundNumber(castTime, 1)} sec</td>
+				<td data-sort-value="${roundNumber(HpME, 1)}">${roundNumber(HpME, 1)}</td>
+				<td data-sort-value="${roundNumber(HpS, 1)}">${roundNumber(HpS, 1)}</td>
+				<td data-sort-value="${roundNumber(HES, 1)}">${roundNumber(HES, 1)}</td>
+				<td data-sort-value="${roundNumber(coefficent * 100, 1)}">${roundNumber(coefficent * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(baseCoefficent * 100, 1)}">${roundNumber(baseCoefficent * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(levelPenaltyCoefficient * 100, 1)}">${roundNumber(levelPenaltyCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(talentAndBuffCoefficient * 100, 1)}">${roundNumber(talentAndBuffCoefficient * 100, 1)}%</td>
+				<td data-sort-value="${roundNumber(bonusHealingCoefficient * 100, 1)}">${roundNumber(bonusHealingCoefficient * 100, 1)}%</td>
+			</tr>`;
 }
 
 function buildSpellDescription(spell, rank) {

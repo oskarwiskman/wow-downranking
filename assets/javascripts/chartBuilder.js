@@ -138,9 +138,9 @@ function buildCompareRadarChart(spellNames, classNames, ranks) {
         name[i] = spellData.name;
         ranks[i] = Math.min(Math.max(ranks[i], 0), spellData.ranks.length);
         healing[i] = calculatePower(healingPower, spellData, ranks[i]);
-        mana[i] = calculateCost(healingPower, spellData, ranks[i]);
-        hpme[i] = calculatePowerPerMana(healingPower, spellData, ranks[i]);
-        hps[i] = calculatePowerPerSecond(healingPower, spellData, ranks[i]);
+        mana[i] = calculateCost(spellData, ranks[i]);
+        hpme[i] = healing[i]/mana[i];
+        hps[i] = healing[i]/calculateCastTime(spellData, ranks[i]);
         hes[i] = calculateHES(hpme[i], hps[i]);
     }
 
@@ -178,8 +178,9 @@ function buildHESChart(spellData){
     for(r = 0; r < spellData.ranks.length; r++){
         let data = [];
         for(i = 0; i < healingPowerRange.length; i++){
-            let HpS = calculatePowerPerSecond(healingPowerRange[i], spellData, r+1);
-            let HpME = calculatePowerPerMana(healingPowerRange[i], spellData, r+1);
+            let power = calculatePower(healingPowerRange[i], spellData, r+1);
+            let HpS = power/calculateCastTime(spellData, r+1);
+            let HpME = power/calculateCost(spellData, r+1);
             let HES = calculateHES(HpME, HpS);
             data.push(roundNumber(HES, 3));
         }

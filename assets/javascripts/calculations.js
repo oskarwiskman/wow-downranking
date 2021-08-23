@@ -9,8 +9,11 @@ function calculateMostEfficientRank(healingPower, spellData){
 
 	for(let rank = 1; rank <= spellData.ranks.length; rank++){
 		if(!getAqReleased() && spellData.ranks[rank-1].tablet) continue;
-		let PpM = calculatePowerPerMana(healingPower, spellData, rank);
-		let PpS = calculatePowerPerSecond(healingPower, spellData, rank);
+		let power = calculatePower(healingPower, spellData, rank);
+		let cost = calculateCost(spellData, rank);
+		let castTime = calculateCastTime(spellData, rank);
+		let PpM = power/cost;
+		let PpS = power/castTime;
 		let HES = calculateHES(PpM, PpS);
 		if(HES > bestHES || (HES === bestHES && rank > bestRank)){
 			bestHES = HES;
@@ -115,8 +118,11 @@ function calculatePowerTbc(healingPower, spellData, rank){
 }
 
 function calculatePowerPerSecond(healingPower, spellData, rank){
+	return calculatePower(healingPower, spellData, rank) / calculateCastTime(spellData, rank); // Assuming a minimum of 1 global cooldown for TBC and 1.5 sec for Classic.
+}
+
+function calculateCastTime(spellData, rank){
 	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
-	let power = calculatePower(healingPower, spellData, rank);
 	let rankData = spellData.ranks[rankIndex];
 	let divider;
 	switch(getSpellType(rankData)){
@@ -131,21 +137,21 @@ function calculatePowerPerSecond(healingPower, spellData, rank){
 	  		divider = rankData.tickDuration;
 	    	break;
 	}
-	return power / Math.max(expansion === 'tbc' ? 1 : 1.5, divider); // Assuming a minimum of 1 global cooldown for TBC and 1.5 sec for Classic.
+	return Math.max(expansion === 'tbc' ? 1 : 1.5, divider); // Assuming a minimum of 1 global cooldown for TBC and 1.5 sec for Classic.
 }
 
-function calculateCost(healingPower, spellData, rank){
+function calculateCost(spellData, rank){
 	let rankIndex = Math.min(Math.max(rank - 1, 0), spellData.ranks.length-1);
 	let cost = spellData.ranks[rankIndex].cost;
 	cost *= getTalentCostCoefficient(spellData.class, spellData.name, spellData.type);
 	cost *= getBuffCostCoefficient(spellData.class, spellData.name, spellData.type);
-	return cost;
+	return cost === 0 ? 0.001 : cost; //Edge case of a Paladin with 100% crit and 5/5 Illumination will have 0 cost.
 }
 
 function calculatePowerPerMana(healingPower, spellData, rank){
 	let power = calculatePower(healingPower, spellData, rank);
-	let cost = calculateCost(healingPower, spellData, rank);
-	return cost === 0 ? power * 1000 : power / cost; //Edge case of a Paladin with 100% crit will have 0 cost.
+	let cost = calculateCost(spellData, rank);
+	return cost === 0 ? power * 1000 : power / cost; 
 }
 
 function getTalentPowerCoefficient(className, spellName, spellType){
@@ -470,6 +476,15 @@ function getBuffCastTimeReduction(className, spellName, spellType) {
 				data = buff.data('buff');
 				if(spellName === 'Holy Light'){
 					return data.ranks[2].reduction;
+				}
+			}
+			return 0;
+		case "shaman":
+			buff = getBuffByName('stormcaller_chain_heal_bonus');
+			if(buff.length > 0 && buff.hasClass('active')){
+				data = buff.data('buff');
+				if(spellName === 'Chain Heal'){
+					return data.ranks[0].effect;
 				}
 			}
 			return 0;

@@ -33,6 +33,33 @@
 					"effect":6
 				}
 			]
+		},
+		{ 	
+			"name":"Improved Chain Heal",
+			"key":"improved_chain_heal",
+			"type":"buff",
+			"image":"ten_storms.jpg",
+			"description":"Increases the amount healed by Chain Heal to targets beyound the first by ${effect}%.<br><br><i class=\"blue\">This adds the 3 piece set bonus from <a href=\"https://classic.wowhead.com/item-set=216/the-ten-storms\" title=\"Click to open The Ten Storms on Classic Wowhead\" target=\"_blank\">The Ten Storms</a>.</i>",
+			"ranks":[
+				{	"rank":1,
+					"level":60,
+					"baseCastTime":0,
+					"effect":30
+				}
+			]
+		},
+		{ 	
+			"name":"Stormcaller Chain Heal Bonus",
+			"key":"stormcaller_chain_heal_bonus",
+			"type":"buff",
+			"image":"stormcaller.jpg",
+			"description":"-${effect} seconds on the casting time of your Chain Heal spell.<br><br><i class=\"blue\">This adds the 5 piece set bonus from <a href=\"https://classic.wowhead.com/item-set=501/stormcallers-garb\" title=\"Click to open Stormcallers Garb on Classic Wowhead\" target=\"_blank\">Stormcallers Garb</a>.</i>",
+			"ranks":[
+				{	"rank":1,
+					"level":60,
+					"effect":0.4
+				}
+			]
 		}
 	]
 }
