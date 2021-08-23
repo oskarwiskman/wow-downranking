@@ -332,12 +332,18 @@ function toTitleCase(str) {
 }
 
 function refreshDetailsModal(){
-	let className = getSelectedClassName();
-	let spellName = getSelectedSpellName();
-	if(className && spellName){
-		loadSpellData(className, spellName, buildBreakpointsTable);
-		loadSpellData(className, spellName, buildHESChart);
-	}
+	$('#details-modal').find('.content').hide();
+	$('#details-modal').find('.background').find('.loader').removeClass('hidden');
+	setTimeout(function() {
+		let className = getSelectedClassName();
+		let spellName = getSelectedSpellName();
+		if(className && spellName) {
+			loadSpellData(className, spellName, buildBreakpointsTable);
+			loadSpellData(className, spellName, buildHESChart);
+		}
+		$('#details-modal').find('.background').find('.loader').addClass('hidden');
+		$('#details-modal').find('.content').show();
+	}, 10);
 }
 
 function addSpellDataToDOM(spellData, id) {

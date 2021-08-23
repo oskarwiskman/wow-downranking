@@ -143,10 +143,11 @@ function initRangeSliders(){
 
     // Callback function
     onSlide: function(position, value) {
-		refreshDetailsModal();
     },
 
     // Callback function
-    onSlideEnd: function(position, value) {}
+    onSlideEnd: function(position, value) {
+		refreshDetailsModal();
+    }
 });
 }
