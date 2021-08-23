@@ -58,16 +58,14 @@ Currently supported spells:
 
 #### Update log
 
+#### 2021-08-23
+* Improved user experience when using the HpME vs HpS Slider in the details view. Re-calculation is now performed after the slider has been released, and will also trigger a loader whilst processing.
+
+#### 2021-08-21
+* Improved layout for mobile and tablet users.
+
 #### 2021-06-21
 * Added handling of Priest talent Empowered Healing, since this had been missing before. The talent now correctly adds bonus healing to Greater Heal, Flash Heal, and Bindning Heal.
-
-#### 2021-05-18
-* Changed formula for Downranking penalty to be ([Level of next spell] - 1 + 5) / [Character Level] since this proved more accurate on the TBC Beta.
-* Added Shaman spell Earth Shield. 
-* Fix text issue with Paladin buff Light's Grace.
-
-#### 2021-05-10
-* Fix issue that the line Graphs in the Spell details modal would only load on the very first open on mobile.
 
 #### For older entries see full log here: [Complete update log](update_log.md)
 
