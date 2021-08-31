@@ -3,8 +3,17 @@ let expansion = "";
 $(document).ready(function(){
     initRangeSliders();
     newRandomTip();
+    initYouTubeiFrame();
     expansion = window.location.href.indexOf("tbc") > -1 ? "tbc" : "classic";
 });
+
+function initYouTubeiFrame() {
+	if (getCookie("cookieconsent_status") === "dismiss") {
+		$('.youtube-iframe').each( function () {
+			this.src = $(this).data("src");
+		});
+	}
+}
 
 function onClassClicked(elem){
 	let target = $(elem);

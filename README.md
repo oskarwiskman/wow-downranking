@@ -58,14 +58,23 @@ Currently supported spells:
 
 #### Update log
 
+#### 2021-08-31
+* Prevent YouTube video from loading unless cookies are accepted.
+* Host needed .js files.
+
+
+#### 2021-08-25
+* Added Shaman buffs for Tier 2, 3 piece bonus and tier 2.5, 5 piece (Only for Classic).
+* Added cast time to the detailed description table.
+* Chain Heal now displays 3 rows per rank, representing 0, 1 and 2 jumps.
+* Small optimization of some of the calculations by reducing the amount of calls to heavier methods.
+
 #### 2021-08-23
 * Improved user experience when using the HpME vs HpS Slider in the details view. Re-calculation is now performed after the slider has been released, and will also trigger a loader whilst processing.
 
 #### 2021-08-21
 * Improved layout for mobile and tablet users.
 
-#### 2021-06-21
-* Added handling of Priest talent Empowered Healing, since this had been missing before. The talent now correctly adds bonus healing to Greater Heal, Flash Heal, and Bindning Heal.
 
 #### For older entries see full log here: [Complete update log](update_log.md)
 
