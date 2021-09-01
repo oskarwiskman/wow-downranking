@@ -351,7 +351,7 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
-			talent = getTalentByName('naturalist');
+			talent = expansion === 'tbc' ? getTalentByName('naturalist') : getTalentByName('improved_healing_touch');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
