@@ -103,10 +103,8 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
 }
 
 function clearData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
+    chart.data.labels = [];
+    chart.data.datasets = [];
     chart.update();
 }
 
@@ -197,7 +195,7 @@ function buildHESChart(spellData){
     }
 
     datasets = normalizeDatasets(datasets);
-    hesChart = buildLineChart(hesChart, 'hes-chart', 'Normalized HES over Healing Power', datasets, healingPowerRange.slice(), 'Healing Power', 'Healing Efficiency Score');
+    hesChart = buildLineChart(hesChart, 'hes-chart', 'Normalized HES over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing Efficiency Score');
 }
 
 function buildHpSChart(spellData){
@@ -219,7 +217,7 @@ function buildHpSChart(spellData){
             }
         );
     }
-    hpsChart = buildLineChart(hpsChart, 'hps-chart', 'HpS over Healing Power', datasets, healingPowerRange.slice(), 'Healing Power', 'Healing per Second');
+    hpsChart = buildLineChart(hpsChart, 'hps-chart', 'HpS over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Second');
 }
 
 function buildHpMEChart(spellData){
@@ -241,7 +239,7 @@ function buildHpMEChart(spellData){
             }
         );
     }
-    hpmeChart = buildLineChart(hpmeChart, 'hpme-chart', 'HpME over Healing Power', datasets, healingPowerRange.slice(), 'Healing Power', 'Healing per Mana Efficiency');
+    hpmeChart = buildLineChart(hpmeChart, 'hpme-chart', 'HpME over Healing Power', datasets, healingPowerRange, 'Healing Power', 'Healing per Mana Efficiency');
 }
 
 
