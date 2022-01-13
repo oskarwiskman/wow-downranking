@@ -58,22 +58,16 @@ Currently supported spells:
 
 #### Update log
 
-#### 2021-08-31
-* Prevent YouTube video from loading unless cookies are accepted.
-* Host needed .js files.
+#### 2022-01-13
+* Center allignment of tooltips while browsing on mobile devices for smoother user experience.
+* Fix typo in tooltip for Shaman Ten Storms 3p buff.
 
+#### 2021-12-11
+* Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0. Thanks Hulio225 for pointing this out!
 
-#### 2021-08-25
-* Added Shaman buffs for Tier 2, 3 piece bonus and tier 2.5, 5 piece (Only for Classic).
-* Added cast time to the detailed description table.
-* Chain Heal now displays 3 rows per rank, representing 0, 1 and 2 jumps.
-* Small optimization of some of the calculations by reducing the amount of calls to heavier methods.
-
-#### 2021-08-23
-* Improved user experience when using the HpME vs HpS Slider in the details view. Re-calculation is now performed after the slider has been released, and will also trigger a loader whilst processing.
-
-#### 2021-08-21
-* Improved layout for mobile and tablet users.
+#### 2021-09-06
+* Fixed a bug that would cause reduce the x-axis of HES chart by 100 units each time the slider was used.
+* Improved handling of updates to line charts, now follows the proper patterns provided in documentation.
 
 
 #### For older entries see full log here: [Complete update log](update_log.md)
@@ -86,7 +80,7 @@ As stated above I am happy to receive constructive feedback, in order to make th
 
 Feel free to post bug reports on this repo, or create a Pull Request, but bare in mind that unless you provide a reasonable source to your claims they will be disregarded.
 
-If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Oggzor](https://www.reddit.com/user/Oggzor).
+If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Ozgar91](https://www.reddit.com/user/Ozgar91).
 
 ## Getting started
 1. Make sure that you have node.js installed [download link](https://nodejs.org/en/download/)

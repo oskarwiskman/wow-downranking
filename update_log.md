@@ -1,5 +1,21 @@
 #### Update log
 
+#### 2022-01-13
+* Center allignment of tooltips while browsing on mobile devices for smoother user experience.
+* Fix typo in tooltip for Shaman Ten Storms 3p buff.
+
+#### 2021-12-11
+* Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0.
+
+#### 2021-09-06
+* Fixed a bug that would cause reduce the x-axis of HES chart by 100 units each time the slider was used.
+* Improved handling of updates to line charts, now follows the proper patterns provided in documentation.
+
+#### 2021-09-01
+* Fixed bug with Druid talent Improved Healing Touch which was broken when TBC talent Naturalist was added. Classic version of the talent should now behave correctly again.
+* Fixed bug caused by rounding to zero decimal points when calculating cast time.
+* Correct path to external resource which was causing some failures.
+
 #### 2021-08-25
 * Added Shaman buffs for Tier 2, 3 piece bonus and tier 2.5, 5 piece (Only for Classic).
 * Added cast time to the detailed description table.
