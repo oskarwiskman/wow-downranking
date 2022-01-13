@@ -284,11 +284,14 @@ function buildTalentHtmlForClass(talentData){
 			html += buildTalentIcon(talentData.class, talentData.talents[i], 0);
 		}
 		container.html(html);
+		mobileAlignTooltipCenter(".talent-tooltip");
 	} 
 	else {
 		target.addClass("hidden");
 	}
 }
+
+
 
 function buildTalentIcon(className, talentData, rank){
 	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
@@ -311,6 +314,7 @@ function buildBuffHtmlForClass(buffData){
 			html += buildBuffIcon(buffData.class, buffData.buffs[i]);
 		}
 		container.html(html);
+		mobileAlignTooltipCenter(".buff-tooltip");
 	} 
 	else {
 		target.addClass("hidden");

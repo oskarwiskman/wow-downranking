@@ -85,6 +85,17 @@ function updateTooltip(spellData, params){
 	showResult(params.result_container);
 }
 
+function mobileAlignTooltipCenter(selector) {
+	if($("body").hasClass("mobile")) {
+		$(selector).each(function() {
+	    this.style.left=0;
+	    let tooltipRect = this.getBoundingClientRect();
+	    let left =  vw/2 - (tooltipRect.left+(tooltipRect.width/2));
+	    this.style.left = left + "px";
+		});
+	}
+}
+
 function toggleBuff(elem){
 	$(elem).toggleClass('active');
 	let footer = $(elem).find('.footer');
