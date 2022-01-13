@@ -39,7 +39,7 @@
 			"key":"improved_chain_heal",
 			"type":"buff",
 			"image":"ten_storms.jpg",
-			"description":"Increases the amount healed by Chain Heal to targets beyound the first by ${effect}%.<br><br><i class=\"blue\">This adds the 3 piece set bonus from <a href=\"https://classic.wowhead.com/item-set=216/the-ten-storms\" title=\"Click to open The Ten Storms on Classic Wowhead\" target=\"_blank\">The Ten Storms</a>.</i>",
+			"description":"Increases the amount healed by Chain Heal to targets beyond the first by ${effect}%.<br><br><i class=\"blue\">This adds the 3 piece set bonus from <a href=\"https://classic.wowhead.com/item-set=216/the-ten-storms\" title=\"Click to open The Ten Storms on Classic Wowhead\" target=\"_blank\">The Ten Storms</a>.</i>",
 			"ranks":[
 				{	"rank":1,
 					"level":60,
