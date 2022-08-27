@@ -261,6 +261,9 @@ function openModal(id){
 		loadDetailsModalContent();
 	}
 	if(id === 'compare-modal'){
+		selectCompareModalClass().then(select)
+
+
 		setTimeout(
 			function() {
 				if($(`#${getSelectedClassName()}1.active`).length === 0){
@@ -279,6 +282,14 @@ function openModal(id){
 				refreshDetailsModal();
 			}, 750);
 	}
+}
+
+function selectCompareModalClass() {
+	return new Promise(function(resolve, reject) {
+		let className = getSelectedClassName();
+		let classElem = document.getElementById(`${className}1`);
+		eventFire(classElem, 'click');
+	});
 }
 
 function loadDetailsModalContent(){

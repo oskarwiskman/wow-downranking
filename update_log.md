@@ -5,7 +5,7 @@
 * Fix typo in tooltip for Shaman Ten Storms 3p buff.
 
 #### 2021-12-11
-* Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0.
+* Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0. Thanks u/Hulio225 for pointing this out!
 
 #### 2021-09-06
 * Fixed a bug that would cause reduce the x-axis of HES chart by 100 units each time the slider was used.
