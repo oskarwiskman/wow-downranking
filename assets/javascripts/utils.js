@@ -261,9 +261,6 @@ function openModal(id){
 		loadDetailsModalContent();
 	}
 	if(id === 'compare-modal'){
-		selectCompareModalClass().then(select)
-
-
 		setTimeout(
 			function() {
 				if($(`#${getSelectedClassName()}1.active`).length === 0){
