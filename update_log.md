@@ -1,5 +1,8 @@
 #### Update log
 
+#### 2022-08 27
+* Added page for Wrath of the Lich King.
+
 #### 2022-01-13
 * Center allignment of tooltips while browsing on mobile devices for smoother user experience.
 * Fix typo in tooltip for Shaman Ten Storms 3p buff.

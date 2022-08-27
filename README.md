@@ -1,7 +1,7 @@
 # World of Warcraft - Downranking tips
-Downranking tool for World of Warcraft: Classic and World of Warcraft - The Burning Crusade: Classic, that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
+Downranking tool for World of Warcraft that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
 
-The website is hosted by [Glitch](https://glitch.com/) (was Heroku up until August 2022) and can be found here https://www.wowdownrank.com/ or https://www.wowdownrank.com/tbc for the Burning Crusade version.
+The website is hosted by [Glitch](https://glitch.com/) (was Heroku up until August 2022) and can be found here https://www.wowdownrank.com/, https://www.wowdownrank.com/tbc for the Burning Crusade version or https://www.wowdownrank.com/wotlk for Wrath of the Lich King.
 
 Currently supported spells:
 
@@ -58,16 +58,15 @@ Currently supported spells:
 
 #### Update log
 
+#### 2022-08 27
+* Added page for Wrath of the Lich King.
+
 #### 2022-01-13
 * Center allignment of tooltips while browsing on mobile devices for smoother user experience.
 * Fix typo in tooltip for Shaman Ten Storms 3p buff.
 
 #### 2021-12-11
 * Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0. Thanks Hulio225 for pointing this out!
-
-#### 2021-09-06
-* Fixed a bug that would cause reduce the x-axis of HES chart by 100 units each time the slider was used.
-* Improved handling of updates to line charts, now follows the proper patterns provided in documentation.
 
 
 #### For older entries see full log here: [Complete update log](update_log.md)
