@@ -21,6 +21,16 @@ router.get('/tbc', function(req, res, next) {
   }
 });
 
+
+router.get('/wotlk', function(req, res, next) {
+  var ua = req.header('user-agent');
+  if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+  		res.render('mobile_index_wotlk', { title: "Ozgar's Downranking Guide & Tool - Wrath of the Lich King Classic" });
+  } else {
+  		res.render('index_wotlk', { title: "Ozgar's Downranking Guide & Tool - Wrath of the Lich King Classic" });
+  }
+});
+
 router.get('/cookieinfo', function(req, res, next) {
   res.render('cookieinfo', { title: 'Cookie information' });
 });

@@ -151,6 +151,18 @@ body.tbc {
 	text-align: center;
 }
 
+body.wotlk {
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/Northrend.jpg') no-repeat 0 0;
+	background-color: #1d1d1d;
+	color: #ccc;
+	font-family: "Friz Quadrata";
+	min-height:100%; 
+	padding:0; 
+	position:relative; 
+	background-size: cover;
+	text-align: center;
+}
+
 body footer {
     font-size: 1rem;
     text-align: center;

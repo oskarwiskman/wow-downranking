@@ -3,10 +3,12 @@ const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
 $(document).ready(function(){
-    initRangeSliders();
-    newRandomTip();
-    initYouTubeiFrame();
-    expansion = window.location.href.indexOf("tbc") > -1 ? "tbc" : "classic";
+    expansion = document.getElementById("tbc-body") ? "tbc" : document.getElementById("wotlk-body") ? "wotlk" : "classic";
+    if(expansion !== "wotlk"){
+    	initRangeSliders();
+    	newRandomTip();
+    	initYouTubeiFrame();
+    }
 });
 
 function initYouTubeiFrame() {
