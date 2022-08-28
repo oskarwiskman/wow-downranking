@@ -58,8 +58,10 @@ Currently supported spells:
 
 #### Update log
 
-#### 2022-08 27
+#### 2022-08-27
 * Added page for Wrath of the Lich King.
+* Click the tips to see a new one!
+* Improved some footer styling.
 
 #### 2022-01-13
 * Center allignment of tooltips while browsing on mobile devices for smoother user experience.
