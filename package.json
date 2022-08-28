@@ -6,7 +6,8 @@
     "start": "node ./bin/www"
   },
   "glitch": {
-    "projectType": "generated_static"
+    "projectType": "generated_static",
+    "buildDirectory": "build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
