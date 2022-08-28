@@ -169,8 +169,11 @@ body footer {
     left: 0;
     width: 100%;
     background-color: rgba(34, 34, 34, 0.9);
-    padding: 1em;
     display: table-row;
+}
+
+body footer div {
+	padding: 1em 1em 0 1em;
 }
 
 body footer a {
