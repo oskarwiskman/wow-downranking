@@ -72,6 +72,10 @@ a:hover {
 	color: #7facf4;
 }
 
+.ice-blue {
+	color: #C8E9E9;
+}
+
 .red {
 	color: #fd1717;
 }
@@ -127,12 +131,18 @@ a:hover {
     height: 80px;
 }
 
+html, body{
+	min-height: 100vh;
+	width: 100%;
+	margin: 0;
+	display: table;
+}
+
 body {
 	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/KalimdorV2.png') no-repeat 0 0;
 	background-color: #1d1d1d;
 	color: #ccc;
 	font-family: "Friz Quadrata";
-	min-height:100%; 
 	padding:0; 
 	position:relative; 
 	background-size: cover;
@@ -141,26 +151,12 @@ body {
 
 body.tbc {
 	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/Outland.jpg') no-repeat 0 0;
-	background-color: #1d1d1d;
-	color: #ccc;
-	font-family: "Friz Quadrata";
-	min-height:100%; 
-	padding:0; 
-	position:relative; 
 	background-size: cover;
-	text-align: center;
 }
 
 body.wotlk {
 	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../images/Northrend.jpg') no-repeat 0 0;
-	background-color: #1d1d1d;
-	color: #ccc;
-	font-family: "Friz Quadrata";
-	min-height:100%; 
-	padding:0; 
-	position:relative; 
 	background-size: cover;
-	text-align: center;
 }
 
 body footer {
@@ -174,10 +170,7 @@ body footer {
     width: 100%;
     background-color: rgba(34, 34, 34, 0.9);
     padding: 1em;
-}
-
-body.mobile footer {
-	
+    display: table-row;
 }
 
 body footer a {
@@ -295,7 +288,8 @@ input {
 }
 
 #tip-container {
-	padding: 50px;
+	margin: 50px;
+	cursor: pointer;
 }
 
 #tip-title {
