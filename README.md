@@ -1,7 +1,7 @@
 # World of Warcraft - Downranking tips
 Downranking tool for World of Warcraft: Classic and World of Warcraft - The Burning Crusade: Classic, that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
 
-The website is hosted by [Glitch](https://glitch.com/) (was [Heroku](https://www.heroku.com/home) up until August 2022) and can be found here https://www.wowdownrank.com/ or https://www.wowdownrank.com/tbc for the Burning Crusade version.
+The website is hosted by Heroku](https://www.heroku.com/home) and can be found here https://www.wowdownrank.com/ or https://www.wowdownrank.com/tbc for the Burning Crusade version.
 
 Currently supported spells:
 
