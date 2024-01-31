@@ -1,10 +1,23 @@
 let expansion = "";
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
 $(document).ready(function(){
-    initRangeSliders();
-    newRandomTip();
-    expansion = window.location.href.indexOf("tbc") > -1 ? "tbc" : "classic";
+    expansion = document.getElementById("tbc-body") ? "tbc" : document.getElementById("wotlk-body") ? "wotlk" : "classic";
+    if(expansion !== "wotlk"){
+    	initRangeSliders();
+    	newRandomTip();
+    	initYouTubeiFrame();
+    }
 });
+
+function initYouTubeiFrame() {
+	if (getCookie("cookieconsent_status") === "dismiss") {
+		$('.youtube-iframe').each( function () {
+			this.src = $(this).data("src");
+		});
+	}
+}
 
 function onClassClicked(elem){
 	let target = $(elem);

@@ -308,7 +308,8 @@ function getTalentCostCoefficient(className, spellName, spellType){
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){
 					rank = talent.data("current-rank");
-					return 1 - ((critChance/100) * ((data.rankIncrement * rank) / 100));
+					costCoeff = ((critChance/100) * ((data.rankIncrement * rank) / 100));
+					return expansion === 'tbc' ? 1 - (0.6 * costCoeff) : 1 - costCoeff
 				}
 			}
 			return 1;
@@ -351,7 +352,7 @@ function getTalentCastTimeReduction(className, spellName, spellType){
 	let rank;
 	switch(className) {
 		case "druid":
-			talent = getTalentByName('naturalist');
+			talent = expansion === 'tbc' ? getTalentByName('naturalist') : getTalentByName('improved_healing_touch');
 			if(talent.length > 0) {
 				data = talent.data("talent");
 				if(isAffected(spellName, spellType, data)){

@@ -220,16 +220,16 @@ function buildTalentTooltip(talent, rank) {
 			let match = matches[i];
 			let attribute = match.substring(2, matches[i].length -1);
 			if(rank === 0){
-				description = description.replace(match, roundNumber(talent[attribute] * (rank + 1), 0));
+				description = description.replace(match, roundNumber(talent[attribute] * (rank + 1), 1));
 				footer = "Click to learn";
 				state = "first";
 			} else if (rank === talent.maxRank){
-				description = description.replace(match, roundNumber(talent[attribute] * rank, 0));
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
 				footer = "Click to unlearn"
 				state = "last";
 			} else {
-				description = description.replace(match, roundNumber(talent[attribute] * rank, 0));
-				footer = `</br>Next rank:</br><span class="next-rank">${footer.replace(match, roundNumber(talent[attribute] * (rank + 1), 0))}</span>`
+				description = description.replace(match, roundNumber(talent[attribute] * rank, 1));
+				footer = `</br>Next rank:</br><span class="next-rank">${footer.replace(match, roundNumber(talent[attribute] * (rank + 1), 1))}</span>`
 			}
 		}
 	}
@@ -284,11 +284,14 @@ function buildTalentHtmlForClass(talentData){
 			html += buildTalentIcon(talentData.class, talentData.talents[i], 0);
 		}
 		container.html(html);
+		mobileAlignTooltipCenter(".talent-tooltip");
 	} 
 	else {
 		target.addClass("hidden");
 	}
 }
+
+
 
 function buildTalentIcon(className, talentData, rank){
 	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
@@ -311,6 +314,7 @@ function buildBuffHtmlForClass(buffData){
 			html += buildBuffIcon(buffData.class, buffData.buffs[i]);
 		}
 		container.html(html);
+		mobileAlignTooltipCenter(".buff-tooltip");
 	} 
 	else {
 		target.addClass("hidden");

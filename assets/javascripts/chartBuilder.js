@@ -103,10 +103,8 @@ function buildLineChart(chart, target, title, datasets, labels, xLabel, yLabel){
 }
 
 function clearData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
+    chart.data.labels = [];
+    chart.data.datasets = [];
     chart.update();
 }
 

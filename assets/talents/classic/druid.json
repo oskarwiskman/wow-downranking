@@ -29,8 +29,8 @@
 		{
 			"name":"improved_healing_touch",
 			"maxRank":5,
-			"rankIncrement":0.1,
-			"description":"Reduces the cast time of your Healing Touch spell by ${rankIncrement} sec.",
+			"castReduction":0.1,
+			"description":"Reduces the cast time of your Healing Touch spell by ${castReduction} sec.",
 			"image":"healing_touch.jpg",
 			"affectedSpells": [
 				"Healing Touch"

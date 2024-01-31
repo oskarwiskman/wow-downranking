@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ozgar's Downranking Guild & Tool - Wrath of the Lich King</title>
+		<meta charset="UTF-8"> 
+		<meta name="description" content="Downranking Guide and Tool for World of Warcraft: Wrath of the Lich King - Classic">
+		<meta name="keywords" content="WoW, World of Warcraft, Classic WoW, Wrath of the Lich King, WotLK, Classic WotLK, Downranking, Rank down, Tool, Guide">
+		<meta name="author" content="Ozgar">
+		<meta name="msapplication-TileColor" content="#1d1d1d">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#1d1d1d">
+		<link rel="stylesheet" type="text/css" href='/stylesheets/main.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/checkbox.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/spelltooltip.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/talent.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/buff.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/modal.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/rangeslider.css'>
+		<link rel="stylesheet" type="text/css" href='/stylesheets/chart.css'>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/jquery.modal.min.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/cookieconsent.min.css" />
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/wotlk/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/wotlk/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/wotlk/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/wotlk/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/wotlk/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/wotlk/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/wotlk/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/wotlk/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/wotlk/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/wotlk/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/wotlk/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/wotlk/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/wotlk/favicon-16x16.png">
+		<script src="/javascripts/jquery-3.4.1.min.js"></script>
+		<script src="/javascripts/compliance.js"></script>
+		<script src="/javascripts/rangeslider.min.js"></script>
+		<script src="/javascripts/chart.js"></script>
+		<script src="/javascripts/htmlBuilder.js"></script>
+		<script src="/javascripts/utils.js"></script>
+		<script src="/javascripts/calculations.js"></script>
+		<script src="/javascripts/main.js"></script>
+		<script src="/javascripts/chartBuilder.js"></script>
+		<script src="/javascripts/jquery.tablesort.js"></script>
+		<script src="/javascripts/jquery.modal.min.js"></script>
+		<script src="/javascripts/cookieconsent.min.js" data-cfasync="false"></script>
+	</head>
+	<body id="wotlk-body" class="wotlk">
+		<div id="logo-container">
+			<img id="main-logo" src="/images/wotlk_logo.png" alt="World of Warcraft: The Burning Crusade"></img>
+			<img id="secondary-logo" src="/images/classic_logo.png" alt="Classic"></img>
+		</div>
+		<div id="expansion-selection">
+			<div class="navbar">
+				<a class="icon-medium" id="classic-wow" title="World of Warcraft: Classic" alt="Classic WoW" style="background-image: url(/images/classic_wow_icon.png)" href="/"></a>
+				<a class="icon-medium" id="classic-tbc" title="The Burning Crusade: Classic" alt="Classic TBC" style="background-image: url(/images/classic_tbc_icon.png)" href="/tbc"></a>
+			</div>
+		</div>
+		<h1 id="secondary-header">Ozgar's Downranking Guide & Tool</h1>
+		<% include index_common/tip.html %>
+		<span class="btn">
+			<a href="#" onClick="openModal('info-modal')" title="Why is there no downranking?">But why?</a>
+		</span>
+	</body>
+	<% include how_it_works_modal/wotlk_main.html %>
+	<footer>
+		<div class="author">
+			Creator: Oskar Wiskman </br>
+			My <a href="https://github.com/oskarwiskman" target="_blank">GitHub</a> account</br>
+			Reddit tag: <a href="https://www.reddit.com/user/Ozgar91" target="_blank">u/Ozgar91</a>
+		</div>
+		<div class="credits">Credits to:</br>
+			My wife for understanding that doing this joke page was more important than house chores.
+		</div>
+		<div class="paypal-container">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+				<input type="hidden" name="cmd" value="_s-xclick" />
+				<input type="hidden" name="hosted_button_id" value="2NHDAHNTTQ3PQ" />
+				<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+			</form>
+		</div>
+	</footer>
+</html>
+<!DOCTYPE html>

@@ -1,7 +1,7 @@
 # World of Warcraft - Downranking tips
-Downranking tool for World of Warcraft: Classic and World of Warcraft - The Burning Crusade: Classic, that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
+Downranking tool for World of Warcraft that will help you decide which spell rank has the highest heal per mana based on your gear and talents. The metrics used are Healing per Mana Efficiency (HpME), Healing per Second (HpS) and a merged metric we've named Healing Efficiency Score (HES), which considers both HpME and HpS. HES is used when recommending ranks, since looking at only HpME or HpS is very one dimensional and does not always provide the best results.
 
-The website is hosted by Heroku and can be found here https://www.wowdownrank.com/ or https://www.wowdownrank.com/tbc for the Burning Crusade version.
+The website is hosted by [Heroku](https://www.heroku.com/home) and can be found here https://www.wowdownrank.com/, https://www.wowdownrank.com/tbc for the Burning Crusade version or https://www.wowdownrank.com/wotlk for Wrath of the Lich King.
 
 Currently supported spells:
 
@@ -58,14 +58,18 @@ Currently supported spells:
 
 #### Update log
 
-#### 2021-08-23
-* Improved user experience when using the HpME vs HpS Slider in the details view. Re-calculation is now performed after the slider has been released, and will also trigger a loader whilst processing.
+#### 2022-08-27
+* Added page for Wrath of the Lich King.
+* Click the tips to see a new one!
+* Improved some footer styling.
 
-#### 2021-08-21
-* Improved layout for mobile and tablet users.
+#### 2022-01-13
+* Center allignment of tooltips while browsing on mobile devices for smoother user experience.
+* Fix typo in tooltip for Shaman Ten Storms 3p buff.
 
-#### 2021-06-21
-* Added handling of Priest talent Empowered Healing, since this had been missing before. The talent now correctly adds bonus healing to Greater Heal, Flash Heal, and Bindning Heal.
+#### 2021-12-11
+* Paladin talent Illumination changed to only refund 60% of mana (previously 100%) in TBC as of patch 2.1.0. Thanks Hulio225 for pointing this out!
+
 
 #### For older entries see full log here: [Complete update log](update_log.md)
 
@@ -77,7 +81,7 @@ As stated above I am happy to receive constructive feedback, in order to make th
 
 Feel free to post bug reports on this repo, or create a Pull Request, but bare in mind that unless you provide a reasonable source to your claims they will be disregarded.
 
-If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Oggzor](https://www.reddit.com/user/Oggzor).
+If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Ozgar91](https://www.reddit.com/user/Ozgar91).
 
 ## Getting started
 1. Make sure that you have node.js installed [download link](https://nodejs.org/en/download/)

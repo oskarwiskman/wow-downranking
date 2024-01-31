@@ -85,6 +85,17 @@ function updateTooltip(spellData, params){
 	showResult(params.result_container);
 }
 
+function mobileAlignTooltipCenter(selector) {
+	if($("body").hasClass("mobile")) {
+		$(selector).each(function() {
+	    this.style.left=0;
+	    let tooltipRect = this.getBoundingClientRect();
+	    let left =  vw/2 - (tooltipRect.left+(tooltipRect.width/2));
+	    this.style.left = left + "px";
+		});
+	}
+}
+
 function toggleBuff(elem){
 	$(elem).toggleClass('active');
 	let footer = $(elem).find('.footer');
@@ -268,6 +279,14 @@ function openModal(id){
 				refreshDetailsModal();
 			}, 750);
 	}
+}
+
+function selectCompareModalClass() {
+	return new Promise(function(resolve, reject) {
+		let className = getSelectedClassName();
+		let classElem = document.getElementById(`${className}1`);
+		eventFire(classElem, 'click');
+	});
 }
 
 function loadDetailsModalContent(){
@@ -456,4 +475,20 @@ function roundNumber(num, scale) {
 
 function sortNumberAsc(a, b) {
   return b - a;
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
