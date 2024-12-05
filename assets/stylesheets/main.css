@@ -225,7 +225,7 @@ body.mobile #main-header {
 }
 
 .youtube-iframe {
-	background-image: url(/images/youtube-video-not-available.png);
+	background-image: url(/wow-downranking/assets/images/youtube-video-not-available.png);
     background-size: contain;
 }
 
