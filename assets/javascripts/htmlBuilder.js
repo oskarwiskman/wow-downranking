@@ -262,13 +262,13 @@ function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
 }
 
 function buildSpellHtmlForClass(className, onClick, container){
-	var path = `/spelldata/${expansion}/${className}/`
+	var path = `assets/spelldata/${expansion}/${className}/`
 	$.get(path, function(response){
 		var html = "";
 		$(response).each(function(){
 			let spellName = this.split('.json')[0];
 			loadSpellData(className, spellName);
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(/images/${spellName}.jpg)" onClick="${onClick}"></a>`
+			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(assets/images/${spellName}.jpg)" onClick="${onClick}"></a>`
 		})
 		container.html(html);
 	});
@@ -296,7 +296,7 @@ function buildTalentHtmlForClass(talentData){
 function buildTalentIcon(className, talentData, rank){
 	return `<div id="talent-${talentData.name}" class="talent-icon" data-class-name="${className}" data-talent='${JSON.stringify(talentData)}' data-current-rank="${rank}" data-direction="up">
 				<span class="talent-tooltip">${buildTalentTooltip(talentData, rank)}</span>
-				<img style="background-image: url(/images/${talentData.image})"></img>
+				<img style="background-image: url(assets/images/${talentData.image})"></img>
 				<del></del>
 				<a onClick="updateTalent(this)"></a>
 				<div class="icon-border ${rank === talentData.maxPoints ? "maxed" : ""}"></div>
