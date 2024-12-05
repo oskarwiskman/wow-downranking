@@ -2,10 +2,10 @@
 
 @font-face {
   font-family: 'Friz Quadrata';
-  src: url('../../Friz Quadrata.eot'); /* IE9 Compat Modes */
-  src: url('../../Friz Quadrata.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../../Friz Quadrata.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../../Friz Quadrata.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('Friz Quadrata.eot'); /* IE9 Compat Modes */
+  src: url('Friz Quadrata.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Friz Quadrata.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('Friz Quadrata.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 a { 

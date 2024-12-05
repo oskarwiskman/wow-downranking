@@ -1,3 +1,10 @@
+const classSpells = {
+	"druid": ["healing_touch", "regrowth", "rejuvenation"],
+	"paladin": ["flash_of_light", "holy_light", "holy_shock"],
+	"priest": ["flash_heal", "greater_heal", "heal", "renew"],
+	"shaman": ["chain_heal", "healing_wave", "lesser_healing_wave"]
+}
+
 function buildBreakpointsTable(spellData){
 	let bpMapFrom = {};
 	let bpMapTo = {};
@@ -263,15 +270,12 @@ function buildTooltipHtmlForSpell(spell, rank, cssClass="", footer=""){
 
 function buildSpellHtmlForClass(className, onClick, container){
 	var path = `assets/spelldata/${expansion}/${className}/`
-	$.get(path, function(response){
-		var html = "";
-		$(response).each(function(){
-			let spellName = this.split('.json')[0];
-			loadSpellData(className, spellName);
-			html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(assets/images/${spellName}.jpg)" onClick="${onClick}"></a>`
-		})
-		container.html(html);
-	});
+	var html = "";
+	classSpells[className].forEach(function(spellName){
+		loadSpellData(className, spellName);
+		html += `<a class="wow-spell icon-medium" data-class-name="${className}" data-spell-name="${spellName}" title="${toTitleCase(spellName)}" alt="${toTitleCase(spellName)}" style="background-image: url(assets/images/${spellName}.jpg)" onClick="${onClick}"></a>`
+	})
+	container.html(html);
 }
 
 function buildTalentHtmlForClass(talentData){
@@ -322,7 +326,7 @@ function buildBuffHtmlForClass(buffData){
 }
 
 function buildBuffIcon(className, buff){
-	return `<div id="buff-${buff.key}" class="icon-medium buff-icon" data-buff='${JSON.stringify(buff)}' data-class-name="${className}" data-spell-name="${buff.key}" title="${buff.name}" alt="${buff.name}" style="background-image: url(/images/${buff.image})" onClick="toggleBuff(this)">
+	return `<div id="buff-${buff.key}" class="icon-medium buff-icon" data-buff='${JSON.stringify(buff)}' data-class-name="${className}" data-spell-name="${buff.key}" title="${buff.name}" alt="${buff.name}" style="background-image: url(/wow-downranking/assets/images/${buff.image})" onClick="toggleBuff(this)">
 				${buildBuffTooltip(buff)}
 			</div>`
 }

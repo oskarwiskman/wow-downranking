@@ -2,6 +2,7 @@ let expansion = "";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
+
 $(document).ready(function(){
     expansion = document.getElementById("tbc-body") ? "tbc" : document.getElementById("wotlk-body") ? "wotlk" : "classic";
     if(expansion !== "wotlk"){
