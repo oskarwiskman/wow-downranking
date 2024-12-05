@@ -1,14 +1,14 @@
-let expansion = "";
+const expansion = "classic";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
 
 $(document).ready(function(){
-    expansion = document.getElementById("tbc-body") ? "tbc" : document.getElementById("wotlk-body") ? "wotlk" : "classic";
-    if(expansion !== "wotlk"){
-    	initRangeSliders();
-    	newRandomTip();
-    }
+	if(isMobile) {
+		$('#classic-body').addClass('mobile');
+	} else {
+		$('#classic-body').removeClass('mobile');
+	}
 });
 
 function onClassClicked(elem){
