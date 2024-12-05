@@ -224,11 +224,6 @@ body.mobile #main-header {
 	font-size: 1.5em;
 }
 
-.youtube-iframe {
-	background-image: url(/wow-downranking/assets/images/youtube-video-not-available.png);
-    background-size: contain;
-}
-
 .icon-medium {
 	border-radius: 25px;
 	background-size: cover;

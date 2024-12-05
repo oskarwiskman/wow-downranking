@@ -8,17 +8,8 @@ $(document).ready(function(){
     if(expansion !== "wotlk"){
     	initRangeSliders();
     	newRandomTip();
-    	initYouTubeiFrame();
     }
 });
-
-function initYouTubeiFrame() {
-	if (getCookie("cookieconsent_status") === "dismiss") {
-		$('.youtube-iframe').each( function () {
-			this.src = $(this).data("src");
-		});
-	}
-}
 
 function onClassClicked(elem){
 	let target = $(elem);
