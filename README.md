@@ -58,6 +58,9 @@ Currently supported spells:
 
 #### Update log
 
+#### 2024-12-05
+* Rewrote site to be static and hostable by GitHub Pages (only Classic version available now, tbc and wotlk are not)
+
 #### 2022-08-27
 * Added page for Wrath of the Lich King.
 * Click the tips to see a new one!
