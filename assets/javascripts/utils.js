@@ -408,7 +408,7 @@ function loadJSON(path, callback, param) {
 	    $.ajax({
 	        'global': false,
 	        'data': param,
-	        'url': `/wow-downranking/assets${path}`,
+	        'url': `/assets${path}`,
 	        'dataType': "json",
 	        'success': !!callback ? 
 	        	function(data) {

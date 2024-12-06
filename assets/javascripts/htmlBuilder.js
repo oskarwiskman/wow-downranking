@@ -326,7 +326,7 @@ function buildBuffHtmlForClass(buffData){
 }
 
 function buildBuffIcon(className, buff){
-	return `<div id="buff-${buff.key}" class="icon-medium buff-icon" data-buff='${JSON.stringify(buff)}' data-class-name="${className}" data-spell-name="${buff.key}" title="${buff.name}" alt="${buff.name}" style="background-image: url(/wow-downranking/assets/images/${buff.image})" onClick="toggleBuff(this)">
+	return `<div id="buff-${buff.key}" class="icon-medium buff-icon" data-buff='${JSON.stringify(buff)}' data-class-name="${className}" data-spell-name="${buff.key}" title="${buff.name}" alt="${buff.name}" style="background-image: url(/assets/images/${buff.image})" onClick="toggleBuff(this)">
 				${buildBuffTooltip(buff)}
 			</div>`
 }
