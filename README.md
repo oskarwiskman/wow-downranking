@@ -49,7 +49,7 @@ Currently supported spells:
 #### For older entries see full log here: [Complete update log](update_log.md)
 
 # Sources
-All the spell data used in the project has been gathered from Classic WoW Beta Servers, [ClassicWowHead](https://classic.wowhead.com/), TBC Beta Servers as well as [TBCWowHead](https://tbc.wowhead.com/). Calculation formulas from have been derived from several sources and verified in the Beta versions of both expansions.
+All the spell data used in the project has been gathered from Classic WoW Beta Servers, [ClassicWowHead](https://classic.wowhead.com/), TBC Beta Servers as well as [TBCWowHead](https://tbc.wowhead.com/). Calculation formulas from have been derived from several sources and verified in the Beta versions of both expansions. They were also later confirmed on the official realms.
 
 # Contributions
 As stated above I am happy to receive constructive feedback, in order to make this tool better.
@@ -59,9 +59,17 @@ Feel free to post bug reports on this repo, or create a Pull Request, but bare i
 If you're not a developer, or simply don't care for GitHub you can also message me on Reddit [u/Ozgar91](https://www.reddit.com/user/Ozgar91).
 
 ## Getting started
-1. Make sure that you have node.js installed [download link](https://nodejs.org/en/download/)
-2. Clone the project through git, or download as a zip.
-3. Navigate to project directory and run ```npm install```.
-4. Start the app localy with ```npm start```.
+The way the page is setup with GitHub pages relies on the asset files being available over an internet connection. This makes local development less straight forward, since network requests to find assets are used. Unless you want to spend time setting up a local server with routes to serve all the data assets there are two easier ways to validate that your change is working.
+
+### Test directly on my site
+All logic is ran directly on your client, there is no backend so everything can be modified or overridden directly in your browser. If you see an issue with the code, you can override it in the browser to test that it behaves as intended before making a PullRequest.
+
+
+### Fork and publish own GitHub Pages
+If you intend to make larger changes, I would suggest forking the repository and setting up your own GitHub Pages to allow proper testing before creating a PR.
+
+1. Create a fork of the repository
+2. Setup a GitHub pages site for your new repo https://docs.github.com/en/pages/quickstart using the branch you develop on as source branch. Make sure to select `root` as folder to ensure access to assets.
+3. Unless you have a custom domain to use, you will also have to run a search and replace on `assets/` and replace with `your-repo-name/assets/`. This is due to the way GitHub serves files related to a repository.
 5. Good luck!
 
