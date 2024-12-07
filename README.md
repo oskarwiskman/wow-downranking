@@ -28,34 +28,6 @@ Currently supported spells:
   * Healing Wave
   * Lesser Healing Wave
 
-#### The Burning Crusade
-
-* Druid:
-  * Rejuvenation
-  * Regrowth
-  * Healing Touch
-  * Lifebloom
-
-* Paladin:
-  * Flash of Light
-  * Holy Light
-  * Holy Shock
-
-* Priest:
-  * Flash Heal
-  * Greater Heal
-  * Heal
-  * Renew
-  * Binding Heal
-  * Circle of Healing
-  * Prayer of Healing
-
-* Shaman:
-  * Chain Heal
-  * Healing Wave
-  * Lesser Healing Wave
-  * Earth Shield
-
 #### Update log
 
 #### 2024-12-05
