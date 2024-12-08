@@ -1,14 +1,13 @@
 const expansion = "classic";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
 $(document).ready(function(){
-	if(isMobile) {
-		$('#classic-body').addClass('mobile');
-	} else {
-		$('#classic-body').removeClass('mobile');
-	}
+	initMobile();
+	initRangeSliders();
+	newRandomTip();
 });
 
 function onClassClicked(elem){
