@@ -47,7 +47,6 @@ function onSpellClicked(elem){
 		hideResult();
 
 	} else {
-		hideTip();
 		navbar.find('.active').each(function(){ $(this).removeClass("active");});
 		target.addClass('active');
 		refreshTooltip();
