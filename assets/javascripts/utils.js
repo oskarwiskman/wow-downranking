@@ -9,10 +9,8 @@ function isMobile() {
 
 function initMobile() {
 	if(isMobile()) {
-		console.log("Is Mobile");
 		$('#classic-body').addClass('mobile');
 	} else {
-		console.log("Is not Mobile");
 		$('#classic-body').removeClass('mobile');
 	}
 }
